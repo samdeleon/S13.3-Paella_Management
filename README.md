@@ -1,2 +1,7 @@
-# S13.3-Paella_Management
-CSSWENG-S13 (Team #3) Paella Management Project
+# Paella Management Project
+## S13.3 (QuaranTime) Members:
+* CHIACO, Ronn 
+* DE LEON, Samantha
+* GONZALES, Johann
+* PASCUAL, Jeremy
+* PUA, Shaun
