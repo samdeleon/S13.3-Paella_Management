@@ -13,6 +13,7 @@ app.engine('hbs', exphandle({
     partialsDir: path.join(__dirname, '/views/partials'), // Partials folder
 }))
 
+
 app.set('view engine', 'hbs')
 
 //For login page
