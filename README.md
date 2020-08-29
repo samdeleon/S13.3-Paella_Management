@@ -6,12 +6,13 @@
 * PASCUAL, Jeremy
 * PUA, Shaun
 
-# Dependency installation:
-* npm install
-* npm install express
-* npm install handlebars
-* npm install express-handlebars
-* npm install -g nodemon
+## Dependency Installation:
+1. `npm install`
+2. `npm install express`
+3. `npm install handlebars`
+4. `npm install express-handlebars`
+5. `npm install -g nodemon`
 
-# To run with nodemon (auto restarts your app when theres new changes)
+## To Run with `nodemon`
 `npm run dev`
+ -  This auto restarts the application when there's new changes
