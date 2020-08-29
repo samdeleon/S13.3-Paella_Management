@@ -22,7 +22,10 @@ app.use(express.static('public'))
 // [PAGE-01] LOGIN
 app.get('/', function(req, res){
     res.render('Login', {
+        // for main.hbs
         title: "Login Page"
+        styles: "css/styles_login.css"
+        body_class: "login"
     })
 })
 
@@ -30,6 +33,8 @@ app.get('/', function(req, res){
 app.get('/home', function(req, res){
     res.render('Homepage', {
         title: "Home"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -37,6 +42,8 @@ app.get('/home', function(req, res){
 app.get('/order-form', function(req, res){
     res.render('OrderForm', {
         title: "Order Form"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -49,6 +56,8 @@ app.get('/order-information:param', function(req, res){
     */
     res.render('OrderInformation', {
         title: "Order " + id
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -56,6 +65,8 @@ app.get('/order-information:param', function(req, res){
 app.get('/ingredients-inventory', function(req, res){
     res.render('IngredientsInventory', {
         title: "Ingredients Inventory"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -63,6 +74,8 @@ app.get('/ingredients-inventory', function(req, res){
 app.get('/update-ingredients', function(req, res){
     res.render('UpdateIngredients', {
         title: "Update Ingredients"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -70,6 +83,8 @@ app.get('/update-ingredients', function(req, res){
 app.get('/pans-inventory', function(req, res){
     res.render('PansInventory', {
         title: "Pans Inventory"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -77,6 +92,8 @@ app.get('/pans-inventory', function(req, res){
 app.get('/orders', function(req, res){
     res.render('AllOrders', {
         title: "All Orders"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
@@ -84,6 +101,8 @@ app.get('/orders', function(req, res){
 app.get('/search', function(req, res){
     res.render('Searchpage', {
         title: "Search"
+        styles: "css/styles_inside.css"
+        body_class: "inside"
     })
 })
 
