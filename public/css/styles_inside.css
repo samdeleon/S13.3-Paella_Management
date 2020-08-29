@@ -22,7 +22,7 @@
     width: 400px;
     justify-content: center;
     align-items: center;
-    background-color: #dbdbdbda;          
+    background-color: #dbdbdbda;
     border-radius: 10px;
     margin: auto;
     padding-top: 20px;
@@ -42,3 +42,9 @@
 /* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
 
 /* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */
+
+/* ------------------------------------------ NAVBAR -------------------------------------------- */
+.vl {
+    border-right: 3px solid #FF919F;
+    height: 40px;
+}
