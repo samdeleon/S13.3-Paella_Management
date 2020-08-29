@@ -23,8 +23,8 @@ app.use(express.static('public'))
 app.get('/', function(req, res){
     res.render('Login', {
         // for main.hbs
-        title: "Login Page"
-        styles: "css/styles_login.css"
+        title: "Login Page",
+        styles: "css/styles_login.css",
         body_class: "login"
     })
 })
@@ -32,8 +32,8 @@ app.get('/', function(req, res){
 // [PAGE-02] HOMEPAGE
 app.get('/home', function(req, res){
     res.render('Homepage', {
-        title: "Home"
-        styles: "css/styles_inside.css"
+        title: "Home",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -41,8 +41,8 @@ app.get('/home', function(req, res){
 // [PAGE-03] ORDER FORM
 app.get('/order-form', function(req, res){
     res.render('OrderForm', {
-        title: "Order Form"
-        styles: "css/styles_inside.css"
+        title: "Order Form",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -55,8 +55,8 @@ app.get('/order-information:param', function(req, res){
         ^ will be used to search in the db
     */
     res.render('OrderInformation', {
-        title: "Order " + id
-        styles: "css/styles_inside.css"
+        title: "Order " + id,
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -64,8 +64,8 @@ app.get('/order-information:param', function(req, res){
 // [PAGE-05] INGREDIENTS INVENTORY
 app.get('/ingredients-inventory', function(req, res){
     res.render('IngredientsInventory', {
-        title: "Ingredients Inventory"
-        styles: "css/styles_inside.css"
+        title: "Ingredients Inventory",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -73,8 +73,8 @@ app.get('/ingredients-inventory', function(req, res){
 // [PAGE-06] UPDATE INGREDIENTS
 app.get('/update-ingredients', function(req, res){
     res.render('UpdateIngredients', {
-        title: "Update Ingredients"
-        styles: "css/styles_inside.css"
+        title: "Update Ingredients",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -82,8 +82,8 @@ app.get('/update-ingredients', function(req, res){
 // [PAGE-07] PANS INVENTORY
 app.get('/pans-inventory', function(req, res){
     res.render('PansInventory', {
-        title: "Pans Inventory"
-        styles: "css/styles_inside.css"
+        title: "Pans Inventory",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -91,8 +91,8 @@ app.get('/pans-inventory', function(req, res){
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
     res.render('AllOrders', {
-        title: "All Orders"
-        styles: "css/styles_inside.css"
+        title: "All Orders",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
@@ -100,8 +100,8 @@ app.get('/orders', function(req, res){
 // [PAGE-09] SEARCH PAGE
 app.get('/search', function(req, res){
     res.render('Searchpage', {
-        title: "Search"
-        styles: "css/styles_inside.css"
+        title: "Search",
+        styles: "css/styles_inside.css",
         body_class: "inside"
     })
 })
