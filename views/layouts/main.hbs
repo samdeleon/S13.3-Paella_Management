@@ -2,22 +2,38 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{{{title}}}</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
-    <!-- importing personal styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- TITLE -->
+      <title>{{title}}</title>
+      <!-- 
+        The title of each page will change depending on its purpose
+      -->
+
+    <!-- LINKS FOR BOOTSTRAP TO WORK-->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <!-- CSS FILE -->
+      <link rel="stylesheet" href={{styles}}>
+      <!--
+        we have 2 css files:
+          styles_outside.css = css file for just the login page (separate since it doesnt have navbar & has diff layout)
+          styles_inside.css = css file for the pages that come AFTER the login page (all use same layout)
+      -->
+
   </head>
-  <body>
-    {{> navbar}} <!-- This is a partial, we use > right after the opening mustache to denote it's a partial -->
 
-    <div class="container">
-      {{{ body }}} 
-    </div>
-
+  <body class={{body_class}}>
+    <!-- MAIN BODY -->
+      {{{body}}}
+      <!--
+        we have 2 body classes to differentiate the css being used for each:
+          "outside" = using styles_outside.css
+          "inside" = using styles_inside.css
+      -->
   </body>
+
 </html>

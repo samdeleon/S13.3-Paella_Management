@@ -13,38 +13,34 @@ app.engine('hbs', exphandle({
     partialsDir: path.join(__dirname, '/views/partials'), // Partials folder
 }))
 
-
 app.set('view engine', 'hbs')
 
-//For login page
+app.use(express.static('public'))
+
+/* ---------------------------------------- ALL 9 ROUTES ---------------------------------------- */
+
+// [PAGE-01] LOGIN
 app.get('/', function(req, res){
     res.render('Login', {
         title: "Login Page"
     })
 })
 
-//For homepage
+// [PAGE-02] HOMEPAGE
 app.get('/home', function(req, res){
     res.render('Homepage', {
         title: "Home"
     })
 })
 
-//for all orders
-app.get('/orders', function(req, res){
-    res.render('AllOrders', {
-        title: "All Orders"
-    })
-})
-
-//for order Form
+// [PAGE-03] ORDER FORM
 app.get('/order-form', function(req, res){
     res.render('OrderForm', {
         title: "Order Form"
     })
 })
 
-//for order information
+// [PAGE-04] ORDER INFORMATION
 app.get('/order-information:param', function(req, res){
     var id = req.params.param;
     /*
@@ -56,37 +52,50 @@ app.get('/order-information:param', function(req, res){
     })
 })
 
-//for ingredients inventory
+// [PAGE-05] INGREDIENTS INVENTORY
 app.get('/ingredients-inventory', function(req, res){
     res.render('IngredientsInventory', {
         title: "Ingredients Inventory"
     })
 })
 
-//for pans inventory
-app.get('/pans-inventory', function(req, res){
-    res.render('PansInventory', {
-        title: "Pans Inventory"
-    })
-})
-
-//for update ingredients
+// [PAGE-06] UPDATE INGREDIENTS
 app.get('/update-ingredients', function(req, res){
     res.render('UpdateIngredients', {
         title: "Update Ingredients"
     })
 })
 
-//for search page
+// [PAGE-07] PANS INVENTORY
+app.get('/pans-inventory', function(req, res){
+    res.render('PansInventory', {
+        title: "Pans Inventory"
+    })
+})
+
+// [PAGE-08] ALL ORDERS
+app.get('/orders', function(req, res){
+    res.render('AllOrders', {
+        title: "All Orders"
+    })
+})
+
+// [PAGE-09] SEARCH PAGE
 app.get('/search', function(req, res){
     res.render('Searchpage', {
         title: "Search"
     })
 })
 
-
-app.use(express.static('public'))
+/* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
 app.listen(port, function() {
     console.log('App listening at port '  + port)
   });
+
+/* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
+// we'll add things here after sprint 1
+
+
+
+/* --------------------------------------- END OF FEATURES -------------------------------------- */
