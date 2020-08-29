@@ -6,11 +6,11 @@
 * PASCUAL, Jeremy
 * PUA, Shaun
 
-# npm install
-# npm install express
-# npm install handlebars
-# npm install express-handlebars
-# npm install -g nodemon
+* npm install
+* npm install express
+* npm install handlebars
+* npm install express-handlebars
+* npm install -g nodemon
 
 # To run with nodemon (auto restarts your app when theres new changes)
 `npm run dev`
