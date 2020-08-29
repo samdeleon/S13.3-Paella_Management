@@ -6,6 +6,7 @@
 * PASCUAL, Jeremy
 * PUA, Shaun
 
+# Dependency installation:
 * npm install
 * npm install express
 * npm install handlebars

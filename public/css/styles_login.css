@@ -6,3 +6,25 @@
 .login {
             
 }
+
+#log-in-container{
+    border: 1px solid #cccccc;
+	width: 50%;
+	text-align: center;
+	margin: auto;
+	background-color: #cccccc;
+}
+#log-in-header{
+	background-color:  #92a90e;
+    text-align: center;
+	padding: 20px;
+	height:72px;
+	margin: auto;
+	color: #fbfbfb;
+}
+#log-in-body{
+	background-color:  #cccccc;
+	text-align: center;
+	padding: 24px;
+	margin: auto;
+}
