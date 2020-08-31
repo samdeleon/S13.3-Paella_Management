@@ -2,9 +2,11 @@ const express = require('express')
 const path = require('path')
 const exphandle = require('express-handlebars')
 const handlebars = require('handlebars')
-
+const mongoose = require('mongoose')
 const app = express()
 const port = 9090
+
+const orderModel = require('./models/order')
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
