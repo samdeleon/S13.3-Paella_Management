@@ -33,10 +33,28 @@ app.get('/', function(req, res){
 
 // [PAGE-02] HOMEPAGE
 app.get('/home', function(req, res){
+  /* Dummy data */
+    var dummy1 = {
+      date: "Jan. 7, 2020",
+      status: "For Cooking",
+      ordernum: "2020-01"
+    };
+    var dummy2 = {
+      date: "Jan. 11, 2020",
+      status: "Complete Ingredients",
+      ordernum: "2020-02"
+    };
+    var dummy3 = {
+      date: "Jan. 13, 2020",
+      status: "Complete Ingredients",
+      ordernum: "2020-03"
+    };
+    var content = [dummy1, dummy2, dummy3];
     res.render('Homepage', {
         title: "Home",
         styles: "css/styles_inside.css",
-        body_class: "inside"
+        body_class: "inside",
+        records: content
     })
 })
 

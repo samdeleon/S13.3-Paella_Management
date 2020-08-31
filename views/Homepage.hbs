@@ -1,2 +1,30 @@
 {{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
 
+<div class="container">
+  <h2><strong>Recent Orders</strong></h2>
+
+  <table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order Number</th>
+      <th scope="col">Order Status</th>
+      <th scope="col">Date Needed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if records}}
+      {{#each records}}
+        <tr>
+          <td>{{this.ordernum}}</td>
+          <td>{{this.status}}</td>
+          <td>{{this.date}}</td>
+        </tr>
+        {{/each}}
+    {{else}}
+      <tr>
+        <td>No orders available</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table>
+</div>
