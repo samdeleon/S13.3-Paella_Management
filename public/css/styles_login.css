@@ -4,7 +4,19 @@
 
 /* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
 .login {
-            
+    /*
+    background-color: ;
+	*/
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.content-login {
+	margin: auto;
+    padding: 50px;
+	height: auto;
+	justify-content: center;
+    align-items: center;
 }
 
 #log-in-container{

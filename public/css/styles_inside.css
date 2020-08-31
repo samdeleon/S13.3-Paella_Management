@@ -5,17 +5,25 @@
 
 /* ---------------------------------------- FOR ALL PAGES --------------------------------------- */
 .inside {
+    /*
+    background-color: ; 
+    margin-top: 100px;
+    margin-bottom: 100px;   
+    */
+}
 
+.content {
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
 
 /* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
-
-.form-order{
-    padding-left: 20px;
-    padding-right: 20px;
-}
 
 .order-form {
     height: auto;
