@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const exphandle = require('express-handlebars')
 const handlebars = require('handlebars')
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const app = express()
 const port = 9090
@@ -16,6 +17,9 @@ app.engine('hbs', exphandle({
 }))
 
 app.set('view engine', 'hbs')
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'))
 
@@ -135,6 +139,34 @@ app.listen(port, function() {
 /* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
 // we'll add things here after sprint 1
 
+app.post('/newOrder', function (req, res) {
+    
+    var order = new orderModel({
+        ordernum:       req.body.ordernum,
+        name:           req.body.name,
+        date:           req.body.date,
+        time:           req.body.time,
+        paellasize:     req.body.paellasize,
+        status:         req.body.status,
+        extraremarks:   req.body.extraremarks
+    })
+    var result
+    order.save(function(err, order) {
+        if (err){
+            console.log(err.errors);
 
+            result = {success: false, message: "new order was not created"}
+            res.send(result);
+        }
+        else{
+            console.log("New order added");
+            console.log(order)
+
+            result = {success: true, message: "new order was created"}
+
+            res.redirect("/home")
+        }
+    })
+})
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */
