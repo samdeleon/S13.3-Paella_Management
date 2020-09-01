@@ -11,6 +11,7 @@ mongoose.connect(databaseURL, options);
 
 const orderSchema = new mongoose.Schema(
     {
+        order_number:   {type: String, required: true},
         name:           {type: String, required: true},
         dateneeded:     {type: String, required: true},
         timeneeded:     {type: String, required: true},
