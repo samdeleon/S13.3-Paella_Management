@@ -141,32 +141,41 @@ app.listen(port, function() {
 
 app.post('/newOrder', function (req, res) {
     
-    var order = new orderModel({
-        ordernum:       req.body.ordernum,
-        name:           req.body.name,
-        date:           req.body.date,
-        time:           req.body.time,
-        paellasize:     req.body.paellasize,
-        status:         req.body.status,
-        extraremarks:   req.body.extraremarks
-    })
-    var result
-    order.save(function(err, order) {
-        if (err){
-            console.log(err.errors);
+    var d = new Date();
+    var year = d.getFullYear();
 
-            result = {success: false, message: "new order was not created"}
-            res.send(result);
-        }
-        else{
-            console.log("New order added");
-            console.log(order)
+    orderModel.countDocuments().exec(function (err, count){
+        count = count + 1
+        var order = new orderModel({
+            ordernum:       year + "-" + count,
+            name:           req.body.name,
+            date:           req.body.date,
+            time:           req.body.time,
+            paellasize:     req.body.paellasize,
+            status:         req.body.status,
+            extraremarks:   req.body.extraremarks
+        })
+        var result
 
-            result = {success: true, message: "new order was created"}
+        order.save(function(err, order) {
+            if (err){
+                console.log(err.errors);
+    
+                result = {success: false, message: "new order was not created"}
+                res.send(result);
+            }
+            else{
+                console.log("New order added");
+                console.log(order)
+    
+                result = {success: true, message: "new order was created"}
+    
+                res.send(result)
+            }
+        })
+    });
 
-            res.redirect("/home")
-        }
-    })
+    
 })
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */

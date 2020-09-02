@@ -8,7 +8,6 @@ $(document).ready(function () {
 
 
         var neworder = {
-            ordernum:       "to-do",
             name:           customerName,
             date:           date,
             time:           time,
@@ -21,13 +20,14 @@ $(document).ready(function () {
 
         if (customerName == "" || date == ""  || time == "" || size == "Choose which size")
         {
-            console.log("Fields are not filled up")
+            console.log("Fields are not filled up");
+            return false;
         }
         else
         {
             console.log(neworder);
             $.post("newOrder", neworder,function (data, status) {
-
+                
             });
         }
     });
