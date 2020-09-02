@@ -1,27 +1,27 @@
-const express = require('express')
-const path = require('path')
-const exphandle = require('express-handlebars')
-const handlebars = require('handlebars')
+const express = require('express');
+const path = require('path');
+const exphandle = require('express-handlebars');
+const handlebars = require('handlebars');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
-const app = express()
-const port = 9090
+const mongoose = require('mongoose');
+const app = express();
+const port = 9090;
 
-const orderModel = require('./models/order')
+const orderModel = require('./models/order');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
     defaultView: 'main',
     layoutsDir: path.join(__dirname, '/views/layouts'), // Layouts folder
     partialsDir: path.join(__dirname, '/views/partials'), // Partials folder
-}))
+}));
 
-app.set('view engine', 'hbs')
+app.set('view engine', 'hbs');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 /* ---------------------------------------- ALL 9 ROUTES ---------------------------------------- */
 
@@ -32,35 +32,25 @@ app.get('/', function(req, res){
         title: "Login Page",
         styles: "css/styles_login.css",
         body_class: "login"
-    })
-})
+    });
+});
 
 // [PAGE-02] HOMEPAGE
 app.get('/home', function(req, res){
-  /* Dummy data */
-    var dummy1 = {
-      date: "Jan. 7, 2020",
-      status: "For Cooking",
-      ordernum: "2020-01"
-    };
-    var dummy2 = {
-      date: "Jan. 11, 2020",
-      status: "Complete Ingredients",
-      ordernum: "2020-02"
-    };
-    var dummy3 = {
-      date: "Jan. 13, 2020",
-      status: "Complete Ingredients",
-      ordernum: "2020-03"
-    };
-    var content = [dummy1, dummy2, dummy3];
+  var content = [];
+  orderModel.find({status: {$ne: "Completed"}}).sort({date: 1}).limit(10).exec(function(err, result){
+    if(err) throw err;
+    result.forEach(function(doc) {
+      content.push(doc.toObject());
+    });
     res.render('Homepage', {
-        title: "Home",
-        styles: "css/styles_inside.css",
-        body_class: "inside",
-        records: content
-    })
-})
+      title: "Home",
+      styles: "css/styles_inside.css",
+      body_class: "inside",
+      records: content
+    });
+  });
+});
 
 // [PAGE-03] ORDER FORM
 app.get('/order-form', function(req, res){
@@ -68,8 +58,8 @@ app.get('/order-form', function(req, res){
         title: "Order Form",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-04] ORDER INFORMATION
 app.get('/order-information:param', function(req, res){
@@ -82,8 +72,8 @@ app.get('/order-information:param', function(req, res){
         title: "Order " + id,
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-05] INGREDIENTS INVENTORY
 app.get('/ingredients-inventory', function(req, res){
@@ -91,8 +81,8 @@ app.get('/ingredients-inventory', function(req, res){
         title: "Ingredients Inventory",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-06] UPDATE INGREDIENTS
 app.get('/update-ingredients', function(req, res){
@@ -100,8 +90,8 @@ app.get('/update-ingredients', function(req, res){
         title: "Update Ingredients",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-07] PANS INVENTORY
 app.get('/pans-inventory', function(req, res){
@@ -109,8 +99,8 @@ app.get('/pans-inventory', function(req, res){
         title: "Pans Inventory",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
@@ -118,8 +108,8 @@ app.get('/orders', function(req, res){
         title: "All Orders",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 // [PAGE-09] SEARCH PAGE
 app.get('/search', function(req, res){
@@ -127,8 +117,8 @@ app.get('/search', function(req, res){
         title: "Search",
         styles: "css/styles_inside.css",
         body_class: "inside"
-    })
-})
+    });
+});
 
 /* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
@@ -140,12 +130,12 @@ app.listen(port, function() {
 // we'll add things here after sprint 1
 
 app.post('/newOrder', function (req, res) {
-    
+
     var d = new Date();
     var year = d.getFullYear();
 
     orderModel.countDocuments().exec(function (err, count){
-        count = count + 1
+        count = count + 1;
         var order = new orderModel({
             ordernum:       year + "-" + count,
             name:           req.body.name,
@@ -154,28 +144,28 @@ app.post('/newOrder', function (req, res) {
             paellasize:     req.body.paellasize,
             status:         req.body.status,
             extraremarks:   req.body.extraremarks
-        })
-        var result
+        });
+        var result;
 
         order.save(function(err, order) {
             if (err){
                 console.log(err.errors);
-    
-                result = {success: false, message: "new order was not created"}
+
+                result = {success: false, message: "new order was not created"};
                 res.send(result);
             }
             else{
                 console.log("New order added");
-                console.log(order)
-    
-                result = {success: true, message: "new order was created"}
-    
-                res.send(result)
+                console.log(order);
+
+                result = {success: true, message: "new order was created"};
+
+                res.send(result);
             }
-        })
+        });
     });
 
-    
-})
+
+});
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */
