@@ -41,6 +41,68 @@
 
 /* -------------------------------- [PAGE-04] ORDER INFORMATION --------------------------------- */
 
+.order-container {
+    align-content: center;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+.info-row0 {
+    background-color: lightsteelblue;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.info-ordernum {
+    width: 250px;
+    text-align: left;
+}
+
+.info-status_grp {
+
+}
+
+.info-p_status {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+}
+
+#info-pbutton {
+    cursor: default;
+    pointer-events: none;
+}
+
+.info-o_status {
+    padding-left: 10px;
+    width: 250px;
+}
+
+.info-row2 {
+    background-color: lightpink;
+    margin: auto;
+}
+
+.info-cols {
+    width: 370px;
+    text-align: justify;
+}
+
+#customCheck {
+
+}
+
+#info-form {
+}
+
+#info-checklist {
+}
+
+#info-profit {
+}
+
 /* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
 
 /* ------------------------------- [PAGE-06] UPDATE INGREDIENTS --------------------------------- */
