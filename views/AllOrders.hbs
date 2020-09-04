@@ -2,4 +2,43 @@
 
 <div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
 
+
+  <h2><strong>All Orders</strong></h2>
+  <div class="md-form mt-0">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+  </div>
+  <hr>
+
+  <table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order Number</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Date Needed</th>
+      <th scope="col">Time Needed</th>
+      <th scope="col">Paella Size</th>
+      <th scope="col">Order status</th>
+      <th scope="col">Extra Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if records}}
+      {{#each records}}
+        <tr>
+          <td>{{this.ordernum}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.date}}</td>
+          <td>{{this.time}}</td>
+          <td>{{this.paellasize}}</td>
+          <td>{{this.status}}</td>
+          <td>{{this.extraremarks}}</td>
+        </tr>
+        {{/each}}
+    {{else}}
+      <tr>
+        <td>No orders available</td>
+      </tr>
+    {{/if}}
+  </tbody>
+  </table>
 </div>
