@@ -4,7 +4,7 @@
     <div class="container order-container">
         <div class="card d-flex flex-row justify-content-between info-row0">
             <div class="info-ordernum">
-                <h2 id="ordernumber">Order #2020-1</h2>
+                <h2 id="ordernumber">Order #{{ordernum}}</h2>
             </div>
             
             <div class="d-flex info-status_grp">
@@ -14,7 +14,7 @@
 
                 <div class="info-o_status">
                     <button id="info-obutton" type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#orderstatusModal">
-                        Complete Ingredients
+                        {{status}}
                     </button>
                 </div>
 
@@ -50,14 +50,14 @@
                 <h4 class="card-header">Order Information</h4>
                 
                 <div class="card-body"> <!-- TODO: Replace my dummy info with the {{things}}-->
-                    <p><b>Customer Name:</b> Samantha de Leon</p>   
-                    <p><b>Date Needed:</b> 16/08/2000</p>
-                    <p><b>Time Needed:</b> 04:20 AM</p>
-                    <p><b>Paella Size:</b> 20 inches</p>
+                    <p><b>Customer Name:</b> {{name}}</p>   
+                    <p><b>Date Needed:</b> {{date}}</p>
+                    <p><b>Time Needed:</b> {{time}}</p>
+                    <p><b>Paella Size:</b> {{size}}</p>
                     <p>
                         <b>Extra Remarks:</b> <br>
                         <span id="info-remarks">
-                            According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyways. Because bees don't care what humans think is impossible.
+                            {{remarks}}
                         </span>
                     </p>
                 </div>

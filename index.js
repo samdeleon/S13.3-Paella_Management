@@ -62,17 +62,27 @@ app.get('/order-form', function(req, res){
 });
 
 // [PAGE-04] ORDER INFORMATION
-app.get('/order-information:param', function(req, res){
-    var id = req.params.param;
+app.get('/order-information-:param', function(req, res){
+    var  order_id = req.params.param;
     /*
         id is the serial number of the order
         ^ will be used to search in the db
     */
-    res.render('OrderInformation', {
-        title: "Order " + id,
-        styles: "css/styles_inside.css",
-        body_class: "inside"
-    });
+
+    orderModel.findOne({ordernum: order_id}, function (err, order){
+        console.log(order);
+        res.render('OrderInformation', {
+            title: "Order " + order_id,
+            styles: "css/styles_inside.css",
+            body_class: "inside",
+            ordernum: order.ordernum,
+            name: order.name,
+            date: order.date,
+            time: order.time,
+            remarks: order.extraremarks,
+            status: order.status
+        });
+    })
 });
 
 // [PAGE-05] INGREDIENTS INVENTORY
