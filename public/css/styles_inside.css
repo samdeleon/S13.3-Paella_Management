@@ -23,7 +23,7 @@
 }
 
 /* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
-/* .order-box {
+.order-box {
     background-color: #f7f7f7;
     padding: 10px;
     text-align: center;
@@ -41,7 +41,7 @@
 .order-status {
     cursor: default;
     pointer-events: none;
-} */
+}
 
 /* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
 
