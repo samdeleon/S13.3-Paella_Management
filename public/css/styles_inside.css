@@ -6,7 +6,7 @@
 /* ---------------------------------------- FOR ALL PAGES --------------------------------------- */
 .inside {
     /*
-    background-color: ; 
+    background-color: ;
     margin-top: 100px;
     margin-bottom: 100px;   
     */
@@ -19,6 +19,7 @@
     padding-bottom: 50px;
     justify-content: center;
     align-items: center;
+
 }
 
 /* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
@@ -48,7 +49,7 @@
 }
 
 .info-row0 {
-    background-color: lightsteelblue;
+    background-color: #f7f7f7;
     padding: 20px;
     text-align: center;
     align-items: center;
@@ -75,23 +76,52 @@
     pointer-events: none;
 }
 
+.btn-success {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:active{
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:focus{
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-warning {
+    color: #212529;
+    background-color: #F9C74F;
+    border-color: #F9C74F;
+}
+
 .info-o_status {
     padding-left: 10px;
     width: 250px;
 }
 
+.modal-body {
+    text-align: justify;
+}
+
 .info-row2 {
-    background-color: lightpink;
     margin: auto;
 }
 
 .info-cols {
     width: 370px;
     text-align: justify;
-}
-
-#customCheck {
-
 }
 
 #info-form {
@@ -108,6 +138,40 @@
 /* ------------------------------- [PAGE-06] UPDATE INGREDIENTS --------------------------------- */
 
 /* ---------------------------------- [PAGE-07] PANS INVENTORY ---------------------------------- */
+.pan-container {
+
+}
+
+.pan-rows {
+
+}
+
+.o-container {
+    align-content: center;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+.info-row0 {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.pan-col1 {
+
+}
+
+.pan-col2 {
+
+}
+
+.pan-status {
+
+}
+
 
 /* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
 
