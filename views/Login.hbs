@@ -1,31 +1,50 @@
 <div class="content-login">
 	
-	<div id="mainbody">
-				<div id="log-in-container">
-					<form>
-						<h2 id="log-in-header">Log In</h2>
-						<div id="log-in-body">
-								<ul style="list-style-type:none;">
-									<li>
-										<div class="inline-elements">
-											Username:
-											<input type="input" name="userName">
-										</div>
-									</li>
-									<li>
-										<div class="inline-elements">
-											Password:
-											<input type="input" name="userName">
-										</div>
-									</li>
-								</ul>
-							<input class="btn-submit" type="submit" name="submitLogIn">
 
-						</div>
+				
 					
-						<p style="size:12px;">Don't have an account yet? </p><a href="http://localhost:3000/register">Register</a></p>
-					</form>
-				</div>
-			</div>
-	<br>
+						<h2 id="log-in-header">Log In</h2>
+						<div class="input-box">
+							<i class="fa fa-user" aria-hidden="true"></i>
+
+							<input type="input" placeholder="Username">
+						</div>
+						<div class="input-box">
+							<i class="fa fa-key" aria-hidden="true"></i>
+
+							<input type="password" placeholder="Password" id="myInput">
+							<span class="eye" onclick="myFunction()">
+								<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>
+								<i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
+							</span>
+							
+						</div>
+							<button type="button" class="login-btn">SUBMIT</button>
+						<script>
+							function myFunction(){
+								var x = document.getElementById("myInput");
+								var y = document.getElementById("hide1");
+								var z = document.getElementById("hide2");
+								if(x.type === 'password'){
+									x.type = "text";
+									y.style.display = "block";
+									z.style.display = "none";
+								}
+								else{
+									x.type = "password";
+									y.style.display = "none";
+									z.style.display = "block";
+								}
+							}
+						</script>
+						
+						<div class="register">
+							<p>DON'T HAVE AN ACCOUNT YET?</p>
+						</div>
+						<a href="http://localhost:9090/register">
+								<button type="button" class="login-btn">Register</button>
+						</a>
+					
+					
+	
 </div>
