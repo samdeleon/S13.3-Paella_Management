@@ -23,6 +23,25 @@
 }
 
 /* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
+/* .order-box {
+    background-color: #f7f7f7;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+.order-col2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+}
+
+.order-status {
+    cursor: default;
+    pointer-events: none;
+} */
 
 /* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
 
@@ -61,8 +80,8 @@
     text-align: left;
 }
 
-.info-status_grp {
-
+#ordernumber {
+    margin: 0;
 }
 
 .info-p_status {
@@ -139,24 +158,17 @@
 
 /* ---------------------------------- [PAGE-07] PANS INVENTORY ---------------------------------- */
 .pan-container {
-
-}
-
-.pan-rows {
-
-}
-
-.o-container {
     align-content: center;
     max-width: 1200px;
     margin-bottom: 30px;
 }
 
-.info-row0 {
+.pan-card {
     background-color: #f7f7f7;
-    padding: 20px;
-    text-align: center;
-    align-items: center;
+}
+
+.pan-rows {
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
@@ -165,12 +177,16 @@
 }
 
 .pan-col2 {
-
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
 }
 
 .pan-status {
-
+    cursor: default;
+    pointer-events: none;
 }
+
 
 
 /* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
