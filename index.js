@@ -104,11 +104,19 @@ app.get('/pans-inventory', function(req, res){
 
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
+  var content = [];
+  orderModel.find().sort({ordernum: 1}).exec(function(err, result){
+    if(err) throw err;
+    result.forEach(function(doc) {
+      content.push(doc.toObject());
+    });
     res.render('AllOrders', {
         title: "All Orders",
         styles: "css/styles_inside.css",
-        body_class: "inside"
+        body_class: "inside",
+        records: content
     });
+  });
 });
 
 // [PAGE-09] SEARCH PAGE
