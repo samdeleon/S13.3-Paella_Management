@@ -1,50 +1,87 @@
-<div class="content-login">
-	
 
-				
-					
-						<h2 id="log-in-header">Log In</h2>
-						<div class="input-box">
-							<i class="fa fa-user" aria-hidden="true"></i>
 
-							<input type="input" placeholder="Username">
-						</div>
-						<div class="input-box">
-							<i class="fa fa-key" aria-hidden="true"></i>
 
-							<input type="password" placeholder="Password" id="myInput">
-							<span class="eye" onclick="myFunction()">
-								<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>
-								<i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
-							</span>
+	<div class="form-box">
+		<div class="button-box">
+			<div id="btn"></div>
+			<button type="button" class="toggle-btn" onclick="login()">Log In</button>
+			<button type="button" class="toggle-btn" onclick="register()">Register</button>
+		</div>
+		<form id="login" class="input-group">
+			<input type="text" class="input-field"placeholder="Username" required>
+			<input type="text" class="input-field"placeholder="Password" id="myInput" required>
+			<input type="checkbox" class="check-box"><span>Remember Password</span>
+			<button type="submit" class="submit-btn">Log in</button>
+		</form>
+		<form id="register"class="input-group">
+			<input type="text" class="input-field"placeholder="Username" required>
+			<input type="text" class="input-field"placeholder="Password" required>
+			<input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
+			<button type="submit" class="submit-btn">Register</button>
+		</form>
+	</div>
+
+	<script>
+		
+			var x = document.getElementById("login");
+			var y = document.getElementById("register");
+			var z = document.getElementById("btn");
+			function register(){
+				x.style.left = "-400px";
+				y.style.left = "50px";
+				z.style.left = "140px";
+			}
+			function login(){
+				x.style.left = "50px";
+				y.style.left = "450px";
+				z.style.left = "0px";
+			}
+	</script>
+	{{!--
+	<div class="content-login">
+	<h2 id="log-in-header">Log In</h2>
+	<div class="input-box">
+		<i class="fa fa-user" aria-hidden="true"></i>
+
+		<input type="input" placeholder="Username">
+	</div>
+	<div class="input-box">
+		<i class="fa fa-key" aria-hidden="true"></i>
+
+		<input type="password" placeholder="Password" id="myInput">
+		<span class="eye" onclick="myFunction()">
+			<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>
+			<i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
+		</span>
 							
-						</div>
-							<button type="button" class="login-btn">SUBMIT</button>
-						<script>
-							function myFunction(){
-								var x = document.getElementById("myInput");
-								var y = document.getElementById("hide1");
-								var z = document.getElementById("hide2");
-								if(x.type === 'password'){
-									x.type = "text";
-									y.style.display = "block";
-									z.style.display = "none";
-								}
-								else{
-									x.type = "password";
-									y.style.display = "none";
-									z.style.display = "block";
-								}
-							}
-						</script>
+	</div>
+		<button type="button" class="login-btn">SUBMIT</button>
+	<script>
+		function myFunction(){
+			var x = document.getElementById("myInput");
+			var y = document.getElementById("hide1");
+			var z = document.getElementById("hide2");
+			if(x.type === 'password'){
+				x.type = "text";
+				y.style.display = "block";
+				z.style.display = "none";
+			}
+			else{
+				x.type = "password";
+				y.style.display = "none";
+				z.style.display = "block";
+			}
+		}
+	</script>
 						
-						<div class="register">
-							<p>DON'T HAVE AN ACCOUNT YET?</p>
-						</div>
-						<a href="/register">
-								<button type="button" class="login-btn">Register</button>
-						</a>
+	<div class="register">
+		<p>DON'T HAVE AN ACCOUNT YET?</p>
+	</div>
+	<a href="/register">
+		<button type="button" class="login-btn">Register</button>
+	</a>
 					
 					
 	
 </div>
+	--}}

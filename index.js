@@ -138,14 +138,6 @@ app.get('/search', function(req, res){
     });
 });
 
-// [PAGE-10] REGISTER
-app.get('/register', function(req, res){
-    res.render('Register', {
-        title: "Registration Page",
-        styles: "css/styles_login.css",
-        body_class: "login"
-    });
-});
 /* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
 app.listen(port, function() {
