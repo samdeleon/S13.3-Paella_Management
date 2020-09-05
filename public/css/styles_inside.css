@@ -23,7 +23,7 @@
 }
 
 /* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
-.order-box {
+.home-box {
     background-color: #f7f7f7;
     padding: 10px;
     text-align: center;
@@ -31,8 +31,7 @@
     margin-bottom: 15px;
 }
 
-
-.order-col2 {
+.home-col2 {
     padding-left: 10px;
     padding-right: 10px;
     width: 250px;
