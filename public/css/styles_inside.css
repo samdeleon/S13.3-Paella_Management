@@ -31,17 +31,24 @@
     margin-bottom: 15px;
 }
 
-.order-date {
-    padding-left: 400px;
+.home-date {
+    cursor: default;
+    pointer-events: none;
 }
 
-.order-col2 {
+.home-col1 {
     padding-left: 10px;
     padding-right: 10px;
-    width: 250px;
+    width: 150px;
 }
 
-.order-status {
+.home-col2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
+}
+
+.home-status {
     cursor: default;
     pointer-events: none;
 }
