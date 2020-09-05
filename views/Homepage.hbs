@@ -4,44 +4,23 @@
 
   <h2><strong>Recent Orders</strong></h2>
   <hr>
-  <table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Order Number</th>
-      <th scope="col">Order Status</th>
-      <th scope="col">Date Needed</th>
-    </tr>
-  </thead>
-  <tbody>
     {{#if records}}
       {{#each records}}
-        <tr>
-          <td>{{this.ordernum}}</td>
-          <td>{{this.status}}</td>
-          <td>{{this.date}}</td>
-        </tr>
+      <div class="container">
+                  <div class="card d-flex flex-row justify-content-between order-box">
+                      <div class="order-col1">
+                          <h4 class="pannumber">Order #{{this.ordernum}}</h4>
+                      </div>
+                      <div class="order-date"> <h4 class="pannumber">{{this.date}}</h4> </div>
+                      <div class="order-col2">
+                          <button id="order-status" type="button" class="btn btn-warning btn-block order-status">
+                              {{this.status}}
+                          </button>
+                      </div>
+                  </div>
+      </div>
         {{/each}}
     {{else}}
-      <tr>
-        <td>No orders available</td>
-      </tr>
+        <p>No orders available</p>
     {{/if}}
-  </tbody>
-</table>
-
-<!-- SAMS CODE -->
-<div class="container">
-            <div class="card d-flex flex-row justify-content-between order-box">
-                <div class="order-col1">
-                    <h4 class="pannumber">Order #2020-1</h4>
-                </div>
-
-                <div class="order-col2">
-                    <button id="order-status" type="button" class="btn btn-warning btn-block order-status">
-                        Order #2020-1
-                    </button>
-                </div>
-            </div>
-        </div>
-
 </div>
