@@ -213,6 +213,14 @@
 
 /* ------------------------------------------ NAVBAR -------------------------------------------- */
 .vl {
-    border-right: 3px solid #FF919F;
+    border-right: 3px solid #F8961E;
     height: 40px;
+}
+
+.navtext {
+    color: 	#FFFFFF;
+}
+
+.bar {
+  background-color: #F9C74F;
 }
