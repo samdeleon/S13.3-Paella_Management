@@ -14,7 +14,7 @@ $(document).ready(function () {
             paellasize:     size,
             status:         "Preparing",
             extraremarks:   remarks,
-            pan_used:       ""
+            pan_used:       " "
         }
     
         
