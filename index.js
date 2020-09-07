@@ -15,7 +15,7 @@ app.engine('hbs', exphandle({
     layoutsDir: path.join(__dirname, '/views/layouts'), // Layouts folder
     partialsDir: path.join(__dirname, '/views/partials'), // Partials folder
 }));
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -161,7 +161,8 @@ app.post('/newOrder', function (req, res) {
             time:           req.body.time,
             paellasize:     req.body.paellasize,
             status:         req.body.status,
-            extraremarks:   req.body.extraremarks
+            extraremarks:   req.body.extraremarks,
+            pan_used:       req.body.pan_used
         });
         var result;
 

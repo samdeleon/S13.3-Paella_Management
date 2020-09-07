@@ -13,7 +13,8 @@ $(document).ready(function () {
             time:           time,
             paellasize:     size,
             status:         "Preparing",
-            extraremarks:   remarks
+            extraremarks:   remarks,
+            pan_used:       ""
         }
     
         
@@ -26,8 +27,8 @@ $(document).ready(function () {
         else
         {
             console.log(neworder);
-            $.post("newOrder", neworder,function (data, status) {
-                
+            $.post("/newOrder", neworder,function (data, status) {
+
             });
         }
     });

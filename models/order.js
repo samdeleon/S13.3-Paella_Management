@@ -18,6 +18,7 @@ const orderSchema = new mongoose.Schema(
         paellasize:     {type: String, required: true},
         status:         {type: String, required: true},
         extraremarks:   {type: String, required: false},
+        pan_used:       {type: String, required: true}
     }
 );
 
