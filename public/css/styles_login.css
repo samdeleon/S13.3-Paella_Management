@@ -157,7 +157,7 @@ span{
 	position: absolute;
 	width: 140px;
 	height: 100%;
-	background: linear-gradient(to right,#ff105f,#ffad06);
+	background: linear-gradient(to right,#f8961E,#756f62);
 	border-radius:30px;
 	transition:.5s;
 }
@@ -187,7 +187,7 @@ span{
 	cursor:pointer;
 	display: block;
 	margin:auto;
-	background:linear-gradient(to right,#ff105f,#ffad06);
+	background:linear-gradient(to right,#f8961E,#756f62);
 	border:0;
 	outline:none;
 	border-radius:30px;
