@@ -1,0 +1,316 @@
+/*
+    This is the CSS File for the login page
+*/
+
+/* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
+/*
+.login {
+    /*
+    background-color: ;
+	*//*
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+*/
+.button-box{
+	width: 280px;
+	margin:35px auto;
+	position:relative;
+	box-shadow: 0 0 20px 9px #ff61241f;
+	border-radius:30px;
+}
+.toggle-btn{
+	padding: 10px 20px;
+	color: #fbfbfb;
+	width:135px;
+	cursor:pointer;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	font-family: 'Space Mono';
+    text-transform:uppercase;
+}
+#btn{
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 140px;
+	height: 100%;
+	background: linear-gradient(to right,#ff105f,#ffad06);
+	border-radius:30px;
+	transition:.5s;
+}
+.input-group{
+	top:180px;
+	position: absolute;
+	width:280px;
+	transition:0.5s;
+}
+.input-field{
+	width: 100%;
+	padding: 10px 0;
+	margin:5px 0;
+	border-left:0;
+	border-top:0;
+	border-right:0;
+	font-family: 'Roboto';
+	color:#fff;
+	border-bottom:1px solid #999;
+	outline:none;
+	background:transparent;
+}
+
+.submit-btn{
+	width:85%;
+	padding: 10px 30px;
+	cursor:pointer;
+	display: block;
+	margin:auto;
+	background:linear-gradient(to right,#ff105f,#ffad06);
+	border:0;
+	outline:none;
+	border-radius:30px;
+	
+	margin-left: 0px;
+	margin-bottom: -50px;
+	font-family: 'Space Mono';
+	color:#fff;
+    text-transform:uppercase;
+}
+.submit-btn:hover{
+	color:rgb(148, 128, 76);
+}
+.toggle-btn:hover{
+	color:rgb(148, 128, 76);
+}
+.check-box{
+	margin:30px 10px 30px 0;
+}
+span{
+	color:#fff;
+	font-size:14px;
+	left:20px;
+	bottom: 26px;
+	position: absolute;
+	font-family: 'Roboto';
+}
+#login{
+	left: 50px;
+}
+#register{
+	left: 450px;
+}
+.form-box{
+	width:380px;
+	height:480px;
+	position: relative;
+	margin: 6% auto;
+	background: rgb(97, 96, 96);
+	box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+	padding:5px;
+	overflow:hidden;
+}
+::placeholder{
+	color: #ccc;
+}
+
+
+/*
+
+/*
+    This is the CSS File for the login page
+*/
+
+/* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
+/*
+.login {
+    /*
+    background-color: ;
+	*//*
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+*/
+.button-box{
+	width: 280px;
+	margin:35px auto;
+	position:relative;
+	box-shadow: 0 0 20px 9px #ff61241f;
+	border-radius:30px;
+}
+.toggle-btn{
+	padding: 10px 20px;
+	color: #fbfbfb;
+	width:135px;
+	cursor:pointer;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	font-family: 'Space Mono';
+    text-transform:uppercase;
+}
+#btn{
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 140px;
+	height: 100%;
+	background: linear-gradient(to right,#f8961E,#756f62);
+	border-radius:30px;
+	transition:.5s;
+}
+.input-group{
+	top:180px;
+	position: absolute;
+	width:280px;
+	transition:0.5s;
+}
+.input-field{
+	width: 100%;
+	padding: 10px 0;
+	margin:5px 0;
+	border-left:0;
+	border-top:0;
+	border-right:0;
+	font-family: 'Roboto';
+	color:#fff;
+	border-bottom:1px solid #999;
+	outline:none;
+	background:transparent;
+}
+
+.submit-btn{
+	width:85%;
+	padding: 10px 30px;
+	cursor:pointer;
+	display: block;
+	margin:auto;
+	background:linear-gradient(to right,#f8961E,#756f62);
+	border:0;
+	outline:none;
+	border-radius:30px;
+	
+	margin-left: 0px;
+	margin-bottom: -50px;
+	font-family: 'Space Mono';
+	color:#fff;
+    text-transform:uppercase;
+}
+.submit-btn:hover{
+	color:rgb(148, 128, 76);
+}
+.toggle-btn:hover{
+	color:rgb(148, 128, 76);
+}
+.check-box{
+	margin:30px 10px 30px 0;
+}
+span{
+	color:#fff;
+	font-size:14px;
+	left:20px;
+	bottom: 26px;
+	position: absolute;
+	font-family: 'Roboto';
+}
+#login{
+	left: 50px;
+}
+#register{
+	left: 450px;
+}
+.form-box{
+	width:380px;
+	height:480px;
+	position: relative;
+	margin: 6% auto;
+	background: rgb(97, 96, 96);
+	box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+	padding:5px;
+	overflow:hidden;
+}
+::placeholder{
+	color: #ccc;
+}
+
+
+
+/*
+.content-login {
+	width: 500px;
+	background: rgba(0,0,0,0.8);
+	margin: 12% auto;
+	padding: 50px 0;
+	color: #fff;
+	box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+	position: relative;
+}
+
+#log-in-header{
+	
+    text-align: center;
+	
+	margin-bottom: 40px;
+	color: #fbfbfb;
+	font-family: 'Space Mono';
+    text-transform:uppercase;
+}
+
+.input-box{
+	margin:31px auto;
+	width: 80%;
+	border-bottom: 1px solid #fff;
+	padding-top:10px;
+	padding-bottom: 5px;
+	font-family: 'Roboto';
+    text-transform:uppercase;
+}
+.input-box input{
+	width: 90%;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-family: 'Roboto';
+	color:#fff;
+}
+
+.fa{
+	margin-right: 10px;
+}
+.eye{
+	position: absolute;
+}
+.eye:hover{
+	color:  #92a90e;
+}
+#hide1{
+	display:none;
+}
+.login-btn{
+	margin:40px auto 20px;
+	width: 80%;
+	display: block;
+	outline: none;
+	padding: 10px 0;
+	border: 1px solid #fff;
+	cursor: pointer;
+	background: transparent;
+	color: #fff;
+	font-family: 'Space Mono';
+    text-transform:uppercase;
+	font-size:16px;
+}
+.login-btn:hover{
+	color:  #92a90e;
+}
+.register{
+	margin:31px auto;
+	width: 80%;
+	padding-top:10px;
+	font-family: 'Roboto';
+	text-align: center;
+    text-transform:uppercase;
+}
+*/

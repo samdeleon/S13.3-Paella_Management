@@ -1,0 +1,107 @@
+{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+
+<div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
+    <div class="container order-container">
+        <div class="card d-flex flex-row justify-content-between info-row0">
+            <div class="info-ordernum">
+                <h2 id="ordernumber">Order #{{ordernum}}</h2>
+            </div>
+            
+            <div class="d-flex info-status_grp">
+                <div class="info-p_status">
+                    <button id="info-pbutton" type="button" class="btn btn-warning btn-lg btn-block">Paella Pan - 14A</button>
+                    <!-- TODO: place pan assigned \{{ \}} -->
+                </div>
+
+                <div class="info-o_status">
+                    <button id="info-obutton" type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#orderstatusModal">
+                        {{status}}
+                    </button>
+                </div>
+
+                <!--[MODAL] After clicking on Order Status button, a modal will pop up to go to the next status-->
+              
+                <div class="modal fade" id="orderstatusModal" tabindex="-1" role="dialog" aria-labelledby="orderstatusModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Order Status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Click "Next Status" to update the order's status.<br>
+                        Click "Cancel" to go back to the page.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="info-nextstatusbtn" type="button" class="btn btn-primary">Next Status</button>
+                        <!-- after clicking it should update the value in the db & update in the page as well-->
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>    
+        </div>
+        
+        <div class="card-deck">
+            <div id="info-form" class="card info-cols">
+                    <h4 class="card-header">Order Information</h4>
+                    
+                    <div class="card-body"> <!-- TODO: Replace my dummy info with the {{things}}-->
+                        <p><b>Customer Name:</b> {{name}}</p>   
+                        <p><b>Date Needed:</b> {{date}}</p>
+                        <p><b>Time Needed:</b> {{time}}</p>
+                        <p><b>Paella Size:</b> {{size}}</p>
+                        <p>
+                            <b>Extra Remarks:</b> <br>
+                            <span id="info-remarks">
+                                {{remarks}}
+                            </span>
+                        </p>
+                    </div>
+            </div>
+
+            <div id="info-checklist" class="card info-cols">
+                    <h4 class="card-header">Ingredients Checklist</h4>
+                    
+                    <div class="card-body"> <!-- TODO: linking this to the db (if checked or not) -->
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-ingredient01">
+                            <label class="form-check-label" for="defaultCheck1" id="name-ingredient01">
+                                Ingredient #01 <!-- we'll input this {{thing}} for the quantities -->
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-ingredient02">
+                            <label class="form-check-label" for="defaultCheck1" id="name-ingredient02">
+                                Ingredient #02
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-ingredient03">
+                            <label class="form-check-label" for="defaultCheck1" id="name-ingredient03">
+                                Ingredient #03
+                            </label>
+                        </div>
+                </div>
+
+            </div>
+
+            <div id="info-profit" class="card info-cols">
+                <h4 class="card-header">Profit Computation</h4>
+                    
+                <div class="card-body">
+                    <!-- the format should look like this more or less, but the code will follow-->
+                    <p><b>Total ???:</b> Php XXXX.XX</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

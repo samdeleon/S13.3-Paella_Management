@@ -1,0 +1,252 @@
+.inside {
+    /*
+    background-color: ;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    */
+}
+
+.content {
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
+.home-box {
+    background-color: #f7f7f7;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.home-date {
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-col1 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+}
+
+.home-col2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
+}
+
+.home-status {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
+
+.order-form {
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #dbdbdbda;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+}
+
+/* -------------------------------- [PAGE-04] ORDER INFORMATION --------------------------------- */
+
+.order-container {
+    align-content: center;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+.info-row0 {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.info-ordernum {
+    width: 250px;
+    text-align: left;
+}
+
+#ordernumber {
+    margin: 0;
+}
+
+.info-p_status {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+}
+
+#info-pbutton {
+    cursor: default;
+    pointer-events: none;
+}
+
+.btn-success {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:active{
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-success:focus{
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+}
+
+.btn-warning {
+    color: #212529;
+    background-color: #F9C74F;
+    border-color: #F9C74F;
+}
+
+.info-o_status {
+    padding-left: 10px;
+    width: 250px;
+}
+
+.modal-body {
+    text-align: justify;
+}
+
+.info-row2 {
+    margin: auto;
+}
+
+.info-cols {
+    text-align: justify;
+}
+
+#info-form {
+}
+
+#info-checklist {
+}
+
+#info-profit {
+}
+
+/* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
+.ingredients-header {
+    margin-bottom: 30px;
+}
+
+
+/* ------------------------------- [PAGE-06] UPDATE INGREDIENTS --------------------------------- */
+
+/* ---------------------------------- [PAGE-07] PANS INVENTORY ---------------------------------- */
+.pan-container {
+    align-content: center;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+.pan-card {
+    background-color: #f7f7f7;
+}
+
+.pan-rows {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.pan-col1 {
+
+}
+
+.pan-col2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 200px;
+}
+
+.pan-status {
+    cursor: default;
+    pointer-events: none;
+}
+
+
+
+/* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
+
+.titletext {
+  /* padding-right: 1500px; */
+  margin: 0;
+  align-self: center;
+}
+
+.searchbtn{
+  /* padding-left: 1500px;
+  width: 300px; */
+}
+
+.allorders-header {
+    margin-bottom: 30px;
+}
+
+/* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */
+
+/* ------------------------------------------ NAVBAR -------------------------------------------- */
+.vl {
+    border-right: 3px solid #F9C74F;
+    height: 40px;
+}
+
+.navtext {
+    color: #FDDCB4;
+}
+
+.navtext:hover {
+    color: #FFFFFF;
+}
+
+.brandtext {
+    color: #FFFFFF;
+}
+
+.brandtext:hover {
+    color: #FFFFFF;
+}
+
+.ownertext {
+    color: #FFFFFF;
+}
+
+.bar {
+  background-color: #F8961E;
+}
+
+.navbar-toggler {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.navbar-toggler-icon {
+}

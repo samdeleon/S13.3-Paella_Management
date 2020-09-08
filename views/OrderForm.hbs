@@ -1,0 +1,45 @@
+{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+
+<div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
+
+    <div class="container orderform-container">
+        <div class="order-form overflow-auto">
+            <form><!--method="POST" !-->
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <h2>Order Form</h2>
+                </div>
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <label for="customer_name">Customer Name</label>
+                    <input type="text" class="form-control" id="customer_name">
+                </div>
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <label for="date_needed">Date Needed</label>
+                    <input type="date" class="form-control" id="date_needed">
+                </div>
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <label for="time_needed">Time Needed</label>
+                    <input type="time" class="form-control" id="time_needed">
+                </div>
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <label for="paella_size">Paella Size</label>
+                    <select id="paella_size" class="form-control">
+                        <option selected>Choose which size</option>
+                        <option>14 inches</option>
+                        <option>16 inches</option>
+                        <option>20 inches</option>
+                    </select>
+                </div>
+                <div class="form-row" style="padding-bottom: 10px;">
+                    <label for="remarks"><br>Extra Remarks</label>
+                    <textarea class="form-control" id="remarks" rows="3"></textarea>
+                    <small class="form-text text-muted">
+                        You can leave this blank!
+                    </small>
+                </div>
+                    <br>
+                <button type="submit" id="submitOrder" class="btn btn-lg btn-primary btn-block">Submit Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="script/orderFormScript.js"> </script>  

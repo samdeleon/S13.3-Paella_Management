@@ -1,0 +1,39 @@
+{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+
+<div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
+  <div class="container">
+    <h2>Recent Orders</h2>
+    <br>
+    {{#if records}}
+      {{#each records}}
+          <div class="card d-flex flex-row justify-content-between home-box">
+            <div class="d-flex">
+              <h4 id="ordernumber">Order #{{this.ordernum}}</h4>
+            </div>
+
+            <div class="d-flex">
+              <div class="home-col2">
+                <button type="button" class="btn btn-outline-dark btn-block home-date">
+                  {{this.date}}
+                </button>
+              </div>
+
+              <div class="home-col2">
+                <button id="info-pbutton" type="button" class="btn btn-warning btn-block home-status">No Pan Assigned</button>
+                <!-- TODO: place pan assigned \{{ \}} -->
+              </div>
+
+              <div class="home-col2">
+                <buttontype="button" class="btn btn-success btn-block home-status">
+                  {{this.status}}
+                </button>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+    {{else}}
+        <p>No orders available</p>
+    {{/if}}
+
+  </div>
+</div>
