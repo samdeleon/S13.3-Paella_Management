@@ -79,8 +79,10 @@ app.get('/order-information-:param', function(req, res){
             name: order.name,
             date: order.date,
             time: order.time,
+            size: order.paellasize,
             remarks: order.extraremarks,
             status: order.status
+            // pan_used: order.pan_used
         });
     })
 });
@@ -178,6 +180,10 @@ app.post('/newOrder', function (req, res) {
                 console.log(order);
 
                 result = {success: true, message: "new order was created"};
+                
+                res.send(result);
+
+                // tempRoute = "-" + order.ordernum
 
                 res.send(result);
             }
