@@ -117,7 +117,7 @@ app.get('/pans-inventory', function(req, res){
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
   var content = [];
-  orderModel.find().sort({ordernum: 1}).exec(function(err, result){
+  orderModel.find().sort({date: 1}).exec(function(err, result){
     if(err) throw err;
     result.forEach(function(doc) {
       content.push(doc.toObject());
@@ -180,7 +180,7 @@ app.post('/newOrder', function (req, res) {
                 console.log(order);
 
                 result = {success: true, message: "new order was created"};
-                
+
                 res.send(result);
 
                 // tempRoute = "-" + order.ordernum
