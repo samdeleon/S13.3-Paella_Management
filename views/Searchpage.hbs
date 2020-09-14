@@ -2,4 +2,33 @@
 
 <div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
 
+  <form class="form-inline md-form mr-auto mb-4">
+    <input id="clientbox" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button id="clientsearch" class="btn btn-sm my-0 sbtns" type="button">Search by Client</button>
+  </form>
+
+  <form class="form-inline md-form mr-auto mb-4">
+    <input id="numbox" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button id="numsearch" class="btn btn-sm my-0 sbtns" type="button">Search by Order Number</button>
+  </form>
+
+  <table id="search-table" class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order Number</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Date Needed</th>
+      <th scope="col">Time Needed</th>
+      <th scope="col">Paella Size</th>
+      <th scope="col">Order status</th>
+      <th scope="col">Extra Remarks</th>
+      <th scope="col">Pan Assigned</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
+
 </div>
+
+<script src="script/SearchpageScript.js"> </script>

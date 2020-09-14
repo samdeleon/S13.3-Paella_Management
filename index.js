@@ -187,12 +187,38 @@ app.post('/newOrder', function (req, res) {
 
                 // tempRoute = "-" + order.ordernum
 
-                
+
             }
         });
     });
+});
 
+app.post('/searchClient', function(req, res) {
+  orderModel.find({name: req.body.name}).sort({date: 1}).exec(function(err, orders){
+    var result = {cont: content};
+    var content = []
+    if(err) throw err;
+    orders.forEach(function(doc) {
+      orders.push(doc.toObject());
+    });
+    console.log("Order: " + orders);
+    res.send(result);
+  });
+});
 
+app.post('/searchOrderNum', function(req, res) {
+  orderModel.findOne({ordernum: req.body.ordernum}, function(err, order){
+    var result = {cont: order, ok: true};
+    if (err)
+      console.log('There is an error when searching for an order.');
+    console.log("Order: " + order);
+    if (order == null)
+        result.ok = false;
+    else
+        result.ok = true;
+    console.log("Result: " + result.ok);
+    res.send(result);
+  });
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */

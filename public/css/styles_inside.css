@@ -197,14 +197,8 @@
 /* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
 
 .titletext {
-  /* padding-right: 1500px; */
   margin: 0;
   align-self: center;
-}
-
-.searchbtn{
-  /* padding-left: 1500px;
-  width: 300px; */
 }
 
 .allorders-header {
@@ -212,6 +206,11 @@
 }
 
 /* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */
+
+.sbtns {
+  background-color: #F8961E;
+  color: #FFFFFF;
+}
 
 /* ------------------------------------------ NAVBAR -------------------------------------------- */
 .vl {
