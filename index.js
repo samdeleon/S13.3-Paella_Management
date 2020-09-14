@@ -156,6 +156,8 @@ app.post('/newOrder', function (req, res) {
 
     orderModel.countDocuments().exec(function (err, count){
         count = count + 1;
+        count = count.toString().padStart(7, '0');
+
         var order = new orderModel({
             ordernum:       year + "-" + count,
             name:           req.body.name,
@@ -185,7 +187,7 @@ app.post('/newOrder', function (req, res) {
 
                 // tempRoute = "-" + order.ordernum
 
-                res.send(result);
+                
             }
         });
     });
