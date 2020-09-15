@@ -140,6 +140,27 @@ app.get('/search', function(req, res){
     });
 });
 
+app.get('/search-client-:param', function(req, res){
+    var  name = req.params.param;
+    var content = [];
+
+    orderModel.find({name: name}).sort({date: 1}).exec(function(err, orders){
+      if(err) throw err;
+      orders.forEach(function(doc) {
+        content.push(doc.toObject());
+      });
+      console.log("Order: " + orders);
+
+      res.render('SearchClient', {
+          title: "Client " + name + " Orders",
+          styles: "css/styles_inside.css",
+          body_class: "inside",
+          records: content,
+          clname: name
+      });
+    });
+});
+
 /* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
 app.listen(port, function() {
@@ -191,19 +212,6 @@ app.post('/newOrder', function (req, res) {
             }
         });
     });
-});
-
-app.post('/searchClient', function(req, res) {
-  orderModel.find({name: req.body.name}).sort({date: 1}).exec(function(err, orders){
-    var result = {cont: content};
-    var content = []
-    if(err) throw err;
-    orders.forEach(function(doc) {
-      orders.push(doc.toObject());
-    });
-    console.log("Order: " + orders);
-    res.send(result);
-  });
 });
 
 app.post('/searchOrderNum', function(req, res) {
