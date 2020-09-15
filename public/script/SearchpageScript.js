@@ -1,27 +1,10 @@
 $(document).ready(function () {
     $("#clientsearch").click(function () {
         var name = $('#clientbox').val();
+        var link = "/search-client-";
+        link = link.concat(name);
 
-        $.post('searchClient', {name: name}, function(data, status){
-          var content = data.cont;
-          const tableBody = document.querySelector("#search-table > tbody");
-          const request = new XMLHttpRequest();
-          request.onload = () => {
-             while(tableBody.firstChild) {
-               tableBody.removeChild(tableBody.firstChild);
-             }
-             content.forEach((row) => {
-               const tr = document.createElement("tr");
-               content.forEach((cell) => {
-                 const td = document.createElement("td");
-                 td.textContent = cell;
-                 tr.appendChild(td);
-               });
-               tableBody.appendChild(tr);
-             });
-          }
-          request.send();
-        });
+        $(location).attr("href", link);
     });
 
     $("#numsearch").click(function () {
@@ -37,13 +20,5 @@ $(document).ready(function () {
             alert("Order Found");
           }
         });
-    });
-
-    $(".orderRow").click(function () {
-        var num =  $(this).text();
-        var link = "/order-information-";
-        link = link.concat(num);
-
-        $(location).attr("href", link);
     });
 });
