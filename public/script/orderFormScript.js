@@ -1,6 +1,9 @@
 $(document).ready(function () {
     $("#submitOrder").click(function () { 
         var customerName = document.getElementById("customer_name").value;
+        var contact_info = document.getElementById("contact_info").value;
+        var mode = $("#mode_of_delivery option:selected").text();
+        var address = document.getElementById("delivery_address")
         var date = document.getElementById("date_needed").value;
         var time = document.getElementById("time_needed").value;
         var size = $('#paella_size option:selected').text()
@@ -9,6 +12,9 @@ $(document).ready(function () {
 
         var neworder = {
             name:           customerName,
+            info:           contact_info,
+            mode:           mode,
+            address:        address,
             date:           date,
             time:           time,
             paellasize:     size,
@@ -19,7 +25,7 @@ $(document).ready(function () {
     
         
 
-        if (customerName == "" || date == ""  || time == "" || size == "Choose which size")
+        if (customerName == "" || contact_info == "" || mode == "Which mode?" || address == "" || date == ""  || time == "" || size == "Choose which size")
         {
             console.log("Fields are not filled up");
             return false;

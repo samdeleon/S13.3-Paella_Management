@@ -159,14 +159,17 @@ app.post('/newOrder', function (req, res) {
         count = count.toString().padStart(7, '0');
 
         var order = new orderModel({
-            ordernum:       year + "-" + count,
-            name:           req.body.name,
-            date:           req.body.date,
-            time:           req.body.time,
-            paellasize:     req.body.paellasize,
-            status:         req.body.status,
-            extraremarks:   req.body.extraremarks,
-            pan_used:       req.body.pan_used
+            ordernum:         year + "-" + count,
+            name:             req.body.name,
+            contact_info:     req.body.info,
+            mode_of_delivery: req.body.mode,
+            address:          req.body.address,
+            date:             req.body.date,
+            time:             req.body.time,
+            paellasize:       req.body.paellasize,
+            status:           req.body.status,
+            extraremarks:     req.body.extraremarks,
+            pan_used:         req.body.pan_used
         });
         var result;
 
