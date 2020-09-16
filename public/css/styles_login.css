@@ -117,7 +117,6 @@ span{
 
 
 /*
-
 /*
     This is the CSS File for the login page
 */
@@ -180,8 +179,24 @@ span{
 	outline:none;
 	background:transparent;
 }
-
-.submit-btn{
+.submit-btn#login{
+	width:85%;
+	padding: 10px 30px;
+	cursor:pointer;
+	display: block;
+	/*margin:auto;*/
+	background:linear-gradient(to right,#f8961E,#756f62);
+	border:0;
+	outline:none;
+	border-radius:30px;
+	margin-top: 70px;
+	margin-left: 25px;
+	margin-bottom: -50px;
+	font-family: 'Space Mono';
+	color:#fff;
+    text-transform:uppercase;
+}
+.submit-btn#reg{
 	width:85%;
 	padding: 10px 30px;
 	cursor:pointer;
@@ -193,7 +208,7 @@ span{
 	border-radius:30px;
 	
 	margin-left: 0px;
-	margin-bottom: -50px;
+	margin-bottom: -40px;
 	font-family: 'Space Mono';
 	color:#fff;
     text-transform:uppercase;
@@ -234,7 +249,19 @@ span{
 ::placeholder{
 	color: #ccc;
 }
-
+.fa{
+	
+}
+.eye{
+	position: absolute;
+	margin:30px 10px 55px 250px;
+}
+.eye:hover{
+	color:  rgb(148, 128, 76);
+}
+#hide1{
+	display:none;
+}
 
 
 /*
@@ -247,7 +274,6 @@ span{
 	box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
 	position: relative;
 }
-
 #log-in-header{
 	
     text-align: center;
@@ -257,7 +283,6 @@ span{
 	font-family: 'Space Mono';
     text-transform:uppercase;
 }
-
 .input-box{
 	margin:31px auto;
 	width: 80%;
@@ -275,7 +300,6 @@ span{
 	font-family: 'Roboto';
 	color:#fff;
 }
-
 .fa{
 	margin-right: 10px;
 }

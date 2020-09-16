@@ -12,10 +12,10 @@ mongoose.connect(databaseURL, options);
 const orderSchema = new mongoose.Schema(
     {
         ordernum:           {type: String, required: true},
+        name:               {type: String, required: true},
         contact_info:       {type: String, required: true},
         mode_of_delivery:   {type: String, required: true},
         address:            {type: String, required: true},
-        name:               {type: String, required: true},
         date:               {type: String, required: true},
         time:               {type: String, required: true},
         paellasize:         {type: String, required: true},
