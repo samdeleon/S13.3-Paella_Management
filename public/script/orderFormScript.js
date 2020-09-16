@@ -1,13 +1,13 @@
 $(document).ready(function () {
     $("#submitOrder").click(function () { 
-        var customerName = document.getElementById("customer_name").value;
-        var contact_info = document.getElementById("contact_info").value;
-        var mode = $("#mode_of_delivery option:selected").text();
-        var address = document.getElementById("delivery_address")
-        var date = document.getElementById("date_needed").value;
-        var time = document.getElementById("time_needed").value;
-        var size = $('#paella_size option:selected').text()
-        var remarks = document.getElementById("remarks").value;
+        var customerName =      document.getElementById("customer_name").value;
+        var contact_info =      document.getElementById("contact_info").value;
+        var mode =              $("#mode_of_delivery option:selected").text();
+        var address =           document.getElementById("delivery_address").value;
+        var date =              document.getElementById("date_needed").value;
+        var time =              document.getElementById("time_needed").value;
+        var size =              $('#paella_size option:selected').text()
+        var remarks =           document.getElementById("remarks").value;
 
 
         var neworder = {
@@ -32,7 +32,14 @@ $(document).ready(function () {
         }
         else
         {
-            console.log(neworder);
+            console.log(customerName);
+            console.log(contact_info);
+            console.log(mode);
+            console.log(address);
+            console.log(date);
+            console.log(time);
+            console.log(size);
+
             $.post("/newOrder", neworder,function (data, status) {
                 
             });
