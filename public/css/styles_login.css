@@ -115,7 +115,23 @@ span{
 	color: #ccc;
 }
 
-
+.error-text{
+	background: #F8D7DA;
+	position: absolute;
+	padding:8px 0;
+	top:-50px;
+	width:100%;
+	text-align:center;
+	border-radius:5px;
+	color:#8B3E46;
+	border: 1px solid #F5C6CB;
+	display:none;
+}
+.error-text.matched{
+	background: #D4EDDA;
+	color: #588C64;
+	border-color: #C3E6CB;
+  }
 /*
 /*
     This is the CSS File for the login page
@@ -216,6 +232,12 @@ span{
 .submit-btn:hover{
 	color:rgb(148, 128, 76);
 }
+.submit-btn#reg:hover{
+	color:rgb(148, 128, 76);
+}
+.submit-btn#login:hover{
+	color:rgb(148, 128, 76);
+}
 .toggle-btn:hover{
 	color:rgb(148, 128, 76);
 }
@@ -254,7 +276,7 @@ span{
 }
 .eye{
 	position: absolute;
-	margin:30px 10px 55px 250px;
+	margin:30px 10px 55px 265px;
 }
 .eye:hover{
 	color:  rgb(148, 128, 76);
