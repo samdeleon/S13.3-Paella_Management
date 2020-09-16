@@ -31,6 +31,7 @@ app.get('/', function(req, res){
         // for main.hbs
         title: "Login Page",
         styles: "css/styles_login.css",
+        scripts: "script/LoginScript.js",
         body_class: "login"
     });
 });
@@ -46,6 +47,7 @@ app.get('/home', function(req, res){
     res.render('Homepage', {
       title: "Home",
       styles: "css/styles_inside.css",
+      scripts: "script/HomepageScript.js",
       body_class: "inside",
       records: content
     });
@@ -57,6 +59,7 @@ app.get('/order-form', function(req, res){
     res.render('OrderForm', {
         title: "Order Form",
         styles: "css/styles_inside.css",
+        scripts: "script/OrderFormScript.js",
         body_class: "inside"
     });
 });
@@ -74,6 +77,7 @@ app.get('/order-information-:param', function(req, res){
         res.render('OrderInformation', {
             title: "Order " + order_id,
             styles: "css/styles_inside.css",
+            scripts: "script/OrderInformationScript.js",
             body_class: "inside",
             ordernum: order.ordernum,
             name: order.name,
@@ -92,6 +96,7 @@ app.get('/ingredients-inventory', function(req, res){
     res.render('IngredientsInventory', {
         title: "Ingredients Inventory",
         styles: "css/styles_inside.css",
+        scripts: "script/IngredientsInventoryScript.js",
         body_class: "inside"
     });
 });
@@ -110,6 +115,7 @@ app.get('/pans-inventory', function(req, res){
     res.render('PansInventory', {
         title: "Pans Inventory",
         styles: "css/styles_inside.css",
+        scripts: "script/PansInventoryScript.js",
         body_class: "inside"
     });
 });
@@ -125,6 +131,7 @@ app.get('/orders', function(req, res){
     res.render('AllOrders', {
         title: "All Orders",
         styles: "css/styles_inside.css",
+        scripts: "script/AllOrdersScript.js",
         body_class: "inside",
         records: content
     });
@@ -136,11 +143,12 @@ app.get('/search', function(req, res){
     res.render('Searchpage', {
         title: "Search",
         styles: "css/styles_inside.css",
+        scripts: "script/SearchpageScript.js",
         body_class: "inside"
     });
 });
 
-app.get('/search-client-:param', function(req, res){
+app.get('/search-client-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
     var  name = req.params.param;
     var content = [];
 
@@ -154,6 +162,7 @@ app.get('/search-client-:param', function(req, res){
       res.render('SearchClient', {
           title: "Client " + name + " Orders",
           styles: "css/styles_inside.css",
+          scripts: "script/AllOrdersScript.js",
           body_class: "inside",
           records: content,
           clname: name
