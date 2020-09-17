@@ -9,6 +9,9 @@ $(document).ready(function () {
         var size =              $('#paella_size option:selected').text()
         var remarks =           document.getElementById("remarks").value;
 
+        if (remarks = "") {
+            remarks = "None";
+        }
 
         var neworder = {
             name:           customerName,
@@ -18,9 +21,9 @@ $(document).ready(function () {
             date:           date,
             time:           time,
             paellasize:     size,
-            status:         "Preparing",
+            status:         "Buying Ingredients",
             extraremarks:   remarks,
-            pan_used:       " "
+            pan_used:       "No Pan Assigned"
         }
     
         

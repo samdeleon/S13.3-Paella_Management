@@ -47,6 +47,10 @@
     pointer-events: none;
 }
 
+#home-customer {
+    margin: 0;
+}
+
 /* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
 
 .order-form {

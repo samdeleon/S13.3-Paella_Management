@@ -21,7 +21,13 @@ const orderSchema = new mongoose.Schema(
         paellasize:         {type: String, required: true},
         status:             {type: String, required: true},
         extraremarks:       {type: String, required: false},
-        pan_used:           {type: String, required: true}
+        pan_used:           {type: String, required: true},
+        /*
+        to add:
+
+        ingredients         {type: Object, required: true}  --> for this one the values inside are: id (string), quantity (int), checked (int)
+        message_info:       {type: String, required: true} 
+        */
     }
 );
 
