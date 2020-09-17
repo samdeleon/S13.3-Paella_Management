@@ -47,6 +47,10 @@
     pointer-events: none;
 }
 
+#home-customer {
+    margin: 0;
+}
+
 /* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
 
 .order-form {
@@ -144,6 +148,10 @@
     text-align: justify;
 }
 
+.info-p_text {
+    margin-bottom: 0px;
+}
+
 #info-form {
 }
 
@@ -152,6 +160,8 @@
 
 #info-profit {
 }
+
+
 
 /* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
 .ingredients-header {
@@ -197,21 +207,32 @@
 /* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
 
 .titletext {
-  /* padding-right: 1500px; */
   margin: 0;
   align-self: center;
-}
-
-.searchbtn{
-  /* padding-left: 1500px;
-  width: 300px; */
 }
 
 .allorders-header {
     margin-bottom: 30px;
 }
 
+.allorders-ordernum {
+    cursor: pointer;
+}
+
+.allorders-customer {
+    /*
+    SPRINT 3 TODO
+    cursor: pointer;
+    */
+}
+
+
 /* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */
+
+.sbtns {
+  background-color: #F8961E;
+  color: #FFFFFF;
+}
 
 /* ------------------------------------------ NAVBAR -------------------------------------------- */
 .vl {

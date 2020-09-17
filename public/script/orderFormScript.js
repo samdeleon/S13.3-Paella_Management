@@ -1,32 +1,48 @@
 $(document).ready(function () {
     $("#submitOrder").click(function () { 
-        var customerName = document.getElementById("customer_name").value;
-        var date = document.getElementById("date_needed").value;
-        var time = document.getElementById("time_needed").value;
-        var size = $('#paella_size option:selected').text()
-        var remarks = document.getElementById("remarks").value;
+        var customerName =      document.getElementById("customer_name").value;
+        var contact_info =      document.getElementById("contact_info").value;
+        var mode =              $("#mode_of_delivery option:selected").text();
+        var address =           document.getElementById("delivery_address").value;
+        var date =              document.getElementById("date_needed").value;
+        var time =              document.getElementById("time_needed").value;
+        var size =              $('#paella_size option:selected').text()
+        var remarks =           document.getElementById("remarks").value;
 
+        if (remarks = "") {
+            remarks = "None";
+        }
 
         var neworder = {
             name:           customerName,
+            info:           contact_info,
+            mode:           mode,
+            address:        address,
             date:           date,
             time:           time,
             paellasize:     size,
-            status:         "Preparing",
+            status:         "Buying Ingredients",
             extraremarks:   remarks,
-            pan_used:       " "
+            pan_used:       "No Pan Assigned"
         }
     
         
 
-        if (customerName == "" || date == ""  || time == "" || size == "Choose which size")
+        if (customerName == "" || contact_info == "" || mode == "Which mode?" || address == "" || date == ""  || time == "" || size == "Choose which size")
         {
             console.log("Fields are not filled up");
             return false;
         }
         else
         {
-            console.log(neworder);
+            console.log(customerName);
+            console.log(contact_info);
+            console.log(mode);
+            console.log(address);
+            console.log(date);
+            console.log(time);
+            console.log(size);
+
             $.post("/newOrder", neworder,function (data, status) {
                 
             });
@@ -36,19 +52,3 @@ $(document).ready(function () {
 
     
 });
-
-/* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
-
-/* ------------------------------------ [PAGE-02] HOMEPAGE -------------------------------------- */
-
-/* ------------------------------------ [PAGE-03] ORDER FORM ------------------------------------ */
-
-/* -------------------------------- [PAGE-04] ORDER INFORMATION --------------------------------- */
-
-/* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
-
-/* ---------------------------------- [PAGE-07] PANS INVENTORY ---------------------------------- */
-
-/* ------------------------------------ [PAGE-08] ALL ORDERS ------------------------------------ */
-
-/* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */

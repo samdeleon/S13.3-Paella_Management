@@ -4,7 +4,7 @@
 
   <div class="container allorders-container">
     <div class="d-flex justify-content-between allorders-header">
-      <h2 class="titletext">All Orders</h2>
+      <h2 class="titletext">{{clname}}'s Orders</h2>
       <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='/search';">Search</button>
     </div>
 
@@ -28,8 +28,8 @@
       {{#if records}}
         {{#each records}}
           <tr>
-            <td class="allorders-ordernum"><u>{{this.ordernum}}</u></td>
-            <td class="allorders-customer">{{this.name}}</td>
+            <td  class="orderRow"><u>{{this.ordernum}}</u></td>
+            <td>{{this.name}}</td>
             <td>{{this.contact_info}}</td>
             <td>{{this.mode_of_delivery}}</td>
             <td>{{this.address}}</td>
@@ -49,5 +49,6 @@
     </tbody>
     </table>
   </div>
+
 </div>
 

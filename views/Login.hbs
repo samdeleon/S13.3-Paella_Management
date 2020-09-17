@@ -1,7 +1,4 @@
-
-
-
-	<div class="form-box">
+<div class="form-box">
 		<div class="button-box">
 			<div id="btn"></div>
 			<button type="button" class="toggle-btn" onclick="login()">Log In</button>
@@ -9,18 +6,71 @@
 		</div>
 		<form id="login" class="input-group">
 			<input type="text" class="input-field"placeholder="Username" required>
-			<input type="text" class="input-field"placeholder="Password" id="myInput" required>
-			<input type="checkbox" class="check-box"><span>Remember Password</span>
-			<button type="submit" class="submit-btn">Log in</button>
+			<input type="password" class="input-field"placeholder="Password" id="myInput" required>
+			
+			<span class="eye" onclick="myFunction()">
+				<i id="hide1" class="fa fa-eye" ></i>
+				<i id="hide2" class="fa fa-eye-slash"></i>
+			</span>
+			
+			<button id="login" type="submit" class="submit-btn">Log in</button>
 		</form>
 		<form id="register"class="input-group">
+			
+			<div class="error-text">Passwords do not match</div>
+
 			<input type="text" class="input-field"placeholder="Username" required>
-			<input type="text" class="input-field"placeholder="Password" required>
-			<input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
-			<button type="submit" class="submit-btn">Register</button>
+			<input id="pswrd_1"type="text" class="input-field"placeholder="Password" required>
+			
+			<input id="pswrd_2"type="text" class="input-field"placeholder="Confirm Password" required>
+
+			<input type="checkbox" class="check-box" required><span>I agree to the terms and conditions</span>
+			<button id="reg" type="submit" class="submit-btn">Register</button>
 		</form>
 	</div>
-
+		
+	<script>
+		function myFunction(){
+			var x = document.getElementById("myInput");
+			var y = document.getElementById("hide1");
+			var z = document.getElementById("hide2");
+			if(x.type === 'password'){
+				x.type = "text";
+				y.style.display = "block";
+				z.style.display = "none";
+			}
+			else{
+				x.type = "password";
+				y.style.display = "none";
+				z.style.display = "block";
+			}
+		}
+	</script>
+	
+	
+<script>
+      const pswrd_1 = document.querySelector("#pswrd_1");
+      const pswrd_2 = document.querySelector("#pswrd_2");
+      const errorText = document.querySelector(".error-text");
+      const btn = document.querySelector("#reg");
+      
+      
+      btn.onclick = function(){
+        if(pswrd_1.value != pswrd_2.value){
+          errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Passwords Do Not Match";
+          return false;
+        }else{
+          errorText.style.display = "block";
+          errorText.classList.add("matched");
+          errorText.textContent = "Passwords Match";
+          return false;
+        }
+      }
+      
+    </script>
+	
 	<script>
 		
 			var x = document.getElementById("login");
@@ -42,12 +92,10 @@
 	<h2 id="log-in-header">Log In</h2>
 	<div class="input-box">
 		<i class="fa fa-user" aria-hidden="true"></i>
-
 		<input type="input" placeholder="Username">
 	</div>
 	<div class="input-box">
 		<i class="fa fa-key" aria-hidden="true"></i>
-
 		<input type="password" placeholder="Password" id="myInput">
 		<span class="eye" onclick="myFunction()">
 			<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>

@@ -31,6 +31,7 @@ app.get('/', function(req, res){
         // for main.hbs
         title: "Login Page",
         styles: "css/styles_login.css",
+        scripts: "script/LoginScript.js",
         body_class: "login"
     });
 });
@@ -46,6 +47,7 @@ app.get('/home', function(req, res){
     res.render('Homepage', {
       title: "Home",
       styles: "css/styles_inside.css",
+      scripts: "script/HomepageScript.js",
       body_class: "inside",
       records: content
     });
@@ -57,6 +59,7 @@ app.get('/order-form', function(req, res){
     res.render('OrderForm', {
         title: "Order Form",
         styles: "css/styles_inside.css",
+        scripts: "script/OrderFormScript.js",
         body_class: "inside"
     });
 });
@@ -74,15 +77,19 @@ app.get('/order-information-:param', function(req, res){
         res.render('OrderInformation', {
             title: "Order " + order_id,
             styles: "css/styles_inside.css",
+            scripts: "script/OrderInformationScript.js",
             body_class: "inside",
             ordernum: order.ordernum,
             name: order.name,
+            contact: order.contact_info,
+            mode: order.mode_of_delivery,
+            address: order.address,
             date: order.date,
             time: order.time,
             size: order.paellasize,
+            status: order.status,
             remarks: order.extraremarks,
-            status: order.status
-            // pan_used: order.pan_used
+            pan: order.pan_used
         });
     })
 });
@@ -92,6 +99,7 @@ app.get('/ingredients-inventory', function(req, res){
     res.render('IngredientsInventory', {
         title: "Ingredients Inventory",
         styles: "css/styles_inside.css",
+        scripts: "script/IngredientsInventoryScript.js",
         body_class: "inside"
     });
 });
@@ -110,6 +118,7 @@ app.get('/pans-inventory', function(req, res){
     res.render('PansInventory', {
         title: "Pans Inventory",
         styles: "css/styles_inside.css",
+        scripts: "script/PansInventoryScript.js",
         body_class: "inside"
     });
 });
@@ -117,7 +126,7 @@ app.get('/pans-inventory', function(req, res){
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
   var content = [];
-  orderModel.find().sort({ordernum: 1}).exec(function(err, result){
+  orderModel.find().sort({date: 1}).exec(function(err, result){
     if(err) throw err;
     result.forEach(function(doc) {
       content.push(doc.toObject());
@@ -125,6 +134,7 @@ app.get('/orders', function(req, res){
     res.render('AllOrders', {
         title: "All Orders",
         styles: "css/styles_inside.css",
+        scripts: "script/AllOrdersScript.js",
         body_class: "inside",
         records: content
     });
@@ -136,7 +146,30 @@ app.get('/search', function(req, res){
     res.render('Searchpage', {
         title: "Search",
         styles: "css/styles_inside.css",
+        scripts: "script/SearchpageScript.js",
         body_class: "inside"
+    });
+});
+
+app.get('/search-client-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
+    var  name = req.params.param;
+    var content = [];
+
+    orderModel.find({name: name}).sort({date: 1}).exec(function(err, orders){
+      if(err) throw err;
+      orders.forEach(function(doc) {
+        content.push(doc.toObject());
+      });
+      console.log("Order: " + orders);
+
+      res.render('SearchClient', {
+          title: "Client " + name + " Orders",
+          styles: "css/styles_inside.css",
+          scripts: "script/AllOrdersScript.js",
+          body_class: "inside",
+          records: content,
+          clname: name
+      });
     });
 });
 
@@ -156,15 +189,20 @@ app.post('/newOrder', function (req, res) {
 
     orderModel.countDocuments().exec(function (err, count){
         count = count + 1;
+        count = count.toString().padStart(7, '0');
+
         var order = new orderModel({
-            ordernum:       year + "-" + count,
-            name:           req.body.name,
-            date:           req.body.date,
-            time:           req.body.time,
-            paellasize:     req.body.paellasize,
-            status:         req.body.status,
-            extraremarks:   req.body.extraremarks,
-            pan_used:       req.body.pan_used
+            ordernum:         year + "-" + count,
+            name:             req.body.name,
+            contact_info:     req.body.info,
+            mode_of_delivery: req.body.mode,
+            address:          req.body.address,
+            date:             req.body.date,
+            time:             req.body.time,
+            paellasize:       req.body.paellasize,
+            status:           req.body.status,
+            extraremarks:     req.body.extraremarks,
+            pan_used:         req.body.pan_used
         });
         var result;
 
@@ -180,17 +218,51 @@ app.post('/newOrder', function (req, res) {
                 console.log(order);
 
                 result = {success: true, message: "new order was created"};
-                
+
                 res.send(result);
 
                 // tempRoute = "-" + order.ordernum
 
-                res.send(result);
+
             }
         });
     });
+});
 
+app.post('/searchOrderNum', function(req, res) {
+  orderModel.findOne({ordernum: req.body.ordernum}, function(err, order){
+    var result = {cont: order, ok: true};
+    if (err)
+      console.log('There is an error when searching for an order.');
+    console.log("Order: " + order);
+    if (order == null)
+        result.ok = false;
+    else
+        result.ok = true;
+    console.log("Result: " + result.ok);
+    res.send(result);
+  });
+});
 
+app.post('/nextStatus', function (req, res) {
+    // orderModel.findOne({ordernum: req.body.ordernum}).lean().exec(function(err, data){
+    //     var update = {
+    //         ordernum:         data.ordernum,
+    //         name:             data.name,
+    //         contact_info:     data.contact_info,
+    //         mode_of_delivery: data.mode_of_delivery,
+    //         address:          data.address,
+    //         date:             data.date,
+    //         time:             data.time,
+    //         paellasize:       data.paellasize,
+    //         status:           req.body.status,
+    //         extraremarks:     data.extraremarks,
+    //         pan_used:         data.pan_used
+    //     }
+
+    // orderModel.findOneAndUpdate({ordernum: req.body.ordernum},update, function (err, order){
+           
+    // });
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */
