@@ -209,6 +209,18 @@
     margin-bottom: 30px;
 }
 
+.allorders-ordernum {
+    cursor: pointer;
+}
+
+.allorders-customer {
+    /*
+    SPRINT 3 TODO
+    cursor: pointer;
+    */
+}
+
+
 /* ----------------------------------- [PAGE-09] SEARCH PAGE ------------------------------------ */
 
 .sbtns {
