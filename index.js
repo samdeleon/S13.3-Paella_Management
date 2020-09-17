@@ -81,12 +81,15 @@ app.get('/order-information-:param', function(req, res){
             body_class: "inside",
             ordernum: order.ordernum,
             name: order.name,
+            contact: order.contact_info,
+            mode: order.mode_of_delivery,
+            address: order.address,
             date: order.date,
             time: order.time,
             size: order.paellasize,
+            status: order.status,
             remarks: order.extraremarks,
-            status: order.status
-            // pan_used: order.pan_used
+            pan: order.pan_used
         });
     })
 });
@@ -239,6 +242,27 @@ app.post('/searchOrderNum', function(req, res) {
     console.log("Result: " + result.ok);
     res.send(result);
   });
+});
+
+app.post('/nextStatus', function (req, res) {
+    // orderModel.findOne({ordernum: req.body.ordernum}).lean().exec(function(err, data){
+    //     var update = {
+    //         ordernum:         data.ordernum,
+    //         name:             data.name,
+    //         contact_info:     data.contact_info,
+    //         mode_of_delivery: data.mode_of_delivery,
+    //         address:          data.address,
+    //         date:             data.date,
+    //         time:             data.time,
+    //         paellasize:       data.paellasize,
+    //         status:           req.body.status,
+    //         extraremarks:     data.extraremarks,
+    //         pan_used:         data.pan_used
+    //     }
+
+    // orderModel.findOneAndUpdate({ordernum: req.body.ordernum},update, function (err, order){
+           
+    // });
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */

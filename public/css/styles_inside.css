@@ -148,6 +148,10 @@
     text-align: justify;
 }
 
+.info-p_text {
+    margin-bottom: 0px;
+}
+
 #info-form {
 }
 
@@ -156,6 +160,8 @@
 
 #info-profit {
 }
+
+
 
 /* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
 .ingredients-header {
