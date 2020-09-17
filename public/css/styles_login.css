@@ -284,6 +284,16 @@ span{
 #hide1{
 	display:none;
 }
+#hide3{
+	display:none;
+}
+.eyes{
+	position: absolute;
+	margin:30px 10px 60px 265px;
+}
+.eyes:hover{
+	color:  rgb(148, 128, 76);
+}
 
 
 /*
