@@ -229,6 +229,21 @@ app.post('/newOrder', function (req, res) {
     });
 });
 
+app.post('/searchName', function(req, res) {
+  orderModel.findOne({name: req.body.name}, function(err, order){
+    var result = {cont: order, ok: true};
+    if (err)
+      console.log('There is an error when searching for an order.');
+    console.log("Order: " + order);
+    if (order == null)
+        result.ok = false;
+    else
+        result.ok = true;
+    console.log("Result: " + result.ok);
+    res.send(result);
+  });
+});
+
 app.post('/searchOrderNum', function(req, res) {
   orderModel.findOne({ordernum: req.body.ordernum}, function(err, order){
     var result = {cont: order, ok: true};
@@ -261,7 +276,7 @@ app.post('/nextStatus', function (req, res) {
     //     }
 
     // orderModel.findOneAndUpdate({ordernum: req.body.ordernum},update, function (err, order){
-           
+
     // });
 });
 

@@ -4,7 +4,14 @@ $(document).ready(function () {
         var link = "/search-client-";
         link = link.concat(name);
 
-        $(location).attr("href", link);
+        $.post('searchName', {name: name}, function(data, status){
+          if(!data.ok) {
+            alert("Client Not Found");
+          } else  {
+            $(location).attr("href", link);
+            alert("Client Found");
+          }
+        });
     });
 
     $("#numsearch").click(function () {
