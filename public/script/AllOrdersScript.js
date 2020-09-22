@@ -4,4 +4,10 @@ $(document).ready(function () {
 
         window.location.href = "order-information-" + num
     });
+
+    $(".allorders-customer").click(function () {
+        var name =  $(this).text();
+
+        window.location.href = "client-information-" + name
+    });
 });

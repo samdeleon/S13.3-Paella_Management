@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#clientsearch").click(function () {
         var name = $('#clientbox').val();
-        var link = "/search-client-";
+        var link = "/client-information-";
         link = link.concat(name);
 
         $.post('searchName', {name: name}, function(data, status){

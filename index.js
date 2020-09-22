@@ -151,7 +151,8 @@ app.get('/search', function(req, res){
     });
 });
 
-app.get('/search-client-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
+// [PAGE-10] CLIENT INFORMATION PAGE
+app.get('/client-information-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
     var  name = req.params.param;
     var content = [];
 
@@ -162,7 +163,7 @@ app.get('/search-client-:param', function(req, res){ // TODO: change name to "se
       });
       console.log("Order: " + orders);
 
-      res.render('SearchClient', {
+      res.render('ClientInformation', {
           title: "Client " + name + " Orders",
           styles: "css/styles_inside.css",
           scripts: "script/AllOrdersScript.js",
