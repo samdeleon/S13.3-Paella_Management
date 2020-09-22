@@ -155,21 +155,34 @@ app.get('/search', function(req, res){
 app.get('/client-information-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
     var  name = req.params.param;
     var content = [];
+    var compcontent = [];
 
-    orderModel.find({name: name}).sort({date: 1}).exec(function(err, orders){
+    orderModel.find({name: name}).sort({date: -1}).exec(function(err, orders1){
       if(err) throw err;
-      orders.forEach(function(doc) {
+      orders1.forEach(function(doc) {
         content.push(doc.toObject());
       });
-      console.log("Order: " + orders);
+      console.log("Order: " + orders1);
 
-      res.render('ClientInformation', {
-          title: "Client " + name + " Orders",
-          styles: "css/styles_inside.css",
-          scripts: "script/AllOrdersScript.js",
-          body_class: "inside",
-          records: content,
-          clname: name
+      orderModel.find({name: name, status: "Completed"}).exec(function(err, orders2){
+        if(err) throw err;
+        orders2.forEach(function(doc) {
+          compcontent.push(doc.toObject());
+        });
+
+        res.render('ClientInformation', {
+            title: "Client " + name + " Orders",
+            styles: "css/styles_inside.css",
+            scripts: "script/AllOrdersScript.js",
+            body_class: "inside",
+            records: content,
+            clname: name,
+            contact: content[0].contact_info,
+            message: "dummy data",
+            address: content[0].address,
+            completed: compcontent.length,
+            upcoming: (content.length - compcontent.length)
+        });
       });
     });
 });
