@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 9090;
 
+const userModel = require('./models/user');
 const orderModel = require('./models/order');
 
 app.engine('hbs', exphandle({
@@ -195,7 +196,56 @@ app.listen(port, function() {
 
 /* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
 // we'll add things here after sprint 1
+/*test stuff for Login*/
+/*
+app.post('/newUser', function (req, res) {
+      var user = new userModel({
+          accntname:     req.body.username,
+          accntpass:     req.body.password,
+          
+      });
+      var result;
 
+      user.save(function(err, user) {
+          if (err){
+              console.log(err.errors);
+
+              result = {success: false, message: "new user was not created"};
+              res.send(result);
+          }
+          else{
+              console.log("new user added");
+              console.log(user);
+
+              result = {success: true, message: "new user was created"};
+
+              res.send(result);
+              res.redirect("/Login")
+              // tempRoute = "-" + order.ordernum
+
+
+          }
+      });
+  });
+});
+
+app.post('/Login',function (req,res){
+  user.findOne({
+    username: req.body.username
+    }, function(err, user){
+      if(err){
+        console.log(err)
+      }
+      else{
+        console,log("ERROR!",user);
+      }
+    }
+
+  });
+    
+});
+*/
+/*test stuff for log in end*/
 app.post('/newOrder', function (req, res) {
 
     var d = new Date();
