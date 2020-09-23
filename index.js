@@ -244,12 +244,15 @@ app.post('/Login',function (req,res){
         result = {success: false, message: "user was not found"};
         res.send(result);
       }
-      console.log(user);
+      else{
+        console.log(user);
 
-      result = {success: true, message: "Login successful"};
-
-      res.send(result);
-      res.redirect("/home")
+        result = {success: true, message: "Login successful"};
+  
+        res.send(result);
+        res.redirect("/home")
+      }
+      
   })
 });
 
