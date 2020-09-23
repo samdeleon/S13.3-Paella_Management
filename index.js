@@ -203,7 +203,7 @@ app.post('/newOrder', function (req, res) {
 
     orderModel.countDocuments().exec(function (err, count){
         count = count + 1;
-        count = count.toString().padStart(7, '0');
+        count = count.toString().padStart(3, '0');
 
         var order = new orderModel({
             ordernum:         year + "-" + count,
