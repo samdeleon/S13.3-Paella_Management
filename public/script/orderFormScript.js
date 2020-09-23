@@ -50,5 +50,33 @@ $(document).ready(function () {
         }
     });
 
-    
+    $("#old_customer").click(function (e) { 
+        var name = document.getElementById("old_customername").value;
+        //alert(name)
+        
+
+        var oldcus = {
+            name: name 
+        }
+
+        $.post("findOldCustomer", oldcus, function (data, status) {
+            if (data.success){
+                var obj = data.old_customer
+
+
+                
+
+                /$("#customer_name").val(data.old_customer.name)
+                $("#contact_info").val(data.old_customer.contact_info);
+               // $("#customer_name").val(data.old_customer.name);
+                $("#delivery_address").val(data.old_customer.address);
+
+
+            }else {
+                $("#error").text(data.message);
+                $("#error").css('color', 'red')
+            }
+        });
+
+    });
 });
