@@ -197,7 +197,7 @@ app.listen(port, function() {
 /* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
 // we'll add things here after sprint 1
 /*test stuff for Login*/
-/*
+
 app.post('/newUser', function (req, res) {
       var user = new userModel({
           accntname:     req.body.username,
@@ -220,7 +220,7 @@ app.post('/newUser', function (req, res) {
               result = {success: true, message: "new user was created"};
 
               res.send(result);
-              res.redirect("/Login")
+              res.redirect("/")
               // tempRoute = "-" + order.ordernum
 
 
@@ -231,20 +231,27 @@ app.post('/newUser', function (req, res) {
 
 app.post('/Login',function (req,res){
   user.findOne({
-    username: req.body.username
+    username: req.body.username, password: req.body.password
     }, function(err, user){
       if(err){
-        console.log(err)
+        console.log(err.errors);
+        result = {success: false, message: "Error"};
+        res.send(result);
       }
-      else{
-        console,log("ERROR!",user);
+      if(!user){
+        console.log(err.errors);
+        result = {success: false, message: "user was not found"};
+        res.send(result);
       }
-    }
+      console.log(user);
 
-  });
-    
+      result = {success: true, message: "Login successful"};
+
+      res.send(result);
+      res.redirect("/home")
+  })
 });
-*/
+
 /*test stuff for log in end*/
 app.post('/newOrder', function (req, res) {
 
