@@ -45,7 +45,7 @@ $(document).ready(function () {
         else
         {
             console.log(accntname);
-            console.log(accntpassword);
+            console.log(accntpass);
 
             $.post("/Login", newuser,function (data, status) {
                 
