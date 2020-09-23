@@ -13,10 +13,10 @@ const orderSchema = new mongoose.Schema(
     {
 
         name:               {type: String, required: true},
-        contact_info:       {type: Number, required: true},
-        mode_of_delivery:   {type: Decimal128, required: true}
+        contact_info:       {type: String, required: true},
+        mode_of_delivery:   {type: String, required: true}
 
     }
 );
 
-module.exports = mongoose.model('ingredients', orderSchema);
+module.exports = mongoose.model('customers', orderSchema);
