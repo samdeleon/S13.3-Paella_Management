@@ -227,7 +227,6 @@ app.post('/newUser', function (req, res) {
 
           }
       });
-  });
 });
 
 app.post('/Login',function (req,res){
