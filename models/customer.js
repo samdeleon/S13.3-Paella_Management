@@ -14,7 +14,8 @@ const orderSchema = new mongoose.Schema(
 
         name:               {type: String, required: true},
         contact_info:       {type: String, required: true},
-        mode_of_delivery:   {type: String, required: true}
+        message_info:       {type: String, required: true},
+        address:            {type: String, required: true},
 
     }
 );
