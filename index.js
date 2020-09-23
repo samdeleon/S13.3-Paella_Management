@@ -9,6 +9,7 @@ const port = 9090;
 
 const userModel = require('./models/user');
 const orderModel = require('./models/order');
+const customerModel = require('./models/customer');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
@@ -329,6 +330,36 @@ app.post('/searchOrderNum', function(req, res) {
     res.send(result);
   });
 });
+
+
+app.post('/findOldCustomer', function (req, res){
+  var findingFor = req.body.name
+  var results 
+
+  customerModel.find({name: {$regex: "^" + findingFor, $options: 'i'}}).lean().exec(function (err, person){
+    if(person.length >= 1){
+      console.log(person);
+
+      results = {
+        success: true,
+        old_customer: person[0]
+      }
+
+      res.send(results);
+    }
+    //else, only return success false
+    else {
+      console.log("The post does not exist in the database");
+
+      results = {
+        success: false,
+        message: findingFor + " was not found"
+      }
+
+      res.send(results);
+    }
+  })
+})
 
 app.post('/nextStatus', function (req, res) {
     // orderModel.findOne({ordernum: req.body.ordernum}).lean().exec(function(err, data){
