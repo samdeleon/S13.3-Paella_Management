@@ -9,7 +9,7 @@ const options = { useNewUrlParser: true,
 
 mongoose.connect(databaseURL, options);
 
-const orderSchema = new mongoose.Schema(
+const customerSchema = new mongoose.Schema(
     {
 
         name:               {type: String, required: true},
@@ -20,4 +20,4 @@ const orderSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('customers', orderSchema);
+module.exports = mongoose.model('customers', customerSchema);
