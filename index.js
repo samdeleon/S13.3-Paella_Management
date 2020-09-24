@@ -248,7 +248,7 @@ app.post('/Login',function (req,res){
 
         result = {success: true, message: "Login successful"};
   
-        res.send(result);
+       
         res.redirect("/home")
       }
       
