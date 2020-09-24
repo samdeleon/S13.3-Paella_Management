@@ -4,9 +4,9 @@
 			<button type="button" class="toggle-btn" onclick="login()">Log In</button>
 			<button type="button" class="toggle-btn" onclick="register()">Register</button>
 		</div>
-		<form id="login" class="input-group">
+		<form id="login" class="input-group" action="/home">
 			<input id="username1"type="text" class="input-field"placeholder="Username" required>
-			<input id="password"type="password" class="input-field"placeholder="Password" id="myInput" required>
+			<input id="password"type="password" class="input-field"placeholder="Password"  required>
 			
 			<span class="eye" onclick="myFunction()">
 				<i id="hide1" class="fa fa-eye" ></i>
@@ -35,7 +35,7 @@
 		
 	<script>
 		function myFunction(){
-			var x = document.getElementById("myInput");
+			var x = document.getElementById("password");
 			var y = document.getElementById("hide1");
 			var z = document.getElementById("hide2");
 			if(x.type === 'password'){
