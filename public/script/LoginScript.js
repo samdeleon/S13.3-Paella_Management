@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $("#reg").click(function () { 
-        var accntname =      document.getElementById("username2").value;
-        var accntpass =      document.getElementById("pswrd_1").value;
+        var accntname =document.getElementById("username2").value;
+        var accntpass =document.getElementById("pswrd_1").value;
         
         var newuser = {
-            username:           accntname,
-            password:           accntpass
+            username:accntname,
+            password:accntpass
         }
     
         
@@ -27,12 +27,12 @@ $(document).ready(function () {
         }
     });
     $("#login").click(function () { 
-        var accntname =      document.getElementById("username1").value;
-        var accntpass =      document.getElementById("password").value;
+        var accntname =document.getElementById("username1").value;
+        var accntpass =document.getElementById("password").value;
         
         var newuser = {
-            username:           accntname,
-            password:           accntpass
+            username:accntname,
+            password:accntpass
         }
     
         
