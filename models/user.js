@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const databaseURL = 'mongodb+srv://johann_gonzales:MichealSteve@clusterzero.herk2.mongodb.net/paella_management?retryWrites=true&w=majority';

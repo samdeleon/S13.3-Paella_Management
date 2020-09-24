@@ -26,7 +26,7 @@ $(document).ready(function () {
             
         }
     });
-    $("#login").click(function () { 
+    $("#log").click(function () { 
         var accntname =document.getElementById("username1").value;
         var accntpass =document.getElementById("password").value;
         
