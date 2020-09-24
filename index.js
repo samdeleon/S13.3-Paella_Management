@@ -261,47 +261,77 @@ app.post('/newOrder', function (req, res) {
     var d = new Date();
     var year = d.getFullYear();
 
-    orderModel.countDocuments().exec(function (err, count){
-        count = count + 1;
-        count = count.toString().padStart(3, '0');
-
-        var order = new orderModel({
-            ordernum:         year + "-" + count,
-            name:             req.body.name,
-            contact_info:     req.body.info,
-            mode_of_delivery: req.body.mode,
-            address:          req.body.address,
-            date:             req.body.date,
-            time:             req.body.time,
-            paellasize:       req.body.paellasize,
-            status:           req.body.status,
-            extraremarks:     req.body.extraremarks,
-            pan_used:         req.body.pan_used
-        });
-        var result;
-
-        order.save(function(err, order) {
-            if (err){
-                console.log(err.errors);
-
-                result = {success: false, message: "new order was not created"};
-                res.send(result);
-            }
-            else{
-                console.log("New order added");
-                console.log(order);
-
-                result = {success: true, message: "new order was created"};
-
-                res.send(result);
-
-                // tempRoute = "-" + order.ordernum
-
-
-            }
-        });
+    var newCustomer = new customerModel({
+      name:             req.body.name,
+      contact_info:     req.body.info,
+      message_info:     req.body.msg_info,
+      address:          req.body.address, 
     });
+    orderModel.countDocuments().exec(function (err, count){
+      count = count + 1;
+      count = count.toString().padStart(3, '0');
+
+      var order = new orderModel({
+        ordernum:         year + "-" + count,
+        customer_id:      newCustomer._id,
+        mode_of_delivery: req.body.mode,
+        date:             req.body.date,
+        time:             req.body.time,
+        paellasize:       req.body.paellasize,
+        status:           req.body.status,
+        extraremarks:     req.body.extraremarks,
+        pan_used:         req.body.pan_used
+      });
+      var result;
+
+      order.save(function(err, new_order) {
+        if (err){
+          console.log(err.errors);
+
+          result = {success: false, message: "new order was not created"};
+          res.send(result);
+        }
+        else{
+          console.log("New order added");
+          console.log(new_order);
+          newCustomer.save(function (err, new_customer) {
+            console.log("New customer added");
+            console.log(new_customer);
+
+            result = {
+              success: true, 
+              message: "new order was created"
+
+            };
+
+            res.redirect('/');
+          })
+        }
+      });
+  });
 });
+
+
+app.post('/newCustomer', function (req, res) {
+  var newCustomer = new customerModel({
+    name:             req.body.name,
+    contact_info:     req.body.info,
+    message_info:     req.body.msg_info,
+    address:          req.body.address, 
+  });
+
+  newCustomer.save(function (err, newCus) {
+
+    const new_cus = {
+      customer : newCus
+    }
+
+    res.send(new_cus)
+
+  })
+})
+
+
 
 app.post('/searchName', function(req, res) {
   orderModel.findOne({name: req.body.name}, function(err, order){

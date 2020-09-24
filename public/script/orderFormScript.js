@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#submitOrder").click(function () { 
         var customerName =      document.getElementById("customer_name").value;
         var contact_info =      document.getElementById("contact_info").value;
+        var message_info =      document.getElementById("message_info").value;
         var mode =              $("#mode_of_delivery option:selected").text();
         var address =           document.getElementById("delivery_address").value;
         var date =              document.getElementById("date_needed").value;
@@ -9,15 +10,18 @@ $(document).ready(function () {
         var size =              $('#paella_size option:selected').text()
         var remarks =           document.getElementById("remarks").value;
 
-        if (remarks = "") {
+        if (remarks == "") {
             remarks = "None";
         }
 
-        var neworder = {
-            name:           customerName,
+
+
+        var details = {
+             name:           customerName,
             info:           contact_info,
-            mode:           mode,
+            msg_info:       message_info,
             address:        address,
+            mode:           mode, 
             date:           date,
             time:           time,
             paellasize:     size,
@@ -25,7 +29,7 @@ $(document).ready(function () {
             extraremarks:   remarks,
             pan_used:       "No Pan Assigned"
         }
-    
+        
         
 
         if (customerName == "" || contact_info == "" || mode == "Which mode?" || address == "" || date == ""  || time == "" || size == "Choose which size")
@@ -35,15 +39,8 @@ $(document).ready(function () {
         }
         else
         {
-            console.log(customerName);
-            console.log(contact_info);
-            console.log(mode);
-            console.log(address);
-            console.log(date);
-            console.log(time);
-            console.log(size);
 
-            $.post("/newOrder", neworder,function (data, status) {
+            $.post("/newOrder", details ,function (data, status) {
                 
             });
             
@@ -51,32 +48,31 @@ $(document).ready(function () {
     });
 
     $("#old_customer").click(function (e) { 
+        
         var name = document.getElementById("old_customername").value;
         //alert(name)
         
-
-        var oldcus = {
-            name: name 
-        }
-
-        $.post("findOldCustomer", oldcus, function (data, status) {
-            if (data.success){
-                var obj = data.old_customer
-
-
-                
-
-                /$("#customer_name").val(data.old_customer.name)
-                $("#contact_info").val(data.old_customer.contact_info);
-               // $("#customer_name").val(data.old_customer.name);
-                $("#delivery_address").val(data.old_customer.address);
-
-
-            }else {
-                $("#error").text(data.message);
-                $("#error").css('color', 'red')
+        if (name != ""){
+            var oldcus = {
+                name: name 
             }
-        });
+    
+            $.post("findOldCustomer", oldcus, function (data, status) {
+                if (data.success){
+    
+                    $("#customer_name").val(data.old_customer.name)
+                    $("#contact_info").val(data.old_customer.contact_info);
+                    $("#message_info").val(data.old_customer.message_info);
+                    $("#delivery_address").val(data.old_customer.address);
+    
+    
+                }else {
+                    $("#error").text(data.message);
+                    $("#error").css('color', 'red')
+                }
+            });
+        }
+        
 
     });
 });
