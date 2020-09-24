@@ -201,8 +201,8 @@ app.listen(port, function() {
 
 app.post('/newUser', function (req, res) {
       var user = new userModel({
-          accntname:     req.body.username,
-          accntpass:     req.body.password,
+          username:     req.body.username,
+          password:     req.body.password,
           
       });
       var result;
@@ -220,7 +220,7 @@ app.post('/newUser', function (req, res) {
 
               result = {success: true, message: "new user was created"};
 
-              res.send(result);
+              
               res.redirect("/")
               // tempRoute = "-" + order.ordernum
 
