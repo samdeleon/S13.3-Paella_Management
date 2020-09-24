@@ -20,24 +20,24 @@
                         <button id="old_customer"type="button" class="btn btn-primary btn-sm">Search</button>
                     </div>
 
-                    
+        
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="customer_name">Customer Name</label>
-                    <input type="text" class="form-control" id="customer_name">
+                    <input type="text" class="form-control" id="customer_name" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="contact_info">Contact Information</label>
-                    <input type="text" class="form-control" id="contact_info">
+                    <input type="text" class="form-control" id="contact_info" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="contact_info">Message Information</label>
-                    <input type="text" class="form-control" id="message_info">
+                    <input type="text" class="form-control" id="message_info" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="mode_of_delivery">Mode of Delivery</label>
-                    <select id="mode_of_delivery" class="form-control">
-                        <option selected>Which mode?</option>
+                    <select id="mode_of_delivery" class="form-control" required>
+                        <option selected disabled value="">Which mode?</option>
                         <option>For Pick Up</option>
                         <option>For Delivery</option>
                         <option>For Service</option>
@@ -45,20 +45,20 @@
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="delivery_address">Delivery Address</label>
-                    <input type="text" class="form-control" id="delivery_address">
+                    <input type="text" class="form-control" id="delivery_address" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="date_needed">Date Needed</label>
-                    <input type="date" class="form-control" id="date_needed">
+                    <input type="date" class="form-control" id="date_needed" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="time_needed">Time Needed</label>
-                    <input type="time" class="form-control" id="time_needed">
+                    <input type="time" class="form-control" id="time_needed" required>
                 </div>
                 <div class="form-row" style="padding-bottom: 10px;">
                     <label for="paella_size">Paella Size</label>
-                    <select id="paella_size" class="form-control">
-                        <option selected>Choose which size</option>
+                    <select id="paella_size" class="form-control" required>
+                        <option selected disabled value="">Choose which size</option>
                         <option>14 inches</option>
                         <option>16 inches</option>
                         <option>20 inches</option>
