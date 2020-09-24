@@ -6,7 +6,7 @@
             <div class="info-ordernum">
                 <h2 id="ordernumber">Order #{{ordernum}}</h2>
             </div>
-            
+
             <div class="d-flex info-status_grp">
                 <div class="info-p_status">
                     <button id="info-pbutton" type="button" class="btn btn-warning btn-lg btn-block">{{pan}}</button>
@@ -20,7 +20,7 @@
                 </div>
 
                 <!--[MODAL] After clicking on Order Status button, a modal will pop up to go to the next status-->
-              
+
                 <div class="modal fade" id="orderstatusModal" tabindex="-1" role="dialog" aria-labelledby="orderstatusModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -43,18 +43,19 @@
                 </div>
                 </div>
 
-            </div>    
+            </div>
         </div>
-        
+
         <div class="card-deck">
             <div id="info-form" class="card info-cols">
                     <h4 class="card-header">Order Information</h4>
-                    
+
                     <div class="card-body"> <!-- TODO: Replace my dummy info with the {{things}}-->
                         <p><b>Customer Name:</b> {{name}}</p>
-                        <p><b>Contact Information:</b> {{contact}}</p>   
-                        <p><b>Mode of Delivery:</b> {{mode}}</p>  
-                        <p><b>Delivery Address:</b> {{address}}</p>    
+                        <p><b>Contact Information:</b> {{contact}}</p>
+                        <p><b>Message Information:</b> {{message}}</p>   
+                        <p><b>Mode of Delivery:</b> {{mode}}</p>
+                        <p><b>Delivery Address:</b> {{address}}</p>
                         <p><b>Date Needed:</b> {{date}}</p>
                         <p><b>Time Needed:</b> {{time}}</p>
                         <p><b>Paella Size:</b> {{size}}</p>
@@ -69,9 +70,9 @@
 
             <div id="info-checklist" class="card info-cols">
                     <h4 class="card-header">Ingredients Checklist</h4>
-                    
+
                     <div class="card-body"> <!-- TODO: linking this to the db (if checked or not) -->
-    
+
                         <!-- SOFFRITO --------------------------------------------------------------------- -->
                         <p class="info-p_text"><b>Soffrito:</b></p>
                         <div class="form-check">
@@ -80,35 +81,35 @@
                                 <!--{{this.quantity}}--> pinches of Saffron
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-soffrito_2">
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_2">
                                 <!--{{this.quantity}}--> mL of Olive Oil
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-soffrito_3">
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_3">
                                 <!--{{this.quantity}}--> big pieces of White Onion
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-soffrito_4">
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_4">
                                 <!--{{this.quantity}}--> grams can of Tomatoes
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-soffrito_5">
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_5">
                                 <!--{{this.quantity}}--> cloves of Garlic
                             </label>
                         </div>
-                        
+
                         <!-- MEAT --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Meat:</b></p>
@@ -118,28 +119,28 @@
                                 <!--{{this.quantity}}--> pieces of Chicken Breast Part
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-meat_2">
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_2">
                                 <!--{{this.quantity}}--> pieces of Chorizo
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-meat_3">
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_3">
                                 <!--{{this.quantity}}--> pieces of Bilbao
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-meat_4">
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_4">
                                 <!--{{this.quantity}}--> grams of Lomo (Pork Tenderloin)
                             </label>
                         </div>
-                        
+
                         <!-- SEAFOOD --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Seafood:</b></p>
@@ -149,28 +150,28 @@
                                 <!--{{this.quantity}}--> pieces of Crab
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-seafood_2">
                             <label class="form-check-label" for="defaultCheck1" id="name-seafood_2">
                                 <!--{{this.quantity}}--> pieces of Sugpo (Tiger Prawns)
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-seafood_3">
                             <label class="form-check-label" for="defaultCheck1" id="name-seafood_3">
                                 <!--{{this.quantity}}--> pieces of Suahe (Shrimps)
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-seafood_4">
                             <label class="form-check-label" for="defaultCheck1" id="name-seafood_4">
                                 <!--{{this.quantity}}--> pieces of Tahong (Mussels)
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-seafood_5">
                             <label class="form-check-label" for="defaultCheck1" id="name-seafood_5">
@@ -184,7 +185,7 @@
                                 <!--{{this.quantity}}--> medium pieces of Lumot (Big Squid)
                             </label>
                         </div>
-                        
+
                         <!-- STOCK --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Stock:</b></p>
@@ -194,7 +195,7 @@
                                 <!--{{this.quantity}}--> cups of Chicken Stock
                             </label>
                         </div>
-                        
+
                         <!-- ETC --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>ETC:</b></p>
@@ -204,28 +205,28 @@
                                 <!--{{this.quantity}}--> cups of White Japanese Rice
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-etc_2">
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_2">
                                 <!--{{this.quantity}}--> pieces of Eggs
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-etc_3">
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_3">
                                 <!--{{this.quantity}}--> mL of Mayo
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-etc_4">
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_4">
                                 <!--{{this.quantity}}--> cloves of Garlic
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="check-etc_5">
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_5">
@@ -252,13 +253,13 @@
 
             <div id="info-profit" class="card info-cols">
                 <h4 class="card-header">Profit Computation</h4>
-                    
+
                 <div class="card-body">
                     <!-- the format should look like this more or less, but the code will follow-->
                     <p><b>Total ???:</b> Php XXXX.XX</p>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

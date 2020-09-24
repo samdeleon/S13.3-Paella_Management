@@ -89,24 +89,27 @@ app.get('/order-information-:param', function(req, res){
 
     orderModel.findOne({ordernum: order_id}, function (err, order){
         console.log(order);
-        res.render('OrderInformation', {
-            title: "Order " + order_id,
-            styles: "css/styles_inside.css",
-            scripts: "script/OrderInformationScript.js",
-            body_class: "inside",
-            ordernum: order.ordernum,
-            name: order.name,
-            contact: order.contact_info,
-            mode: order.mode_of_delivery,
-            address: order.address,
-            date: order.date,
-            time: order.time,
-            size: order.paellasize,
-            status: order.status,
-            remarks: order.extraremarks,
-            pan: order.pan_used
+        customerModel.findOne({_id: order.customer_id}, function (err, client){
+            res.render('OrderInformation', {
+                title: "Order " + order_id,
+                styles: "css/styles_inside.css",
+                scripts: "script/OrderInformationScript.js",
+                body_class: "inside",
+                ordernum: order.ordernum,
+                name: client.name,
+                contact: client.contact_info,
+                message: client.message_info,
+                mode: order.mode_of_delivery,
+                address: client.address,
+                date: order.date,
+                time: order.time,
+                size: order.paellasize,
+                status: order.status,
+                remarks: order.extraremarks,
+                pan: order.pan_used
+            });
         });
-    })
+    });
 });
 
 // [PAGE-05] INGREDIENTS INVENTORY
@@ -281,10 +284,7 @@ app.post('/Login',function (req,res){
       }
       else{
         console.log(user);
-
         result = {success: true, message: "Login successful"};
-
-
         res.redirect("/home")
       }
   });
