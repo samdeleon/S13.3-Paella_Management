@@ -79,7 +79,14 @@
           errorText.classList.remove("matched");
           errorText.textContent = "Passwords Do Not Match";
           return false;
-        }else{
+        }
+		if(pswrd_1.value == "" ||pswrd_2.value==""||pswrd_1.value == " " ||pswrd_2.value==" "){
+		errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Passwords Cannot Be Empty";
+          return false;
+		}
+		else{
           errorText.style.display = "block";
           errorText.classList.add("matched");
           errorText.textContent = "Passwords Match";
