@@ -32,7 +32,7 @@ $(document).ready(function () {
         
         
 
-        if (customerName == "" || contact_info == "" || mode == "Which mode?" || address == "" || date == ""  || time == "" || size == "Choose which size")
+        if (customerName == "" || contact_info == "" || message_info == "" || mode == "Which mode?" || address == "" || date == ""  || time == "" || size == "Choose which size")
         {
             console.log("Fields are not filled up");
             return false;
