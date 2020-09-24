@@ -6,10 +6,10 @@ $(document).ready(function () {
 
         $.post('searchName', {name: name}, function(data, status){
           if(!data.ok) {
-            alert("Client Not Found");
+            alert("Customer Not Found");
           } else  {
             $(location).attr("href", link);
-            alert("Client Found");
+            alert("Customer Found");
           }
         });
     });

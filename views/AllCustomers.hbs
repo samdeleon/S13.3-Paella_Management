@@ -1,0 +1,38 @@
+{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+
+<div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
+
+  <div class="container allorders-container">
+    <div class="d-flex justify-content-between allorders-header">
+      <h2 class="titletext">All Customers</h2>
+      <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='/search';">Search</button>
+    </div>
+
+    <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Contact Information</th>
+        <th scope="col">Message Information</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#if records}}
+        {{#each records}}
+          <tr>
+            <td class="allcust-customer"><u>{{this.name}}</u></td>
+            <td>{{this.contact_info}}</td>
+            <td>{{this.message_info}}</td>
+            <td>{{this.address}}</td>
+          </tr>
+          {{/each}}
+      {{else}}
+        <tr>
+          <td>No customers available</td>
+        </tr>
+      {{/if}}
+    </tbody>
+    </table>
+  </div>
+</div>

@@ -87,7 +87,7 @@ app.get('/order-information-:param', function(req, res){
         ^ will be used to search in the db
     */
 
-    orderModel.findOne({ordernum: order_id}, function (err, order){
+    orderModel.findOne({ordernum: order_id, customer_id: {$exists: true}}, function (err, order){
         console.log(order);
         customerModel.findOne({_id: order.customer_id}, function (err, client){
             res.render('OrderInformation', {
@@ -147,7 +147,7 @@ app.get('/orders', function(req, res){
   var entry;
   var i = 0;
 
-  orderModel.find({status: {$ne: "Completed"}, customer_id: {$exists: true}}).sort({date: 1}).exec(function(err, result){
+  orderModel.find({customer_id: {$exists: true}}).sort({date: 1}).exec(function(err, result){
     if(err) throw err;
     result.forEach(function(doc) {
       customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
@@ -182,19 +182,17 @@ app.get('/search', function(req, res){
     });
 });
 
-// [PAGE-10] CLIENT INFORMATION
+// [PAGE-10] CUSTOMER INFORMATION
 app.get('/client-information-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
     var  name = req.params.param;
     var content = [];
     var compcontent = [];
 
-    orderModel.find({name: name}).sort({date: -1}).exec(function(err, orders1){
+    orderModel.find({name: name, customer_id: {$exists: true}}).sort({date: -1}).exec(function(err, orders1){
       if(err) throw err;
       orders1.forEach(function(doc) {
         content.push(doc.toObject());
       });
-      console.log("Order: " + orders1);
-
       orderModel.find({name: name, status: "Completed"}).exec(function(err, orders2){
         if(err) throw err;
         orders2.forEach(function(doc) {
@@ -202,15 +200,15 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
         });
 
         res.render('CustomerInformation', {
-            title: "Client " + name + " Orders",
+            title: "Customer " + name + " Orders",
             styles: "css/styles_inside.css",
             scripts: "script/AllOrdersScript.js",
             body_class: "inside",
             records: content,
             clname: name,
-            contact: content[0].contact_info,
+            contact: "dummy",
             message: "dummy data",
-            address: content[0].address,
+            address: "dummy",
             completed: compcontent.length,
             upcoming: (content.length - compcontent.length)
         });
@@ -218,7 +216,24 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
     });
 });
 
-// [PAGE-10] ALL CLIENTS
+// [PAGE-10] ALL CUSTOMERS
+app.get('/customers', function(req, res){
+  var content = [];
+
+      customerModel.find().exec(function(err, result){
+        if(err) throw err;
+        result.forEach(function(doc) {
+          content.push(doc.toObject());
+        });
+          res.render('AllCustomers', {
+            title: "All Customers",
+            styles: "css/styles_inside.css",
+            scripts: "script/AllCustomersScript.js",
+            body_class: "inside",
+            records: content
+          });
+      });
+});
 
 /* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
@@ -369,12 +384,12 @@ app.post('/newCustomer', function (req, res) {
 
 
 app.post('/searchName', function(req, res) {
-  orderModel.findOne({name: req.body.name}, function(err, order){
-    var result = {cont: order, ok: true};
+  customerModel.findOne({name: req.body.name}, function(err, client){
+    var result = {cont: client, ok: true};
     if (err)
-      console.log('There is an error when searching for an order.');
-    console.log("Order: " + order);
-    if (order == null)
+      console.log('There is an error when searching for a customer.');
+    console.log("Customer: " + client);
+    if (client == null)
         result.ok = false;
     else
         result.ok = true;
@@ -384,7 +399,7 @@ app.post('/searchName', function(req, res) {
 });
 
 app.post('/searchOrderNum', function(req, res) {
-  orderModel.findOne({ordernum: req.body.ordernum}, function(err, order){
+  orderModel.findOne({ordernum: req.body.ordernum, customer_id: {$exists: true}}, function(err, order){
     var result = {cont: order, ok: true};
     if (err)
       console.log('There is an error when searching for an order.');
