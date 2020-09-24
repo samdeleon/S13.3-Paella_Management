@@ -141,17 +141,30 @@ app.get('/pans-inventory', function(req, res){
 // [PAGE-08] ALL ORDERS
 app.get('/orders', function(req, res){
   var content = [];
-  orderModel.find().sort({date: 1}).exec(function(err, result){
+  var entry;
+  var i = 0;
+
+  orderModel.find({status: {$ne: "Completed"}, customer_id: {$exists: true}}).sort({date: 1}).exec(function(err, result){
     if(err) throw err;
     result.forEach(function(doc) {
-      content.push(doc.toObject());
-    });
-    res.render('AllOrders', {
-        title: "All Orders",
-        styles: "css/styles_inside.css",
-        scripts: "script/AllOrdersScript.js",
-        body_class: "inside",
-        records: content
+      customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
+        i++;
+        if(err) throw err;
+          entry = {main: doc.toObject(), clientinfo: result2};
+          content.push(entry);
+
+          if (i == result.length)
+          {
+            res.render('AllOrders', {
+                title: "All Orders",
+                styles: "css/styles_inside.css",
+                scripts: "script/AllOrdersScript.js",
+                body_class: "inside",
+                records: content
+            });
+          }
+
+      });
     });
   });
 });
@@ -166,7 +179,7 @@ app.get('/search', function(req, res){
     });
 });
 
-// [PAGE-10] CLIENT INFORMATION PAGE
+// [PAGE-10] CLIENT INFORMATION
 app.get('/client-information-:param', function(req, res){ // TODO: change name to "search-customer" instead of client
     var  name = req.params.param;
     var content = [];
@@ -201,6 +214,8 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
       });
     });
 });
+
+// [PAGE-10] ALL CLIENTS
 
 /* ---------------------------------------- END OF ROUTES --------------------------------------- */
 
@@ -243,7 +258,7 @@ app.post('/newUser', function (req, res) {
 });
 
 app.post('/Login',function (req,res){
- /* 
+ /*
   var user = new userModel({
     username:     req.body.username,
     password:     req.body.password,
@@ -272,13 +287,7 @@ app.post('/Login',function (req,res){
 
         res.redirect("/home")
       }
-<<<<<<< HEAD
-
-  })
-=======
-      
   });
->>>>>>> ac9e18b014792bfae93c849bde6b04a0f1e798e9
 });
 
 /*test stuff for log in end*/
