@@ -201,7 +201,7 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
           compcontent.push(doc.toObject());
         });
 
-        res.render('ClientInformation', {
+        res.render('CustomerInformation', {
             title: "Client " + name + " Orders",
             styles: "css/styles_inside.css",
             scripts: "script/AllOrdersScript.js",
