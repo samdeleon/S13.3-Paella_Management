@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'));
 
-/* ---------------------------------------- ALL 9 ROUTES ---------------------------------------- */
+/* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
 
 // [PAGE-01] LOGIN
 app.get('/', function(req, res){
@@ -41,17 +41,30 @@ app.get('/', function(req, res){
 // [PAGE-02] HOMEPAGE
 app.get('/home', function(req, res){
   var content = [];
-  orderModel.find({status: {$ne: "Completed"}}).sort({date: 1}).limit(10).exec(function(err, result){
+  var entry;
+  var i = 0;
+
+  orderModel.find({status: {$ne: "Completed"}, customer_id: {$exists: true}}).sort({date: 1}).limit(10).exec(function(err, result){
     if(err) throw err;
     result.forEach(function(doc) {
-      content.push(doc.toObject());
-    });
-    res.render('Homepage', {
-      title: "Home",
-      styles: "css/styles_inside.css",
-      scripts: "script/HomepageScript.js",
-      body_class: "inside",
-      records: content
+      customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
+        i++;
+        if(err) throw err;
+          entry = {main: doc.toObject(), clientinfo: result2};
+          content.push(entry);
+
+          if (i == result.length)
+          {
+            res.render('Homepage', {
+              title: "Home",
+              styles: "css/styles_inside.css",
+              scripts: "script/HomepageScript.js",
+              body_class: "inside",
+              records: content
+            });
+          }
+
+      });
     });
   });
 });
@@ -203,7 +216,7 @@ app.post('/newUser', function (req, res) {
       var user = new userModel({
           username:     req.body.username,
           password:     req.body.password,
-          
+
       });
       var result;
 
@@ -220,7 +233,7 @@ app.post('/newUser', function (req, res) {
 
               result = {success: true, message: "new user was created"};
 
-              
+
               res.redirect("/")
               // tempRoute = "-" + order.ordernum
 
@@ -252,11 +265,11 @@ var result;
         console.log(user);
 
         result = {success: true, message: "Login successful"};
-  
-       
+
+
         res.redirect("/home")
       }
-      
+
   })
 });
 
@@ -270,7 +283,7 @@ app.post('/newOrder', function (req, res) {
       name:             req.body.name,
       contact_info:     req.body.info,
       message_info:     req.body.msg_info,
-      address:          req.body.address, 
+      address:          req.body.address,
     });
     orderModel.countDocuments().exec(function (err, count){
       count = count + 1;
@@ -304,7 +317,7 @@ app.post('/newOrder', function (req, res) {
             console.log(new_customer);
 
             result = {
-              success: true, 
+              success: true,
               message: "new order was created"
 
             };
@@ -322,7 +335,7 @@ app.post('/newCustomer', function (req, res) {
     name:             req.body.name,
     contact_info:     req.body.info,
     message_info:     req.body.msg_info,
-    address:          req.body.address, 
+    address:          req.body.address,
   });
 
   newCustomer.save(function (err, newCus) {
@@ -371,7 +384,7 @@ app.post('/searchOrderNum', function(req, res) {
 
 app.post('/findOldCustomer', function (req, res){
   var findingFor = req.body.name
-  var results 
+  var results
 
   customerModel.find({name: {$regex: "^" + findingFor, $options: 'i'}}).lean().exec(function (err, person){
     if(person.length >= 1){

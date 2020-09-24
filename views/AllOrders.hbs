@@ -14,6 +14,7 @@
         <th scope="col">Order Number</th>
         <th scope="col">Customer Name</th>
         <th scope="col">Contact Information</th>
+        <th scope="col">Message Information</th>
         <th scope="col">Mode of Delivery</th>
         <th scope="col">Address</th>
         <th scope="col">Date Needed</th>
@@ -29,10 +30,11 @@
         {{#each records}}
           <tr>
             <td class="allorders-ordernum"><u>{{this.ordernum}}</u></td>
-            <td class="allorders-customer"><u>{{this.name}}</u></td>
-            <td>{{this.contact_info}}</td>
+            <td class="allorders-customer"><u>{{this.customer_id.name}}</u></td>
+            <td>{{this.customer_id.contact_info}}</td>
+            <td>{{this.customer_id.message_info}}</td>
             <td>{{this.mode_of_delivery}}</td>
-            <td>{{this.address}}</td>
+            <td>{{this.customer_id.address}}</td>
             <td>{{this.date}}</td>
             <td>{{this.time}}</td>
             <td>{{this.paellasize}}</td>
