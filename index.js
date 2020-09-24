@@ -230,13 +230,13 @@ app.post('/newUser', function (req, res) {
 });
 
 app.post('/Login',function (req,res){
-  
+ /* 
   var user = new userModel({
     username:     req.body.username,
     password:     req.body.password,
 
 });
-
+*/
   var result;
   user.findOne({
     username: req.body.username, password: req.body.password
