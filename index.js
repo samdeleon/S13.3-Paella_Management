@@ -192,7 +192,7 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
 
     customerModel.findOne({name: name}).exec(function(err, result0){
       if(err) throw err;
-      orderModel.find({customer_id: result0._id}).sort({date: -1}).exec(function(err, result){
+      orderModel.find({customer_id: result0._id}).sort({date: 1}).exec(function(err, result){
         if(err) throw err;
         result.forEach(function(doc) {
           customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
@@ -235,7 +235,7 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
 app.get('/customers', function(req, res){
   var content = [];
 
-      customerModel.find().exec(function(err, result){
+      customerModel.find().sort({name: 1}).exec(function(err, result){
         if(err) throw err;
         result.forEach(function(doc) {
           content.push(doc.toObject());
@@ -343,13 +343,13 @@ app.post('/newOrder', function (req, res) {
         });
       }else
         newCustomer = cus
-      
+
       orderModel.countDocuments().exec(function (err, count){
 
-        
+
         count = count + 1;
         count = count.toString().padStart(3, '0');
-  
+
         var order = new orderModel({
           ordernum:         year + "-" + count,
           customer_id:      newCustomer._id,
@@ -362,11 +362,11 @@ app.post('/newOrder', function (req, res) {
           pan_used:         req.body.pan_used
         });
         var result;
-  
+
         order.save(function(err, new_order) {
           if (err){
             console.log(err.errors);
-  
+
             result = {success: false, message: "new order was not created"};
             res.send(result);
           }
@@ -376,13 +376,13 @@ app.post('/newOrder', function (req, res) {
             newCustomer.save(function (err, new_customer) {
               console.log("New customer added");
               console.log(new_customer);
-  
+
               result = {
                 success: true,
                 message: "new order was created"
-  
+
               };
-  
+
               res.redirect('/');
             })
           }
