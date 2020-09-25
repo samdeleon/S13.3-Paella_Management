@@ -187,30 +187,45 @@ app.get('/client-information-:param', function(req, res){ // TODO: change name t
     var  name = req.params.param;
     var content = [];
     var compcontent = [];
+    var entry;
+    var i = 0;
 
-    orderModel.find({name: name, customer_id: {$exists: true}}).sort({date: -1}).exec(function(err, orders1){
+    customerModel.findOne({name: name}).exec(function(err, result0){
       if(err) throw err;
-      orders1.forEach(function(doc) {
-        content.push(doc.toObject());
-      });
-      orderModel.find({name: name, status: "Completed"}).exec(function(err, orders2){
+      orderModel.find({customer_id: result0._id}).sort({date: -1}).exec(function(err, result){
         if(err) throw err;
-        orders2.forEach(function(doc) {
-          compcontent.push(doc.toObject());
-        });
+        result.forEach(function(doc) {
+          customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
+            i++;
+            if(err) throw err;
+              entry = {main: doc.toObject(), clientinfo: result2};
+              content.push(entry);
 
-        res.render('CustomerInformation', {
-            title: "Customer " + name + " Orders",
-            styles: "css/styles_inside.css",
-            scripts: "script/AllOrdersScript.js",
-            body_class: "inside",
-            records: content,
-            clname: name,
-            contact: "dummy",
-            message: "dummy data",
-            address: "dummy",
-            completed: compcontent.length,
-            upcoming: (content.length - compcontent.length)
+              if (i == result.length)
+              {
+
+                orderModel.find({customer_id: result0._id, status: "Completed"}).exec(function(err, result3){
+                  result3.forEach(function(doc2) {
+                    compcontent.push(doc2.toObject());
+                  });
+
+                  res.render('CustomerInformation', {
+                      title: "Customer " + name + " Orders",
+                      styles: "css/styles_inside.css",
+                      scripts: "script/CustomerInformation.js",
+                      body_class: "inside",
+                      records: content,
+                      clname: name,
+                      contact: content[0].clientinfo.contact_info,
+                      message: content[0].clientinfo.message_info,
+                      address: content[0].clientinfo.address,
+                      completed: compcontent.length,
+                      upcoming: content.length - compcontent.length
+                    });
+                });
+              }
+
+          });
         });
       });
     });
