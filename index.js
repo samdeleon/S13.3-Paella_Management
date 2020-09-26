@@ -331,7 +331,7 @@ app.post('/newOrder', function (req, res) {
       message_info:     req.body.msg_info,
       address:          req.body.address,
     }
-
+    var bool = true
     customerModel.findOneAndUpdate({name : req.body.name}, {$set:query}, {new : true}, function (err, cus){
       var newCustomer
       if (newCustomer == null){
@@ -341,8 +341,11 @@ app.post('/newOrder', function (req, res) {
           message_info:     req.body.msg_info,
           address:          req.body.address,
         });
-      }else
+        bool = false
+      }else{
         newCustomer = cus
+      }
+        
 
       orderModel.countDocuments().exec(function (err, count){
 
@@ -362,31 +365,36 @@ app.post('/newOrder', function (req, res) {
           pan_used:         req.body.pan_used
         });
         var result;
-
-        order.save(function(err, new_order) {
-          if (err){
-            console.log(err.errors);
-
-            result = {success: false, message: "new order was not created"};
-            res.send(result);
-          }
-          else{
-            console.log("New order added");
-            console.log(new_order);
-            newCustomer.save(function (err, new_customer) {
-              console.log("New customer added");
-              console.log(new_customer);
-
-              result = {
-                success: true,
-                message: "new order was created"
-
-              };
-
-              res.redirect('/');
-            })
-          }
-        });
+        if (bool == true){
+          order.save(function(err, new_order) {
+            if (err){
+              console.log(err.errors);
+  
+              result = {success: false, message: "new order was not created"};
+              res.send(result);
+            }
+            else{
+              console.log("New order added");
+              console.log(new_order);
+              newCustomer.save(function (err, new_customer) {
+                console.log("New customer added");
+                console.log(new_customer);
+  
+                result = {
+                  success: true,
+                  message: "new order was created"
+  
+                };
+  
+                res.redirect('/');
+              })
+            }
+          });
+        }
+        else {
+          res.redirect('/');
+        }
+        
     });
   })
 });
