@@ -5,52 +5,191 @@
     <div class="container ingredients-container">
         <div class="d-flex justify-content-between ingredients-header">
             <h2 class="titletext">Ingredients Inventory</h2>
-
+            <!--
             <button id="ingredients-editbtn" type="button" class="btn btn-secondary btn-lg">Edit</button>
+            -->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ingredients-editbtn">
+                Edit
+            </button>
             <!-- TODO: Make update ingredients into a modal -->
 
-            <!-- temporary script codee -->
+            <!-- temporary script codee 
             <script>
                 $("#ingredients-editbtn").click(function() {
                     window.location.href = "update-ingredients";
                 });
             </script>
-
-            <!--
-            place modal code here
-
-            link for modals = https://getbootstrap.com/docs/4.0/components/modal/
-
-            i'll just copy paste code here for reference
             -->
-{{!-- 
-            <!-- Button trigger modal -->
-            
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Launch demo modal
-            </button>
+            <div class="modal fade" id="ingredients-editbtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Ingredients</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <table class="table">
+                             <thead class="thead-dark">
+                                <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Ingredient Name</th>
+                                <th scope="col">Quantity</th>
+                                </tr>
+                                </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row" class="table-danger">1</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-danger">2</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-danger">3</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-danger">4</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-danger">5</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-warning">6</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-warning">7</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-warning">8</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-warning">9</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">10</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">11</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">12</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">13</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">14</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">15</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row" class="table-success">16</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">17</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">18</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">19</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">20</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">21</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">22</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                <tr>
+                                <th scope="row">23</th>
+                                <td></td>
+                                <td></td>
+                                
+                                </tr>
+                                       
+                            </tbody>
+                            </table>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-                </div>
-            </div>
-            </div>
---}}
+            
 
         </div>
 
