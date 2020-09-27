@@ -361,7 +361,7 @@ app.post('/newOrder', function (req, res) {
     var bool = true
     customerModel.findOneAndUpdate({name : req.body.name}, {$set:query}, {new : true}, function (err, cus){
       var newCustomer
-      if (newCustomer == null){
+      if (cus == null){
           newCustomer = new customerModel({
           name:             req.body.name,
           contact_info:     req.body.info,
@@ -392,36 +392,31 @@ app.post('/newOrder', function (req, res) {
           pan_used:         req.body.pan_used
         });
         var result;
-        if (bool == true){
-          order.save(function(err, new_order) {
-            if (err){
-              console.log(err.errors);
 
-              result = {success: false, message: "new order was not created"};
-              res.send(result);
-            }
-            else{
-              console.log("New order added");
-              console.log(new_order);
+        order.save(function(err, new_order) {
+           if (err){
+             console.log(err.errors);
+
+            result = {success: false, message: "new order was not created"};
+            res.send(result);
+          }
+          else{
+            console.log("New order added");
+            console.log(new_order);
+            if (bool == true){
               newCustomer.save(function (err, new_customer) {
                 console.log("New customer added");
                 console.log(new_customer);
-
+  
                 result = {
                   success: true,
                   message: "new order was created"
-
+  
                 };
-
-                res.redirect('/');
               })
-            }
-          });
-        }
-        else {
-          res.redirect('/');
-        }
-
+            } 
+          }
+        });
     });
   })
 });
