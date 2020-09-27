@@ -46,6 +46,15 @@ app.get('/home', function(req, res){
 
   orderModel.find({status: {$ne: "Completed"}, customer_id: {$exists: true}}).sort({date: 1}).limit(10).exec(function(err, result){
     if(err) throw err;
+    if (result.length == 0) {
+      res.render('Homepage', {
+        title: "Home",
+        styles: "css/styles_inside.css",
+        scripts: "script/HomepageScript.js",
+        body_class: "inside",
+        records: content
+      });
+    }
     result.forEach(function(doc) {
       customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
         i++;
@@ -148,7 +157,16 @@ app.get('/orders', function(req, res){
   var i = 0;
 
   orderModel.find({customer_id: {$exists: true}}).sort({date: 1}).exec(function(err, result){
-    if(err) throw err;
+    if(err) throw err
+    if (result.length == 0) {
+      res.render('AllOrders', {
+          title: "All Orders",
+          styles: "css/styles_inside.css",
+          scripts: "script/AllOrdersScript.js",
+          body_class: "inside",
+          records: content
+      });
+    }
     result.forEach(function(doc) {
       customerModel.findOne({_id: doc.toObject().customer_id}).lean().exec(function(err, result2){
         i++;
@@ -237,6 +255,15 @@ app.get('/customers', function(req, res){
 
       customerModel.find().sort({name: 1}).exec(function(err, result){
         if(err) throw err;
+        if (result.length == 0) {
+          res.render('AllCustomers', {
+            title: "All Customers",
+            styles: "css/styles_inside.css",
+            scripts: "script/AllCustomersScript.js",
+            body_class: "inside",
+            records: content
+          });
+        }
         result.forEach(function(doc) {
           content.push(doc.toObject());
         });
@@ -345,7 +372,7 @@ app.post('/newOrder', function (req, res) {
       }else{
         newCustomer = cus
       }
-        
+
 
       orderModel.countDocuments().exec(function (err, count){
 
@@ -369,7 +396,7 @@ app.post('/newOrder', function (req, res) {
           order.save(function(err, new_order) {
             if (err){
               console.log(err.errors);
-  
+
               result = {success: false, message: "new order was not created"};
               res.send(result);
             }
@@ -379,13 +406,13 @@ app.post('/newOrder', function (req, res) {
               newCustomer.save(function (err, new_customer) {
                 console.log("New customer added");
                 console.log(new_customer);
-  
+
                 result = {
                   success: true,
                   message: "new order was created"
-  
+
                 };
-  
+
                 res.redirect('/');
               })
             }
@@ -394,7 +421,7 @@ app.post('/newOrder', function (req, res) {
         else {
           res.redirect('/');
         }
-        
+
     });
   })
 });
