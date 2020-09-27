@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    $("#reg").click(function () { 
+    $("#reg").click(function () {
         var accntname =document.getElementById("username2").value;
         var accntpass =document.getElementById("pswrd_1").value;
-        
+
         var newuser = {
             username:accntname,
             password:accntpass
         }
-    
-        
+
+
 
         if (accntname == "" || accntpass == "")
         {
@@ -21,37 +21,33 @@ $(document).ready(function () {
             console.log(accntpass);
 
             $.post("/newUser", newuser,function (data, status) {
-                
+
             });
-            
+
         }
     });
-    $("#log").click(function () { 
-        var accntname =document.getElementById("username1").value;
-        var accntpass =document.getElementById("password").value;
-        
+
+    $("#log").click(function () {
+        var accntname = $("#username1").val();
+        var accntpass = $('#password').val();
         var newuser = {
             username:accntname,
             password:accntpass
         }
-    
-        
-
         if (accntname == "" || accntpass == "")
         {
-            console.log("Fields are not filled up");
-            return false;
+            alert("Fields are not filled up.");
         }
         else
         {
-            console.log(accntname);
-            console.log(accntpass);
-
-            $.post("/Login", newuser,function (data, status) {
-                
-            });
-            
+          $.post('login', {user: newuser}, function(data, status){
+              if(!data.ok) {
+                alert("Invalid Login.");
+              } else {
+                $(location).attr("href", "/home");
+                alert("Welcome " + data.cont.username + "!");
+              }
+          });
         }
     });
-    
 });

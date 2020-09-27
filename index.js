@@ -317,33 +317,18 @@ app.post('/newUser', function (req, res) {
       });
 });
 
-app.post('/Login',function (req,res){
- /*
-  var user = new userModel({
-    username:     req.body.username,
-    password:     req.body.password,
-
-});
-*/
-  var result;
-  user.findOne({
-    username: req.body.username, password: req.body.password
-    }, function(err, user){
-      if(err){
-        console.log(err.errors);
-        result = {success: false, message: "Error"};
-        res.send(result);
-      }
-      if(!user){
-        console.log(err.errors);
-        result = {success: false, message: "user was not found"};
-        res.send(result);
-      }
-      else{
-        console.log(user);
-        result = {success: true, message: "Login successful"};
-        res.redirect("/home")
-      }
+app.post('/login',function (req,res){
+  userModel.findOne({username: req.body.user.username, password: req.body.user.password}, function(err, user){
+    var result = {cont: user, ok: true};
+    if (err)
+      console.log('There is an error when searching for a user.');
+    console.log("User: " + user);
+    if (user == null)
+        result.ok = false;
+    else
+        result.ok = true;
+    console.log("Result: " + result.ok);
+    res.send(result);
   });
 });
 
@@ -407,14 +392,14 @@ app.post('/newOrder', function (req, res) {
               newCustomer.save(function (err, new_customer) {
                 console.log("New customer added");
                 console.log(new_customer);
-  
+
                 result = {
                   success: true,
                   message: "new order was created"
-  
+
                 };
               })
-            } 
+            }
           }
         });
     });
