@@ -7,10 +7,12 @@ $(document).ready(function () {
         window.location.href = "client-information-" + name
     });
     
-    $(".info-nextstatusbtn").click(function () {
-        var ordernum    =   document.getElementById("ordernumber").value;
-        var currstatus  =   document.getElementById("info-obutton").value;
-        var nextstatus
+    $("#info-nextstatusbtn").click(function (e) {
+        e.preventDefault();
+        var ordernum    =   $( "#span_ordernum" ).text();
+        var currstatus  =   $( "#span_orderstatus" ).text();
+        var nextstatus  =   "";
+        var data_success;
 
         if(currstatus == "Buying Ingredients") {
             nextstatus = "Complete Ingredients";
@@ -33,9 +35,19 @@ $(document).ready(function () {
             ordernum: ordernum
         }
 
-        $.post("/nextStatus", information, function(data, status) {
+        $.post("nextStatus", information, function(data, status) {
+            if (data.success){
+                $('#orderstatusModal').modal('toggle');
+                window.location.reload();
+                console.log("it working");
+            }
+            else {
+                console.log("it aint working");
+            }
 
         });
 
+        return false;
     });
+
 });

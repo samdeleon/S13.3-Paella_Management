@@ -489,24 +489,44 @@ app.post('/findOldCustomer', function (req, res){
 })
 
 app.post('/nextStatus', function (req, res) {
-    // orderModel.findOne({ordernum: req.body.ordernum}).lean().exec(function(err, data){
-    //     var update = {
-    //         ordernum:         data.ordernum,
-    //         name:             data.name,
-    //         contact_info:     data.contact_info,
-    //         mode_of_delivery: data.mode_of_delivery,
-    //         address:          data.address,
-    //         date:             data.date,
-    //         time:             data.time,
-    //         paellasize:       data.paellasize,
-    //         status:           req.body.status,
-    //         extraremarks:     data.extraremarks,
-    //         pan_used:         data.pan_used
-    //     }
+    var update;
+    var result;
 
-    // orderModel.findOneAndUpdate({ordernum: req.body.ordernum},update, function (err, order){
+    orderModel.findOne({ordernum: req.body.ordernum}, function(err, data){
+        update = {
+            ordernum:         data.ordernum,
+            name:             data.name,
+            contact_info:     data.contact_info,
+            mode_of_delivery: data.mode_of_delivery,
+            address:          data.address,
+            date:             data.date,
+            time:             data.time,
+            paellasize:       data.paellasize,
+            status:           req.body.status,
+            extraremarks:     data.extraremarks,
+            pan_used:         data.pan_used
+        }
 
-    // });
+        orderModel.findOneAndUpdate({ordernum: req.body.ordernum}, update, { new: false }, function (err, order){
+          if (err) {
+            throw err;
+
+            result = {
+              success: false
+            }
+
+            res.send(result);
+          }
+          else {
+            result = {
+              success: true
+            }
+
+            res.send(result);
+            console.log("Successfully Updated the Status!\n");
+          }
+        });
+    });
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */

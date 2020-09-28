@@ -4,7 +4,7 @@
     <div class="container order-container">
         <div class="card d-flex flex-row justify-content-between info-row0">
             <div class="info-ordernum">
-                <h2 id="ordernumber">Order #{{ordernum}}</h2>
+                <h2 id="ordernumber">Order #<span id="span_ordernum">{{ordernum}}</span></h2>
             </div>
 
             <div class="d-flex info-status_grp">
@@ -15,7 +15,7 @@
 
                 <div class="info-o_status">
                     <button id="info-obutton" type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#orderstatusModal">
-                        {{status}}
+                        <span id="span_orderstatus">{{status}}</span>
                     </button>
                 </div>
 
