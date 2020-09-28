@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
-    $("#orderinfo-p_name").click(function () {
-        var name =   document.getElementById("orderinfo-span_name").value
+    $(".orderinfo-p_name").click(function () {
+
+        var name = document.getElementById("orderinfo-span_name").innerHTML
 
         window.location.href = "client-information-" + name
     });
@@ -15,15 +16,15 @@ $(document).ready(function () {
             nextstatus = "Complete Ingredients";
         }
 
-        elseif(currstatus == "Complete Ingredients") {
+        else if(currstatus == "Complete Ingredients") {
             nextstatus = "Cooking";
         }
 
-        elseif(currstatus == "Cooking") {
+        else if(currstatus == "Cooking") {
             nextstatus = "Delivered"
         }
 
-        elseif(currstatus == "Delivered") {
+        else if(currstatus == "Delivered") {
             nextstatus = "Completed"
         }
 
