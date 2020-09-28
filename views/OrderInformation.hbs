@@ -51,7 +51,7 @@
                     <h4 class="card-header">Order Information</h4>
 
                     <div class="card-body"> <!-- TODO: Replace my dummy info with the {{things}}-->
-                        <p><b>Customer Name:</b> {{name}}</p>
+                        <p id="orderinfo-p_name"><b>Customer Name: </b><u><span id="orderinfo-span_name">{{name}}</span></u></p>
                         <p><b>Contact Information:</b> {{contact}}</p>
                         <p><b>Message Information:</b> {{message}}</p>   
                         <p><b>Mode of Delivery:</b> {{mode}}</p>
@@ -60,7 +60,7 @@
                         <p><b>Time Needed:</b> {{time}}</p>
                         <p><b>Paella Size:</b> {{size}}</p>
                         <p>
-                            <b>Extra Remarks:</b> <br>
+                            <b>Remarks:</b> <br>
                             <span id="info-remarks">
                                 {{remarks}}
                             </span>

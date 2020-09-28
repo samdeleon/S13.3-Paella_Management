@@ -161,6 +161,9 @@
 #info-profit {
 }
 
+#orderinfo-p_name {
+    cursor: pointer;
+}
 
 
 /* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
