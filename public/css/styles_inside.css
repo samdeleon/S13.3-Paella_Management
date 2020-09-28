@@ -187,8 +187,9 @@
     margin-bottom: 30px;
 }
 
-.pan-col1 {
-
+.pan-img {
+    max-height: 300;
+    overflow: hidden;
 }
 
 .pan-col2 {
