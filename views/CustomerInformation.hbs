@@ -21,19 +21,30 @@
             </div>
         </div>
 
-        <div id="info-form" class="card">
-                <h4 class="card-header">Customer Information</h4>
-
-                <div class="card-body">
-                    <p><b>Customer Name:</b> {{clname}}</p>
-                    <p><b>Contact Information:</b> {{contact}}</p>
-                    <p><b>Message Information:</b> {{message}}</p>
-                    <p><b>Delivery Address:</b> {{address}}</p>
-                </div>
+        <div class="flex-row">
+          <h3>Customer Information</h3>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Contact Information</th>
+                <th scope="col">Message Information</th>
+                <th scope="col">Address</th>
+              </tr>
+            </thead>
+            <tbody>
+                  <tr>
+                    <td>{{clname}}</td>
+                    <td>{{contact}}</td>
+                    <td>{{message}}</td>
+                    <td>{{address}}</td>
+                  </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div>
-                <h4 class="card-header">Order History</h4>
+        <div class="flex-row">
+                <h3>Order History</h3>
                   <table class="table table-bordered table-hover">
                   <thead class="thead-dark">
                     <tr>
