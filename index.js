@@ -294,9 +294,6 @@ app.post('/newUser', function (req, res) {
 
       });
       var result;
-      //no msg saying registration success
-      //takes pass1 as pass even though pass 1 and 2 might not match
-      //it lets you register even without cheking the box
       //you can re register the same person with the same details over and over
       
       user.save(function(err, user) {
