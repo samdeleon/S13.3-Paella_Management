@@ -20,7 +20,6 @@
                 </div>
 
                 <!--[MODAL] After clicking on Order Status button, a modal will pop up to go to the next status-->
-
                 <div class="modal fade" id="orderstatusModal" tabindex="-1" role="dialog" aria-labelledby="orderstatusModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -43,6 +42,108 @@
                 </div>
                 </div>
 
+                <!--[MODAL] CONDITION #2 - From "Complete Ingredients" to "Cooking" (Assigning the Paella Pan)-->
+                <div class="modal fade" id="assignpanModal" tabindex="-1" role="dialog" aria-labelledby="assignpanModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Assign Paella Pan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Please assign a paella pan for your order and click "Save".
+                        
+                        <!-- CHOICES FOR 14 INCH PAELLA SIZE -->
+                        <div class="choices-14in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14A" value="14A">
+                                <label class="form-check-label" for="radio-14A">
+                                    Pan 14A <span id="used-14A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14B" value="14B">
+                                <label class="form-check-label" for="radio-14B">
+                                    Pan 14B <span id="used-14B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14C" value="14C">
+                                <label class="form-check-label" for="radio-14C">
+                                    Pan 14C <span id="used-14C"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14D" value="14D">
+                                <label class="form-check-label" for="radio-14D">
+                                    Pan 14D <span id="used-14D"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- CHOICES FOR 16 INCH PAELLA SIZE -->
+                        <div class="choices-16in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16A" value="16A">
+                                <label class="form-check-label" for="radio-16A">
+                                    Pan 16A <span id="used-16A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16B" value="16B">
+                                <label class="form-check-label" for="radio-16B">
+                                    Pan 16B <span id="used-16B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16C" value="16C">
+                                <label class="form-check-label" for="radio-16C">
+                                    Pan 16C <span id="used-16C"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- CHOICES FOR 20 INCH PAELLA SIZE -->
+                        <div class="choices-20in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20A" value="20A">
+                                <label class="form-check-label" for="radio-20A">
+                                    Pan 20A <span id="used-20A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20B" value="20B">
+                                <label class="form-check-label" for="radio-20B">
+                                    Pan 20B <span id="used-20B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20C" value="20C">
+                                <label class="form-check-label" for="radio-20C">
+                                    Pan 20C <span id="used-20C"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20D" value="20D">
+                                <label class="form-check-label" for="radio-20D">
+                                    Pan 20D <span id="used-20D"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="info-assignpanbtn" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
         </div>
 
@@ -58,7 +159,7 @@
                         <p><b>Delivery Address:</b> {{address}}</p>
                         <p><b>Date Needed:</b> {{date}}</p>
                         <p><b>Time Needed:</b> {{time}}</p>
-                        <p><b>Paella Size:</b> {{size}}</p>
+                        <p><b>Paella Size:</b> <span id="info-paellasize">{{size}}</span></p>
                         <p>
                             <b>Remarks:</b> <br>
                             <span id="info-remarks">

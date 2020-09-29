@@ -140,6 +140,18 @@
     text-align: justify;
 }
 
+.choices-14in {
+    display: none;
+}
+
+.choices-16in {
+    display: none;
+}
+
+.choices-20in {
+    display: none;
+}
+
 .info-row2 {
     margin: auto;
 }
