@@ -12,7 +12,7 @@ mongoose.connect(databaseURL, options);
 const orderIngredientsSchema = new mongoose.Schema(
     {
 
-        id:             {type: String, required: true},
+        name:             {type: String, required: true},
         quantity:       {type: Number, required: true},
         checked:        {type: Boolean, required: true}
 
