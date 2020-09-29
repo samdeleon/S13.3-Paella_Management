@@ -85,7 +85,7 @@ $(document).ready(function () {
                 next = true;
             }
             else {
-                $( "#assignpanError" ).text("No Option was selected.");
+                $( "#assignpanError" ).text("Please choose a pan.");
                 next = false;
             }
         }
@@ -96,7 +96,7 @@ $(document).ready(function () {
                 next = true;
             }
             else {
-                $( "#assignpanError" ).text("No Option was selected.");
+                $( "#assignpanError" ).text("Please choose a pan.");
                 next = false;
             }
         }
@@ -107,7 +107,7 @@ $(document).ready(function () {
                 next = true;
             }
             else {
-                $( "#assignpanError" ).text("No Option was selected.");
+                $( "#assignpanError" ).text("Please choose a pan.");
                 next = false;
             }
         }
@@ -131,6 +131,26 @@ $(document).ready(function () {
     
             });
         }
+    });
+
+    $(".info-assignpanCancel").click(function() {
+
+        $( "#assignpanError" ).text("");
+
+        // clearing for 14 inch pans
+            $('input:radio[name=radio-14choices]').each(function () {
+                $(this).prop('checked', false);
+            });
+        
+        // clearing for 16 inch pans
+            $('input:radio[name=radio-16choices]').each(function () {
+                $(this).prop('checked', false);
+            });
+
+        // clearing for 20 inch pans
+            $('input:radio[name=radio-20choices]').each(function () {
+                $(this).prop('checked', false);
+            });
     });
 
 });

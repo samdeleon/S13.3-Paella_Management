@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 
         var details = {
-             name:           customerName,
+            name:           customerName,
             info:           contact_info,
             msg_info:       message_info,
             address:        address,
