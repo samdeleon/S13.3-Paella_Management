@@ -19,12 +19,18 @@ $(document).ready(function () {
         }
         else
         {
-            console.log(accntname);
-            console.log(accntpass);
-            alert("Registration Successful!")
-            $.post("/newUser", newuser,function (data, status) {
-
+            $.post('login', {user: newuser}, function(data, status){
+                if(!data.ok) {
+                    alert("Registration Successful!")
+                    $.post("/newUser", newuser,function (data, status) {
+        
+                    });
+                } else {
+                  
+                  alert("User already exists!");
+                }
             });
+            
 
         }
     });
