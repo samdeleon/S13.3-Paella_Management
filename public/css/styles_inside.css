@@ -152,6 +152,10 @@
     display: none;
 }
 
+#assignpanError {
+    color: red;
+}
+
 .info-row2 {
     margin: auto;
 }

@@ -73,7 +73,64 @@ $(document).ready(function () {
     });
 
     $("#info-assignpanbtn").click(function (e) {
+        var ordernum    =   $( "#span_ordernum" ).text();
+        var paellasize  =   $( "#info-paellasize" ).text();
+        var chosenOne = "";
+        var next = false; // boolean if they can go to the next status
 
+        if(paellasize == "14 inches") {
+            if($('input[name=radio-14choices]:checked').val()) {
+                $( "#assignpanError" ).text("");
+                chosenOne = $('input[name=radio-14choices]:checked').val()
+                next = true;
+            }
+            else {
+                $( "#assignpanError" ).text("No Option was selected.");
+                next = false;
+            }
+        }
+        else if(paellasize == "16 inches") {
+            if($('input[name=radio-16choices]:checked').val()) {
+                $( "#assignpanError" ).text("");
+                chosenOne = $('input[name=radio-16choices]:checked').val()
+                next = true;
+            }
+            else {
+                $( "#assignpanError" ).text("No Option was selected.");
+                next = false;
+            }
+        }
+        else if(paellasize == "20 inches") {
+            if($('input[name=radio-20choices]:checked').val()) {
+                $( "#assignpanError" ).text("");
+                chosenOne = $('input[name=radio-20choices]:checked').val()
+                next = true;
+            }
+            else {
+                $( "#assignpanError" ).text("No Option was selected.");
+                next = false;
+            }
+        }
+
+        var nextstatus = "Cooking";
+
+        var information = {
+            status: nextstatus,
+            ordernum: ordernum
+        }
+
+        if(next) {
+            $.post("nextStatus", information, function(data, status) {
+                if (data.success){
+                    window.location.reload();
+                    console.log("it working");
+                }
+                else {
+                    console.log("it aint working");
+                }
+    
+            });
+        }
     });
 
 });
