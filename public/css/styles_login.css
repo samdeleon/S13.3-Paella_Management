@@ -1,7 +1,7 @@
 /*
     This is the CSS File for the login page
 */
-
+/* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
 
 .error-text{
 	background: #F8D7DA;
@@ -20,12 +20,9 @@
 	color: #588C64;
 	border-color: #C3E6CB;
   }
-/*
-/*
-    This is the CSS File for the login page
-*/
 
-/* -------------------------------------- [PAGE-01] LOGIN --------------------------------------- */
+
+
 
 .button-box{
 	width: 280px;
@@ -80,7 +77,6 @@
 	padding: 10px 30px;
 	cursor:pointer;
 	display: block;
-	/*margin:auto;*/
 	background:linear-gradient(to right,#f8961E,#756f62);
 	border:0;
 	outline:none;

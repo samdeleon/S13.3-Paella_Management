@@ -19,16 +19,16 @@
 
 			<div class="error-text">Passwords do not match</div>
 
-			<input id="username2"type="text" class="input-field"placeholder="Username" required name="username">
+			<input id="username2"type="text" class="input-field"placeholder="Username" name="username" required>
 			<input id="pswrd_1"type="text" class="input-field"placeholder="Password" name="password"required>
 
-			<input id="pswrd_2"type="password" class="input-field"placeholder="Confirm Password" required>
+			<input id="pswrd_2"type="password" class="input-field"placeholder="Confirm Password" name="password2" required>
 			<span class="eyes" onclick="myFunctions()">
 				<i id="hide3" class="fa fa-eye" ></i>
 				<i id="hide4" class="fa fa-eye-slash"></i>
 			</span>
 
-			<input type="checkbox" class="check-box" required><span>I agree to the terms and conditions</span>
+			<input id="checkbox" type="checkbox" class="check-box" required><span>I agree to the terms and conditions</span>
 			<button id="reg" type="submit" class="submit-btn">Register</button>
 		</form>
 	</div>
@@ -67,6 +67,8 @@
 	</script>
 
 <script>
+	  const checkbox = document.querySelector("#checkbox");
+	  const username2 = document.querySelector("#username2");
       const pswrd_1 = document.querySelector("#pswrd_1");
       const pswrd_2 = document.querySelector("#pswrd_2");
       const errorText = document.querySelector(".error-text");
@@ -74,16 +76,29 @@
 
 
       btn.onclick = function(){
-        if(pswrd_1.value != pswrd_2.value){
+		
+        if(username2.value==""||username2.value==" "){
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username Cannot Be Empty";
+          return false;
+		}
+		if(pswrd_1.value != pswrd_2.value){
           errorText.style.display = "block";
           errorText.classList.remove("matched");
           errorText.textContent = "Passwords Do Not Match";
           return false;
         }
 		if(pswrd_1.value == "" ||pswrd_2.value==""||pswrd_1.value == " " ||pswrd_2.value==" "){
-		errorText.style.display = "block";
+		  errorText.style.display = "block";
           errorText.classList.remove("matched");
           errorText.textContent = "Passwords Cannot Be Empty";
+          return false;
+		}
+		if(checkbox.checked!=true){
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Unread Terms and Conditions";
           return false;
 		}
 		else{
@@ -112,49 +127,3 @@
 				z.style.left = "0px";
 			}
 	</script>
-	{{!--
-	<div class="content-login">
-	<h2 id="log-in-header">Log In</h2>
-	<div class="input-box">
-		<i class="fa fa-user" aria-hidden="true"></i>
-		<input type="input" placeholder="Username">
-	</div>
-	<div class="input-box">
-		<i class="fa fa-key" aria-hidden="true"></i>
-		<input type="password" placeholder="Password" id="myInput">
-		<span class="eye" onclick="myFunction()">
-			<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>
-			<i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
-		</span>
-
-	</div>
-		<button type="button" class="login-btn">SUBMIT</button>
-	<script>
-		function myFunction(){
-			var x = document.getElementById("myInput");
-			var y = document.getElementById("hide1");
-			var z = document.getElementById("hide2");
-			if(x.type === 'password'){
-				x.type = "text";
-				y.style.display = "block";
-				z.style.display = "none";
-			}
-			else{
-				x.type = "password";
-				y.style.display = "none";
-				z.style.display = "block";
-			}
-		}
-	</script>
-
-	<div class="register">
-		<p>DON'T HAVE AN ACCOUNT YET?</p>
-	</div>
-	<a href="/register">
-		<button type="button" class="login-btn">Register</button>
-	</a>
-
-
-
-</div>
-	--}}
