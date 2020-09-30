@@ -13,7 +13,6 @@ $(document).ready(function () {
         var currstatus  =   $( "#span_orderstatus" ).text();
         var paellasize  =   $( "#info-paellasize" ).text();
         var nextstatus  =   "";
-        var panOptions;
         var next = false; // boolean if they can go to the next status
 
         if(currstatus == "Buying Ingredients") {
@@ -27,22 +26,182 @@ $(document).ready(function () {
 
             // displaying the options depending on the paella size
             if(paellasize == "14 inches") {
-                var pan14A = $( "#14A-status" ).text();
-                var pan14B = $( "#14A-status" ).text();
-                var pan14C = $( "#14A-status" ).text();
-                var pan14D = $( "#14A-status" ).text();
+                $.get('/pans-inventory', function(result){
+                    var pan14A = $(result).find( "#14A-statusSPAN" ).text();
+                    var pan14B = $(result).find( "#14B-statusSPAN" ).text();
+                    var pan14C = $(result).find( "#14C-statusSPAN" ).text();
+                    var pan14D = $(result).find( "#14D-statusSPAN" ).text();
+                    // if pan is unavailable, then it shows "unavailable" text + disabled radio btn
 
-                // if available or not
-
-                $('.choices-14in').show();
+                    // 14A availability
+                        if(pan14A != "Available") {
+                            $( "#used-14A" ).text("(Unavailable)");
+                            $('input[name=radio-14choices][value=14A]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-14A" ).text("");
+                            $('input[name=radio-14choices][value=14A]').prop('disabled', false);
+                        }
+                    
+                    // 14B availability
+                        if(pan14B != "Available") {
+                            $( "#used-14B" ).text("(Unavailable)");
+                            $('input[name=radio-14choices][value=14B]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-14B" ).text("");
+                            $('input[name=radio-14choices][value=14B]').prop('disabled', false);
+                        }
+                    
+                    // 14C availability
+                        if(pan14C != "Available") {
+                            $( "#used-14C" ).text("(Unavailable)");
+                            $('input[name=radio-14choices][value=14C]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-14C" ).text("");
+                            $('input[name=radio-14choices][value=14C]').prop('disabled', false);
+                        }
+                
+                    // 14D availability
+                        if(pan14D != "Available") {
+                            $( "#used-14D" ).text("(Unavailable)");
+                            $('input[name=radio-14choices][value=14D]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-14D" ).text("");
+                            $('input[name=radio-14choices][value=14D]').prop('disabled', false);
+                        }
+                
+                    // if all unavailable, then the save button is disabled
+                        if(pan14A != "Available" && pan14B != "Available" && pan14C != "Available" && pan14D != "Available") {
+                            $('#info-assignpanbtn').attr('disabled', true);
+                            $("#info-assignpanbtn").css("cursor", "default");
+                            $( "#assignpanError" ).text("Sorry, no pans are available :(");
+                        }
+                        else {
+                            $('#info-assignpanbtn').attr('disabled', false);
+                            $("#info-assignpanbtn").css("cursor", "pointer");
+                            $( "#assignpanError" ).text("");
+                        }
+                
+                    $('.choices-14in').show();
+                });
             }
             else if(paellasize == "16 inches") {
-                panOptions = ["16A","16B","16C"];
-                $('.choices-16in').show();
+                $.get('/pans-inventory', function(result){
+                    var pan16A = $(result).find( "#16A-statusSPAN" ).text();
+                    var pan16B = $(result).find( "#16B-statusSPAN" ).text();
+                    var pan16C = $(result).find( "#16C-statusSPAN" ).text();
+                    // if pan is unavailable, then it shows "unavailable" text + disabled radio btn
+
+                    // 16A availability
+                        if(pan16A != "Available") {
+                            $( "#used-16A" ).text("(Unavailable)");
+                            $('input[name=radio-16choices][value=16A]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-16A" ).text("");
+                            $('input[name=radio-16choices][value=16A]').prop('disabled', false);
+                        }
+                    
+                    // 16B availability
+                        if(pan16B != "Available") {
+                            $( "#used-16B" ).text("(Unavailable)");
+                            $('input[name=radio-16choices][value=16B]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-16B" ).text("");
+                            $('input[name=radio-16choices][value=16B]').prop('disabled', false);
+                        }
+                    
+                    // 16C availability
+                        if(pan16C != "Available") {
+                            $( "#used-16C" ).text("(Unavailable)");
+                            $('input[name=radio-16choices][value=16C]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-16C" ).text("");
+                            $('input[name=radio-16choices][value=16C]').prop('disabled', false);
+                        }
+                
+                    // if all unavailable, then the save button is disabled
+                        if(pan16A != "Available" && pan16B != "Available" && pan16C != "Available") {
+                            $('#info-assignpanbtn').attr('disabled', true);
+                            $("#info-assignpanbtn").css("cursor", "default");
+                            $( "#assignpanError" ).text("Sorry, no pans are available :(");
+                        }
+                        else {
+                            $('#info-assignpanbtn').attr('disabled', false);
+                            $("#info-assignpanbtn").css("cursor", "pointer");
+                            $( "#assignpanError" ).text("");
+                        }
+                
+                    $('.choices-16in').show();
+                });
             }
             else if(paellasize == "20 inches") {
-                panOptions = ["20A","20B","20C","20D"];
-                $('.choices-20in').show();
+                $.get('/pans-inventory', function(result){
+                    var pan20A = $(result).find( "#20A-statusSPAN" ).text();
+                    var pan20B = $(result).find( "#20B-statusSPAN" ).text();
+                    var pan20C = $(result).find( "#20C-statusSPAN" ).text();
+                    var pan20D = $(result).find( "#20D-statusSPAN" ).text();
+                    // if pan is unavailable, then it shows "unavailable" text + disabled radio btn
+
+                    // 20A availability
+                        if(pan20A != "Available") {
+                            $( "#used-20A" ).text("(Unavailable)");
+                            $('input[name=radio-20choices][value=20A]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-20A" ).text("");
+                            $('input[name=radio-20choices][value=20A]').prop('disabled', false);
+                        }
+                    
+                    // 20B availability
+                        if(pan20B != "Available") {
+                            $( "#used-20B" ).text("(Unavailable)");
+                            $('input[name=radio-20choices][value=20B]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-20B" ).text("");
+                            $('input[name=radio-20choices][value=20B]').prop('disabled', false);
+                        }
+                    
+                    // 20C availability
+                        if(pan20C != "Available") {
+                            $( "#used-20C" ).text("(Unavailable)");
+                            $('input[name=radio-20choices][value=20C]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-20C" ).text("");
+                            $('input[name=radio-20choices][value=20C]').prop('disabled', false);
+                        }
+                
+                    // 20D availability
+                        if(pan20D != "Available") {
+                            $( "#used-20D" ).text("(Unavailable)");
+                            $('input[name=radio-20choices][value=20D]').prop('disabled', true);
+                        }
+                        else {
+                            $( "#used-20D" ).text("");
+                            $('input[name=radio-20choices][value=20D]').prop('disabled', false);
+                        }
+
+                    // if all unavailable, then the save button is disabled
+                        if(pan20A != "Available" && pan20B != "Available" && pan20C != "Available" && pan20D != "Available") {
+                            $('#info-assignpanbtn').attr('disabled', true);
+                            $("#info-assignpanbtn").css("cursor", "default");
+                            $( "#assignpanError" ).text("Sorry, no pans are available :(");
+                        }
+                        else {
+                            $('#info-assignpanbtn').attr('disabled', false);
+                            $("#info-assignpanbtn").css("cursor", "pointer");
+                            $( "#assignpanError" ).text("");
+                        }
+                
+                    $('.choices-20in').show();
+                });
             }
 
             $('#assignpanModal').modal('show');
@@ -126,19 +285,31 @@ $(document).ready(function () {
 
         var information = {
             status: nextstatus,
-            ordernum: ordernum
+            ordernum: ordernum,
+            pan: chosenOne
         }
-
+        
         if(next) {
-            $.post("nextStatus", information, function(data, status) {
+            // step 1: assign the specific pan to the order & assign ordernum to specific pan
+            $.post("assignPan", information, function(data, status) {
                 if (data.success){
-                    window.location.reload();
-                    console.log("it working");
+                    console.log("assign pan working");
+
+                    // step 2: go to the next status
+                    $.post("nextStatus", information, function(data, status) {
+                        if (data.success){
+                            window.location.reload();
+                            console.log("next status working");
+                        }
+                        else {
+                            console.log("next status aint working");
+                        }
+                    });
+
                 }
                 else {
-                    console.log("it aint working");
+                    console.log("assign pan aint working");
                 }
-    
             });
         }
     });

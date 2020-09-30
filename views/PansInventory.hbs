@@ -13,7 +13,9 @@
                         <img class="pan-img card-img-top" src="{{this.image}}" alt="Photo of Pan {{this.main.name}}">
                         <div class="card-body">
                             <h4 class="card-title pannumber">Pan #{{this.main.name}}</h4>
-                            <button id="{{this.main.name}}-status" type="button" class="btn btn-warning btn-block pan-status">{{this.main.order_id}}</button>
+                            <button id="{{this.main.name}}-status" type="button" class="{{this.btnClass}}">
+                                <span id="{{this.main.name}}-statusSPAN">{{this.main.order_id}}</span>
+                            </button>
                         </div>
                     </div>
                 {{/each}}
@@ -29,7 +31,9 @@
                         <img class="pan-img card-img-top" src="{{this.image}}" alt="Photo of Pan {{this.main.name}}">
                         <div class="card-body">
                             <h4 class="card-title pannumber">Pan #{{this.main.name}}</h4>
-                            <button id="{{this.main.name}}-status" type="button" class="btn btn-warning btn-block pan-status">{{this.main.order_id}}</button>
+                            <button id="{{this.main.name}}-status" type="button" class="{{this.btnClass}}">
+                                <span id="{{this.main.name}}-statusSPAN">{{this.main.order_id}}</span>
+                            </button>
                         </div>
                     </div>
                 {{/each}}
@@ -45,7 +49,9 @@
                         <img class="pan-img card-img-top" src="{{this.image}}" alt="Photo of Pan {{this.main.name}}">
                         <div class="card-body">
                             <h4 class="card-title pannumber">Pan #{{this.main.name}}</h4>
-                            <button id="{{this.main.name}}-status" type="button" class="btn btn-warning btn-block pan-status">{{this.main.order_id}}</button>
+                            <button id="{{this.main.name}}-status" type="button" class="{{this.btnClass}}">
+                                <span id="{{this.main.name}}-statusSPAN">{{this.main.order_id}}</span>
+                            </button>
                         </div>
                     </div>
                 {{/each}}

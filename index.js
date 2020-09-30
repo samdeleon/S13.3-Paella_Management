@@ -28,6 +28,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'));
 
+var pan14info;
+var pan16info;
+var pan20info;
+
 /* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
 
 // [PAGE-01] LOGIN
@@ -154,6 +158,7 @@ app.get('/pans-inventory', function(req, res){
     var content20 = [];
     var img20;
 
+    var classinfo;
     var entry;
 
     // For the row of 14 inch pans
@@ -162,11 +167,20 @@ app.get('/pans-inventory', function(req, res){
 
       result.forEach(function(doc) {
         img14 = "/images/14ABCD.jpg"
-        entry = {main: doc.toObject(), image: img14};
+
+        // changing the button color based on its availability
+        if(doc.toObject().availability) {
+          classinfo = "btn btn-success btn-block pan-status";
+        }
+        else {
+          classinfo = "btn btn-warning btn-block pan-status";
+        }
+
+        entry = {main: doc.toObject(), image: img14, btnClass: classinfo};
         content14.push(entry);
         var thing ="";
       });
-      
+
       // For the row of 16 inch pans
       pansModel.find({name: {$exists: true, $regex: /16/}}).exec(function(err, result){
         if(err) throw err;
@@ -178,7 +192,16 @@ app.get('/pans-inventory', function(req, res){
           else {
             img16 = "/images/16BC.jpg";
           }
-          entry = {main: doc.toObject(), image: img16};
+
+          // changing the button color based on its availability
+          if(doc.toObject().availability) {
+            classinfo = "btn btn-success btn-block pan-status";
+          }
+          else {
+            classinfo = "btn btn-warning btn-block pan-status";
+          }
+
+          entry = {main: doc.toObject(), image: img16, btnClass: classinfo};
           content16.push(entry);
         });
 
@@ -193,7 +216,16 @@ app.get('/pans-inventory', function(req, res){
             else {
               img20 = "/images/20BCD.jpg";
             }
-            entry = {main: doc.toObject(), image: img20};
+
+            // changing the button color based on its availability
+            if(doc.toObject().availability) {
+              classinfo = "btn btn-success btn-block pan-status";
+            }
+            else {
+              classinfo = "btn btn-warning btn-block pan-status";
+            }
+  
+            entry = {main: doc.toObject(), image: img20, btnClass: classinfo};
             content20.push(entry);
           });
         
@@ -206,6 +238,10 @@ app.get('/pans-inventory', function(req, res){
             records16: content16,
             records20: content20
           });
+
+          pan14info = content14;
+          pan16info = content16;
+          pan20info = content20;
         });
       });
 
@@ -469,7 +505,6 @@ app.post('/newOrder', function (req, res) {
   })
 });
 
-
 app.post('/newCustomer', function (req, res) {
   var newCustomer = new customerModel({
     name:             req.body.name,
@@ -488,8 +523,6 @@ app.post('/newCustomer', function (req, res) {
 
   })
 })
-
-
 
 app.post('/searchName', function(req, res) {
   customerModel.findOne({name: req.body.name}, function(err, client){
@@ -520,7 +553,6 @@ app.post('/searchOrderNum', function(req, res) {
     res.send(result);
   });
 });
-
 
 app.post('/findOldCustomer', function (req, res){
   var findingFor = req.body.name
@@ -590,6 +622,68 @@ app.post('/nextStatus', function (req, res) {
           }
         });
     });
+});
+
+app.post('/assignPan', function (req, res) {
+  var update;
+  var result;
+
+  orderModel.findOne({ordernum: req.body.ordernum}, function(err, data){
+      var panName = "Pan #" + req.body.pan;
+      update = {
+          ordernum:         data.ordernum,
+          name:             data.name,
+          contact_info:     data.contact_info,
+          mode_of_delivery: data.mode_of_delivery,
+          address:          data.address,
+          date:             data.date,
+          time:             data.time,
+          paellasize:       data.paellasize,
+          status:           data.status,
+          extraremarks:     data.extraremarks,
+          pan_used:         panName
+      }
+
+      orderModel.findOneAndUpdate({ordernum: req.body.ordernum}, update, { new: false }, function (err, order){
+        if (err) {
+          throw err;
+
+          result = {
+            success: false
+          }
+
+          res.send(result);
+        }
+        else {
+          result = {
+            success: true
+          }
+
+          res.send(result);
+          console.log("Successfully Assigned the Pan!\n");
+        }
+      });
+  });
+
+  pansModel.findOne({name: req.body.pan}, function(err, data){
+    var orderName = "Order #" + req.body.ordernum;
+
+    update = {
+        name:           data.name,
+        availability:   false,
+        order_id:       orderName
+    }
+
+    pansModel.findOneAndUpdate({name: req.body.pan}, update, { new: false }, function (err, order){
+      if (err) {
+        throw err;
+      }
+      else {
+        console.log("Successfully Assigned the Pan!\n");
+      }
+    });
+  });
+
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */
