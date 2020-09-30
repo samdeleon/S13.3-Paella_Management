@@ -13,6 +13,7 @@ $(document).ready(function () {
         var currstatus  =   $( "#span_orderstatus" ).text();
         var paellasize  =   $( "#info-paellasize" ).text();
         var nextstatus  =   "";
+        var panOptions;
         var next = false; // boolean if they can go to the next status
 
         if(currstatus == "Buying Ingredients") {
@@ -26,12 +27,21 @@ $(document).ready(function () {
 
             // displaying the options depending on the paella size
             if(paellasize == "14 inches") {
+                var pan14A = $( "#14A-status" ).text();
+                var pan14B = $( "#14A-status" ).text();
+                var pan14C = $( "#14A-status" ).text();
+                var pan14D = $( "#14A-status" ).text();
+
+                // if available or not
+
                 $('.choices-14in').show();
             }
             else if(paellasize == "16 inches") {
+                panOptions = ["16A","16B","16C"];
                 $('.choices-16in').show();
             }
             else if(paellasize == "20 inches") {
+                panOptions = ["20A","20B","20C","20D"];
                 $('.choices-20in').show();
             }
 

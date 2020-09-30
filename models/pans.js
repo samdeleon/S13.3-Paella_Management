@@ -13,7 +13,7 @@ const pansSchema = new mongoose.Schema(
     {
         name:           {type: String, required: true},
         availability:   {type: Boolean, required: true},
-        order_id:       {type: mongoose.ObjectId, required: true}
+        order_id:       {type: mongoose.Schema.Types.Mixed, required: true}
     }
 );
 

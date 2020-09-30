@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema(
         paellasize:         {type: String, required: true},
         status:             {type: String, required: true},
         extraremarks:       {type: String, required: false},
-        pan_used:           {type: mongoose.ObjectId, required: true},
+        pan_used:           {type: mongoose.Schema.Types.Mixed, required: true},
         ingredients_id:     {type: mongoose.ObjectId, required: true}
     }
 );

@@ -10,6 +10,9 @@ const port = 9090;
 const userModel = require('./models/user');
 const orderModel = require('./models/order');
 const customerModel = require('./models/customer');
+const pansModel = require('./models/pans');
+const inventoryIngredientsModal = require('./models/inventoryIngredients');
+const orderIngredientsModel = require('./models/orderIngredients');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
@@ -142,11 +145,70 @@ app.get('/update-ingredients', function(req, res){
 
 // [PAGE-07] PANS INVENTORY
 app.get('/pans-inventory', function(req, res){
-    res.render('PansInventory', {
-        title: "Pans Inventory",
-        styles: "css/styles_inside.css",
-        scripts: "script/PansInventoryScript.js",
-        body_class: "inside"
+    var content14 = [];
+    var img14;
+
+    var content16 = [];
+    var img16;
+    
+    var content20 = [];
+    var img20;
+
+    var entry;
+
+    // For the row of 14 inch pans
+    pansModel.find({name: {$regex: /14/}}).exec(function(err, result){
+      if(err) throw err;
+
+      result.forEach(function(doc) {
+        img14 = "/images/14ABCD.jpg"
+        entry = {main: doc.toObject(), image: img14};
+        content14.push(entry);
+        var thing ="";
+      });
+      
+      // For the row of 16 inch pans
+      pansModel.find({name: {$exists: true, $regex: /16/}}).exec(function(err, result){
+        if(err) throw err;
+        
+        result.forEach(function(doc) {
+          if(doc.toObject().name == "16A") {
+            img16 = "/images/16A.jpg";
+          }
+          else {
+            img16 = "/images/16BC.jpg";
+          }
+          entry = {main: doc.toObject(), image: img16};
+          content16.push(entry);
+        });
+
+        // For the row of 20 inch pans
+        pansModel.find({name: {$exists: true, $regex: /20/}}).exec(function(err, result){
+          if(err) throw err;
+          
+          result.forEach(function(doc) {
+            if(doc.toObject().ame == "20A") {
+              img20 = "/images/20A.jpg";
+            }
+            else {
+              img20 = "/images/20BCD.jpg";
+            }
+            entry = {main: doc.toObject(), image: img20};
+            content20.push(entry);
+          });
+        
+          res.render('PansInventory', {
+            title: "Pans Inventory",
+            styles: "css/styles_inside.css",
+            scripts: "script/PansInventoryScript.js",
+            body_class: "inside",
+            records14: content14,
+            records16: content16,
+            records20: content20
+          });
+        });
+      });
+
     });
 });
 
