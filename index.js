@@ -31,6 +31,7 @@ app.use(express.static('public'));
 var pan14info;
 var pan16info;
 var pan20info;
+var curr_username = "";
 
 /* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
 
@@ -55,6 +56,7 @@ app.get('/home', function(req, res){
     if(err) throw err;
     if (result.length == 0) {
       res.render('Homepage', {
+        curruser: curr_username,
         title: "Home",
         styles: "css/styles_inside.css",
         scripts: "script/HomepageScript.js",
@@ -164,7 +166,7 @@ app.get('/pans-inventory', function(req, res){
 
     var content16 = [];
     var img16;
-    
+
     var content20 = [];
     var img20;
 
@@ -194,7 +196,7 @@ app.get('/pans-inventory', function(req, res){
       // For the row of 16 inch pans
       pansModel.find({name: {$exists: true, $regex: /16/}}).exec(function(err, result){
         if(err) throw err;
-        
+
         result.forEach(function(doc) {
           if(doc.toObject().name == "16A") {
             img16 = "/images/16A.jpg";
@@ -218,7 +220,7 @@ app.get('/pans-inventory', function(req, res){
         // For the row of 20 inch pans
         pansModel.find({name: {$exists: true, $regex: /20/}}).exec(function(err, result){
           if(err) throw err;
-          
+
           result.forEach(function(doc) {
             if(doc.toObject().ame == "20A") {
               img20 = "/images/20A.jpg";
@@ -234,11 +236,11 @@ app.get('/pans-inventory', function(req, res){
             else {
               classinfo = "btn btn-warning btn-block pan-status";
             }
-  
+
             entry = {main: doc.toObject(), image: img20, btnClass: classinfo};
             content20.push(entry);
           });
-        
+
           res.render('PansInventory', {
             title: "Pans Inventory",
             styles: "css/styles_inside.css",
@@ -403,7 +405,7 @@ app.post('/newUser', function (req, res) {
       });
       var result;
       //you can re register the same person with the same details over and over
-      
+
       user.save(function(err, user) {
           if (err){
               console.log(err.errors);
