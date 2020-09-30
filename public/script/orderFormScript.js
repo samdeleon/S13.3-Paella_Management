@@ -14,8 +14,6 @@ $(document).ready(function () {
             remarks = "None";
         }
 
-
-
         var details = {
             name:           customerName,
             info:           contact_info,
