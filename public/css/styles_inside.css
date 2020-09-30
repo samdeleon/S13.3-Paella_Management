@@ -105,6 +105,8 @@
     color: #212529;
     background-color: #90BE6D;
     border-color: #90BE6D;
+    cursor: pointer;
+    pointer-events: all;
 }
 
 .btn-success:hover {
@@ -134,6 +136,14 @@
 .info-o_status {
     padding-left: 10px;
     width: 250px;
+}
+
+.completed-status {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
 }
 
 .modal-body {

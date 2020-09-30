@@ -106,6 +106,15 @@ app.get('/order-information-:param', function(req, res){
     orderModel.findOne({ordernum: order_id, customer_id: {$exists: true}}, function (err, order){
         console.log(order);
         customerModel.findOne({_id: order.customer_id}, function (err, client){
+            var statusBtnClass;
+            // if the status is completed then you cant click on it na
+            if(order.status == "Completed") {
+              statusBtnClass = "btn completed-status btn-lg btn-block";
+            }
+            else {
+              statusBtnClass = "btn btn-success btn-lg btn-block";
+            }
+
             res.render('OrderInformation', {
                 title: "Order " + order_id,
                 styles: "css/styles_inside.css",
@@ -122,7 +131,8 @@ app.get('/order-information-:param', function(req, res){
                 size: order.paellasize,
                 status: order.status,
                 remarks: order.extraremarks,
-                pan: order.pan_used
+                pan: order.pan_used,
+                statusClass: statusBtnClass
             });
         });
     });
@@ -680,6 +690,30 @@ app.post('/assignPan', function (req, res) {
       }
       else {
         console.log("Successfully Assigned the Pan!\n");
+      }
+    });
+  });
+
+});
+
+app.post('/retrievePan', function (req, res) {
+  var update;
+
+  pansModel.findOne({name: req.body.pan}, function(err, data){
+    var orderName = "Order #" + req.body.ordernum;
+
+    update = {
+        name:           data.name,
+        availability:   true,
+        order_id:       "Available"
+    }
+
+    pansModel.findOneAndUpdate({name: req.body.pan}, update, { new: false }, function (err, order){
+      if (err) {
+        throw err;
+      }
+      else {
+        console.log("Successfully Retrieved the Pan!\n");
       }
     });
   });

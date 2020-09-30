@@ -215,6 +215,24 @@ $(document).ready(function () {
 
         else if(currstatus == "Delivered") {
             nextstatus = "Completed"
+            var str = $('#info-pbutton').text();
+            var panNum = str.substring(str.length-3)
+
+            var panInfo = {
+                status: nextstatus,
+                ordernum: ordernum,
+                pan: panNum
+            }
+
+            $.post("retrievePan", panInfo, function(data, status) {
+                if (data.success){
+                    console.log("retrieve pan working");
+                }
+                else {
+                    console.log("retrieve pan aint working");
+                }
+            });
+        
             next = true;
         }
 
