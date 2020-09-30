@@ -28,10 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'));
 
-var pan14info;
-var pan16info;
-var pan20info;
-
 /* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
 
 // [PAGE-01] LOGIN
@@ -443,7 +439,6 @@ app.post('/login',function (req,res){
 
 /*test stuff for log in end*/
 app.post('/newOrder', function (req, res) {
-
     var d = new Date();
     var year = d.getFullYear();
 
@@ -454,36 +449,98 @@ app.post('/newOrder', function (req, res) {
     }
     var bool = true
     customerModel.findOneAndUpdate({name : req.body.name}, {$set:query}, {new : true}, function (err, cus){
-      var newCustomer
-      if (cus == null){
-          newCustomer = new customerModel({
-          name:             req.body.name,
-          contact_info:     req.body.info,
-          message_info:     req.body.msg_info,
-          address:          req.body.address,
+      var newCustomer;
+      if (cus){
+        newCustomer = cus
+      }else{
+        newCustomer = new customerModel({
+        name:             req.body.name,
+        contact_info:     req.body.info,
+        message_info:     req.body.msg_info,
+        address:          req.body.address,
         });
         bool = false
-      }else{
-        newCustomer = cus
       }
 
-
       orderModel.countDocuments().exec(function (err, count){
-
 
         count = count + 1;
         count = count.toString().padStart(3, '0');
 
+        // generating orderIngredients quantities depending on the paella size
+          var arrObjects = [];
+          var arrQuantity = [];
+
+        // quantities for 14 inch paellasize
+          if(req.body.paellasize == "14 inches") {
+            arrQuantity = [1, 50, 1, 1.5, 4,1, 1, 2, 200, 1.5, 6, 8, 14, 20, 1, 6, 3, 3, 220, 4, 2, 2, 1]
+          }
+
+        // quantities for 16 inch paellasize
+          if(req.body.paellasize == "16 inches") {
+            arrQuantity = [1.5, 75, 1.5, 2, 6, 2, 2, 3, 250, 2, 8,10, 18, 25, 1.5, 9, 4.5, 4, 220, 4, 2, 2, 2]
+          }
+        
+        // quantities for 20 inch paellasize
+          if(req.body.paellasize == "20 inches") {
+            arrQuantity = [2, 100, 2, 3, 10, 2, 2, 4, 350, 2, 8, 10, 22, 30, 2, 13, 6.5, 6, 220, 4, 2, 2, 2]
+          }
+
+        // loop for making the array of ingredients objects
+          var i=0;
+          var ingredientName = "";
+          var tempNum = 0;
+
+          for (i = 0 ; i < 23; i++){
+            // index 0 to 4 = soffrito 1 to 5
+              if (i>=0 && i<=4) {
+                tempNum = i+1;
+                ingredientName = "soffrito_" + tempNum;
+              }
+
+            // index 5 to 8 = meat 1 to 4
+              if (i>=5 && i<=8) {
+                tempNum = i-4;
+                ingredientName = "meat_" + tempNum;
+              }
+
+            // index 9 to 14 = seafood 1 to 6
+              if (i>=9 && i<=14) {
+                tempNum = i-8;
+                ingredientName = "seafood_" + tempNum;
+              }
+
+            // index 15 = stock 1
+              if (i==15) {
+                ingredientName = "stock_1";
+              }
+
+            // index 16 to 22 = etc 1 to 7
+              if (i>=16 && i<=22) {
+                tempNum = i-15
+                ingredientName = "etc_" + tempNum;
+              }
+
+            var ingredientObject = {
+              name: ingredientName,
+              quantity: arrQuantity[i],
+              checked: false
+            };
+
+            arrObjects.push(ingredientObject);
+          }
+
         var order = new orderModel({
-          ordernum:         year + "-" + count,
-          customer_id:      newCustomer._id,
-          mode_of_delivery: req.body.mode,
-          date:             req.body.date,
-          time:             req.body.time,
-          paellasize:       req.body.paellasize,
-          status:           req.body.status,
-          extraremarks:     req.body.extraremarks,
-          pan_used:         req.body.pan_used
+          ordernum:           year + "-" + count,
+          customer_id:        newCustomer._id,
+          mode_of_delivery:   req.body.mode,
+          date:               req.body.date,
+          time:               req.body.time,
+          paellasize:         req.body.paellasize,
+          status:             req.body.status,
+          extraremarks:       req.body.extraremarks,
+          pan_used:           req.body.pan_used,
+          order_ingredients:  arrObjects
         });
         var result;
 
@@ -497,7 +554,7 @@ app.post('/newOrder', function (req, res) {
           else{
             console.log("New order added");
             console.log(new_order);
-            if (bool == true){
+            if (bool == false){
               newCustomer.save(function (err, new_customer) {
                 console.log("New customer added");
                 console.log(new_customer);
