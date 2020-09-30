@@ -28,9 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'));
 
-var pan14info;
-var pan16info;
-var pan20info;
 var curr_username = "";
 
 /* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
@@ -134,7 +131,8 @@ app.get('/order-information-:param', function(req, res){
                 status: order.status,
                 remarks: order.extraremarks,
                 pan: order.pan_used,
-                statusClass: statusBtnClass
+                statusClass: statusBtnClass,
+                array: order.order_ingredients
             });
         });
     });
@@ -551,13 +549,13 @@ app.post('/newOrder', function (req, res) {
         var result;
 
         order.save(function(err, new_order) {
-           if (err){
+          if (err){
              console.log(err.errors);
 
             result = {success: false, message: "new order was not created"};
             res.send(result);
           }
-          else{
+          else {
             console.log("New order added");
             console.log(new_order);
             if (bool == false){
@@ -568,14 +566,18 @@ app.post('/newOrder', function (req, res) {
                 result = {
                   success: true,
                   message: "new order was created"
-
                 };
-              })
+                
+              });
+              
             }
           }
         });
+
     });
   })
+
+
 });
 
 app.post('/newCustomer', function (req, res) {

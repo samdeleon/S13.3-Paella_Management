@@ -166,6 +166,10 @@
     color: red;
 }
 
+#nextstatusError {
+    color: red;
+}
+
 .info-row2 {
     margin: auto;
 }

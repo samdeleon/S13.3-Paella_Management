@@ -39,7 +39,7 @@ $(document).ready(function () {
         {
 
             $.post("/newOrder", details ,function (data, status) {
-                
+            
             });
             
         }
