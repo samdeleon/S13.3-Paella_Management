@@ -11,8 +11,7 @@ const userModel = require('./models/user');
 const orderModel = require('./models/order');
 const customerModel = require('./models/customer');
 const pansModel = require('./models/pans');
-const inventoryIngredientsModal = require('./models/inventoryIngredients');
-const orderIngredientsModel = require('./models/orderIngredients');
+const inventoryIngredientsModel = require('./models/inventoryIngredients');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
@@ -114,6 +113,26 @@ app.get('/order-information-:param', function(req, res){
               statusBtnClass = "btn btn-success btn-lg btn-block";
             }
 
+            var arrChecked = [];
+            var checkedValues;
+            var i = 0;
+            var temp;
+            for (i = 0 ; i < 23; i++){
+              temp = "order.order_ingredients." + i + ".checked"
+              if(temp) {
+                checkedValues = {
+                  value: "yes"
+                }
+              }
+              else {
+                checkedValues = {
+                  value: ""
+                }
+              }
+
+              arrChecked.push(checkedValues);
+            }
+
             res.render('OrderInformation', {
                 title: "Order " + order_id,
                 styles: "css/styles_inside.css",
@@ -132,7 +151,8 @@ app.get('/order-information-:param', function(req, res){
                 remarks: order.extraremarks,
                 pan: order.pan_used,
                 statusClass: statusBtnClass,
-                array: order.order_ingredients
+                array: order.order_ingredients,
+                checked: arrChecked
             });
         });
     });
@@ -392,8 +412,6 @@ app.listen(port, function() {
   });
 
 /* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
-// we'll add things here after sprint 1
-/*test stuff for Login*/
 
 app.post('/newUser', function (req, res) {
       var user = new userModel({
@@ -626,6 +644,88 @@ app.post('/searchOrderNum', function(req, res) {
         result.ok = true;
     console.log("Result: " + result.ok);
     res.send(result);
+  });
+});
+
+app.post('/saveCheckedIngredients', function (req, res){
+  var newChecked = req.body.checked;
+  var update;
+  var result;
+
+  orderModel.findOne({ordernum: req.body.ordernum}, function(err, data){
+      // loop to update the checked value
+      var newIngredients = data.order_ingredients;
+
+      for (i=0; i<23; i++) {
+          newIngredients.checked = newChecked[i];
+      }
+
+      update = {
+          ordernum:           data.ordernum,
+          name:               data.name,
+          contact_info:       data.contact_info,
+          mode_of_delivery:   data.mode_of_delivery,
+          address:            data.address,
+          date:               data.date,
+          time:               data.time,
+          paellasize:         data.paellasize,
+          status:             req.body.status,
+          extraremarks:       data.extraremarks,
+          pan_used:           data.pan_used,
+          order_ingredients:  newIngredients
+      }
+
+      orderModel.findOneAndUpdate({ordernum: req.body.ordernum}, update, { new: false }, function (err, order){
+        if (err) {
+          throw err;
+        }
+        else {
+          result = {
+            success: true
+          }
+
+          res.send(result);
+          console.log("Successfully Updated the Ingredients!\n");
+        }
+      });
+  });
+});
+
+app.post('/deductCheckedIngredients', function (req, res){
+  var quantity = req.body.quantity;
+  var newChecked = req.body.checked;
+  var update;
+  var result;
+  var i=-1;
+
+  inventoryIngredientsModel.find().exec(function(err, result){
+    if(err) throw err;
+
+    result.forEach(function(doc) {
+      i++;
+      var ingredient = doc.toObject();
+      var deducted = ingredient.quantity - quantity[i];
+
+      update = {
+        name: ingredient.name,
+        quantity: deducted
+      }
+
+      inventoryIngredientsModel.findOneAndUpdate({name: ingredient.name}, update, { new: false }, function (err, order){
+        if (err) {
+          throw err;
+        }
+        else {
+          result = {
+            success: true
+          }
+
+          res.send(result);
+          console.log("Successfully Updated the Ingredients Inventory!\n");
+        }
+      });
+
+    });
   });
 });
 

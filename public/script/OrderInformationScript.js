@@ -471,7 +471,6 @@ $(document).ready(function () {
 
         // now we check each ingredient is checked
             var arrDeduct = [];
-            var isAllChecked = true;
             var i=0;
 
             for (i=0; i<23; i++) {
@@ -481,13 +480,36 @@ $(document).ready(function () {
                 else {
                     var temp = 0;
                     arrDeduct.push(temp);
-                    isAllChecked = false;
                 }
             }
 
-        // if everythings
+        // this is the post requests part
+        var ordernum    =   $( "#span_ordernum" ).text();
+        var information = {
+            ordernum: ordernum,
+            checked: arrChecks,
+            quantity: arrQuantity
+        }
 
-
+        // step 1: save checked fields in the orders db
+        $.post("saveCheckedIngredients", information, function(data, status) {
+            if (data.success){
+                console.log("save checked ingredients working");
+                // step 2: deduct the ingredients quantities from ingredients db
+                $.post("deductCheckedIngredients", information, function(data, status) {
+                    if (data.success){
+                        console.log("deduct ingredients working");
+                        window.location.reload();
+                    }
+                    else {
+                        console.log("deduct ingredients aint working");
+                    }
+                });
+            }
+            else {
+                console.log("save checked ingredients aint working");
+            }
+        });
 
     });
     
