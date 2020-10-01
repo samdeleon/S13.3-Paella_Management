@@ -202,20 +202,27 @@ app.get('/order-information-:param', function(req, res){
                 var computation;
                 var size = order.paellasize;
 
-                if(size == "14 inches") {
-                  customerPrice = "2,800.00";
-                  ingredientsPrice = "1,704.50";
-                  computation = "1095.5";
+                if(order.status == "Completed") {
+                  if(size == "14 inches") {
+                    customerPrice = "2,800.00";
+                    ingredientsPrice = "1,704.50";
+                    computation = "1095.5";
+                  }
+                  else if(size == "16 inches") {
+                    customerPrice = "3,200.00";
+                    ingredientsPrice = "2,321.30";
+                    computation = "878.50";
+                  }
+                  else if(size == "20 inches") {
+                    customerPrice = "4,000.00";
+                    ingredientsPrice = "2,642.64";
+                    computation = "1,357.36";
+                  }
                 }
-                else if(size == "16 inches") {
-                  customerPrice = "3,200.00";
-                  ingredientsPrice = "2,321.30";
-                  computation = "878.50";
-                }
-                else if(size == "20 inches") {
-                  customerPrice = "4,000.00";
-                  ingredientsPrice = "2,642.64";
-                  computation = "1,357.36";
+                else {
+                  customerPrice = "None";
+                  ingredientsPrice = "None";
+                  computation = "None";
                 }
                 
                 // LAST = rendering of stuff in order info page

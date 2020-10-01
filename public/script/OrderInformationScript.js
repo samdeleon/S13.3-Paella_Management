@@ -76,6 +76,21 @@ $(document).ready(function () {
             }
         }
 
+    // setting the profit div
+        var customerPrice = $("#customerPrice").text();
+        var ingredientPrice = $("#ingredientPrice").text();
+        var totalProfit = $("#totalProfit").text();
+
+        if (customerPrice == "Php None" && customerPrice == "Php None" && customerPrice == "Php None"){
+            $(".yesCompleted").css("display", "none");
+            $(".notCompleted").css("display", "show");
+        }
+        else {
+            $(".yesCompleted").css("display", "show");
+            $(".notCompleted").css("display", "none");
+        }
+
+
     $(".orderinfo-p_name").click(function () {
 
         var name = document.getElementById("orderinfo-span_name").innerHTML
