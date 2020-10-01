@@ -188,6 +188,23 @@
 #info-checklist {
 }
 
+.completed-checklist {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+}
+
+.completed-ingredients {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+    display: none;
+}
+
 #info-profit {
 }
 

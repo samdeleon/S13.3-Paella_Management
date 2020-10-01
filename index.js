@@ -115,22 +115,50 @@ app.get('/order-information-:param', function(req, res){
 
             var arrChecked = [];
             var checkedValues;
+            var isComplete = true;
+            var isChecked = false;
             var i = 0;
-            var temp;
+            var saveText = "";
+
             for (i = 0 ; i < 23; i++){
-              temp = "order.order_ingredients." + i + ".checked"
-              if(temp) {
+              isChecked = order.order_ingredients[i].checked;
+
+              if(isChecked == true) {  // if checked then its disabled
                 checkedValues = {
-                  value: "yes"
+                  value: "checked disabled"
                 }
               }
-              else {
+              else {  // else its not disabled
                 checkedValues = {
                   value: ""
                 }
+                isComplete = false;
               }
 
               arrChecked.push(checkedValues);
+
+              console.log("Loop " + i + "= <"+order.order_ingredients[i].checked+", "+arrChecked[i].value+">");
+            }
+
+            // if its not complete, it wont be disabled
+            if(isComplete == false) {
+              saveBtnClass = "btn btn-warning btn-lg btn-block";
+              saveText = "Save";
+            }
+            // if everythings checked & status is buying ingredients, then the save button will be disabled
+            else if(isComplete == true && order.status == "Buying Ingredients") {
+              saveBtnClass = "btn completed-status btn-lg btn-block"
+              saveText = "Complete!";
+            }
+            // if everythings checked & status is complete ingredients, then the save button will be hidden and disabled
+            else if(isComplete == true && order.status == "Complete Ingredients") {
+              saveBtnClass = "btn completed-ingredients btn-lg btn-block"
+              saveText = "Complete!";
+            }
+            // if status is anything after complete ingredients, then its both hidden and disabled
+            else {
+              saveBtnClass = "btn completed-ingredients btn-lg btn-block"
+              saveText = "Complete!";
             }
 
             res.render('OrderInformation', {
@@ -151,6 +179,8 @@ app.get('/order-information-:param', function(req, res){
                 remarks: order.extraremarks,
                 pan: order.pan_used,
                 statusClass: statusBtnClass,
+                saveClass: saveBtnClass,
+                saveText: saveText,
                 array: order.order_ingredients,
                 checked: arrChecked
             });
@@ -542,11 +572,13 @@ app.post('/newOrder', function (req, res) {
                 tempNum = i-15
                 ingredientName = "etc_" + tempNum;
               }
+            
+            var checkedValue = false;
 
             var ingredientObject = {
               name: ingredientName,
               quantity: arrQuantity[i],
-              checked: false
+              checked: checkedValue
             };
 
             arrObjects.push(ingredientObject);
@@ -657,7 +689,13 @@ app.post('/saveCheckedIngredients', function (req, res){
       var newIngredients = data.order_ingredients;
 
       for (i=0; i<23; i++) {
-          newIngredients.checked = newChecked[i];
+        if(newChecked[i] == "true") {
+          newIngredients[i].checked = true;
+        }
+        else {
+          newIngredients[i].checked = false;
+        }
+          ;
       }
 
       update = {
@@ -669,7 +707,7 @@ app.post('/saveCheckedIngredients', function (req, res){
           date:               data.date,
           time:               data.time,
           paellasize:         data.paellasize,
-          status:             req.body.status,
+          status:             data.status,
           extraremarks:       data.extraremarks,
           pan_used:           data.pan_used,
           order_ingredients:  newIngredients

@@ -19,33 +19,33 @@ $(document).ready(function () {
             nextstatus = "Complete Ingredients";
             var arrChecks = [];
 
-            var check1 = $("#check-soffrito_1").prop("checked");    arrChecks.push(check1);
-            var check2 = $("#check-soffrito_2").prop("checked");    arrChecks.push(check2);
-            var check3 = $("#check-soffrito_3").prop("checked");    arrChecks.push(check3);
-            var check4 = $("#check-soffrito_4").prop("checked");    arrChecks.push(check4);
-            var check5 = $("#check-soffrito_5").prop("checked");    arrChecks.push(check5);
+            var check1 = $("#check-soffrito_1").is(":checked");    arrChecks.push(check1);
+            var check2 = $("#check-soffrito_2").is(":checked");    arrChecks.push(check2);
+            var check3 = $("#check-soffrito_3").is(":checked");    arrChecks.push(check3);
+            var check4 = $("#check-soffrito_4").is(":checked");    arrChecks.push(check4);
+            var check5 = $("#check-soffrito_5").is(":checked");    arrChecks.push(check5);
             
-            var check6 = $("#check-meat_1").prop("checked");        arrChecks.push(check6);
-            var check7 = $("#check-meat_2").prop("checked");        arrChecks.push(check7);
-            var check8 = $("#check-meat_3").prop("checked");        arrChecks.push(check8);
-            var check9 = $("#check-meat_4").prop("checked");        arrChecks.push(check9);
+            var check6 = $("#check-meat_1").is(":checked");        arrChecks.push(check6);
+            var check7 = $("#check-meat_2").is(":checked");        arrChecks.push(check7);
+            var check8 = $("#check-meat_3").is(":checked");        arrChecks.push(check8);
+            var check9 = $("#check-meat_4").is(":checked");        arrChecks.push(check9);
             
-            var check10 = $("#check-seafood_1").prop("checked");    arrChecks.push(check10);
-            var check11 = $("#check-seafood_2").prop("checked");    arrChecks.push(check11);
-            var check12 = $("#check-seafood_3").prop("checked");    arrChecks.push(check12);
-            var check13 = $("#check-seafood_4").prop("checked");    arrChecks.push(check13);
-            var check14 = $("#check-seafood_5").prop("checked");    arrChecks.push(check14);
-            var check15 = $("#check-seafood_6").prop("checked");    arrChecks.push(check15);
+            var check10 = $("#check-seafood_1").is(":checked");    arrChecks.push(check10);
+            var check11 = $("#check-seafood_2").is(":checked");    arrChecks.push(check11);
+            var check12 = $("#check-seafood_3").is(":checked");    arrChecks.push(check12);
+            var check13 = $("#check-seafood_4").is(":checked");    arrChecks.push(check13);
+            var check14 = $("#check-seafood_5").is(":checked");    arrChecks.push(check14);
+            var check15 = $("#check-seafood_6").is(":checked");    arrChecks.push(check15);
             
-            var check16 = $("#check-stock_1").prop("checked");      arrChecks.push(check16);
+            var check16 = $("#check-stock_1").is(":checked");      arrChecks.push(check16);
             
-            var check17 = $("#check-etc_1").prop("checked");        arrChecks.push(check17);
-            var check18 = $("#check-etc_2").prop("checked");        arrChecks.push(check18);
-            var check19 = $("#check-etc_3").prop("checked");        arrChecks.push(check19);
-            var check20 = $("#check-etc_4").prop("checked");        arrChecks.push(check20);
-            var check21 = $("#check-etc_5").prop("checked");        arrChecks.push(check21);
-            var check22 = $("#check-etc_6").prop("checked");        arrChecks.push(check22);
-            var check23 = $("#check-etc_7").prop("checked");        arrChecks.push(check23);
+            var check17 = $("#check-etc_1").is(":checked");        arrChecks.push(check17);
+            var check18 = $("#check-etc_2").is(":checked");        arrChecks.push(check18);
+            var check19 = $("#check-etc_3").is(":checked");        arrChecks.push(check19);
+            var check20 = $("#check-etc_4").is(":checked");        arrChecks.push(check20);
+            var check21 = $("#check-etc_5").is(":checked");        arrChecks.push(check21);
+            var check22 = $("#check-etc_6").is(":checked");        arrChecks.push(check22);
+            var check23 = $("#check-etc_7").is(":checked");        arrChecks.push(check23);
 
             var isAllChecked = true;
             var i=0;
@@ -410,36 +410,36 @@ $(document).ready(function () {
         // getting all the CHECKED values of each ingredient:
             var arrChecks = [];
 
-            var check1 = $("#check-soffrito_1").prop("checked");    arrChecks.push(check1);
-            var check2 = $("#check-soffrito_2").prop("checked");    arrChecks.push(check2);
-            var check3 = $("#check-soffrito_3").prop("checked");    arrChecks.push(check3);
-            var check4 = $("#check-soffrito_4").prop("checked");    arrChecks.push(check4);
-            var check5 = $("#check-soffrito_5").prop("checked");    arrChecks.push(check5);
+            var check1 = $("#check-soffrito_1").is(":checked");    arrChecks.push(check1);
+            var check2 = $("#check-soffrito_2").is(":checked");    arrChecks.push(check2);
+            var check3 = $("#check-soffrito_3").is(":checked");    arrChecks.push(check3);
+            var check4 = $("#check-soffrito_4").is(":checked");    arrChecks.push(check4);
+            var check5 = $("#check-soffrito_5").is(":checked");    arrChecks.push(check5);
             
-            var check6 = $("#check-meat_1").prop("checked");        arrChecks.push(check6);
-            var check7 = $("#check-meat_2").prop("checked");        arrChecks.push(check7);
-            var check8 = $("#check-meat_3").prop("checked");        arrChecks.push(check8);
-            var check9 = $("#check-meat_4").prop("checked");        arrChecks.push(check9);
+            var check6 = $("#check-meat_1").is(":checked");        arrChecks.push(check6);
+            var check7 = $("#check-meat_2").is(":checked");        arrChecks.push(check7);
+            var check8 = $("#check-meat_3").is(":checked");        arrChecks.push(check8);
+            var check9 = $("#check-meat_4").is(":checked");        arrChecks.push(check9);
             
-            var check10 = $("#check-seafood_1").prop("checked");    arrChecks.push(check10);
-            var check11 = $("#check-seafood_2").prop("checked");    arrChecks.push(check11);
-            var check12 = $("#check-seafood_3").prop("checked");    arrChecks.push(check12);
-            var check13 = $("#check-seafood_4").prop("checked");    arrChecks.push(check13);
-            var check14 = $("#check-seafood_5").prop("checked");    arrChecks.push(check14);
-            var check15 = $("#check-seafood_6").prop("checked");    arrChecks.push(check15);
+            var check10 = $("#check-seafood_1").is(":checked");    arrChecks.push(check10);
+            var check11 = $("#check-seafood_2").is(":checked");    arrChecks.push(check11);
+            var check12 = $("#check-seafood_3").is(":checked");    arrChecks.push(check12);
+            var check13 = $("#check-seafood_4").is(":checked");    arrChecks.push(check13);
+            var check14 = $("#check-seafood_5").is(":checked");    arrChecks.push(check14);
+            var check15 = $("#check-seafood_6").is(":checked");    arrChecks.push(check15);
             
-            var check16 = $("#check-stock_1").prop("checked");      arrChecks.push(check16);
+            var check16 = $("#check-stock_1").is(":checked");      arrChecks.push(check16);
             
-            var check17 = $("#check-etc_1").prop("checked");        arrChecks.push(check17);
-            var check18 = $("#check-etc_2").prop("checked");        arrChecks.push(check18);
-            var check19 = $("#check-etc_3").prop("checked");        arrChecks.push(check19);
-            var check20 = $("#check-etc_4").prop("checked");        arrChecks.push(check20);
-            var check21 = $("#check-etc_5").prop("checked");        arrChecks.push(check21);
-            var check22 = $("#check-etc_6").prop("checked");        arrChecks.push(check22);
-            var check23 = $("#check-etc_7").prop("checked");        arrChecks.push(check23);
+            var check17 = $("#check-etc_1").is(":checked");        arrChecks.push(check17);
+            var check18 = $("#check-etc_2").is(":checked");        arrChecks.push(check18);
+            var check19 = $("#check-etc_3").is(":checked");        arrChecks.push(check19);
+            var check20 = $("#check-etc_4").is(":checked");        arrChecks.push(check20);
+            var check21 = $("#check-etc_5").is(":checked");        arrChecks.push(check21);
+            var check22 = $("#check-etc_6").is(":checked");        arrChecks.push(check22);
+            var check23 = $("#check-etc_7").is(":checked");        arrChecks.push(check23);
 
         // getting all the QUANTITY values of each ingredient:
-            var arrQuantity = [];
+            var arrQuantity = [];   // TODO: change the value into getting the span of it
 
             var quantity1 = $("#check-soffrito_1").prop("checked");     arrChecks.push(quantity1);
             var quantity2 = $("#check-soffrito_2").prop("checked");     arrChecks.push(quantity2);
@@ -474,8 +474,11 @@ $(document).ready(function () {
             var i=0;
 
             for (i=0; i<23; i++) {
+                // delete later
+
                 if(arrChecks[i]) {
                     arrDeduct.push(arrQuantity[i]);
+                    console.log("Loop " + i + "= <"+arrChecks[i]+">");
                 }
                 else {
                     var temp = 0;
@@ -483,8 +486,9 @@ $(document).ready(function () {
                 }
             }
 
+
         // this is the post requests part
-        var ordernum    =   $( "#span_ordernum" ).text();
+        var ordernum = $( "#span_ordernum" ).text();
         var information = {
             ordernum: ordernum,
             checked: arrChecks,
@@ -495,16 +499,21 @@ $(document).ready(function () {
         $.post("saveCheckedIngredients", information, function(data, status) {
             if (data.success){
                 console.log("save checked ingredients working");
+                // remove these 2 when save works na
+                alert("Successfully updated the ingredients checklist");
+                window.location.reload();
+
                 // step 2: deduct the ingredients quantities from ingredients db
-                $.post("deductCheckedIngredients", information, function(data, status) {
-                    if (data.success){
-                        console.log("deduct ingredients working");
-                        window.location.reload();
-                    }
-                    else {
-                        console.log("deduct ingredients aint working");
-                    }
-                });
+            //     $.post("deductCheckedIngredients", information, function(data, status) {
+            //         if (data.success){
+            //             console.log("deduct ingredients working");
+            //             alert("Successfully updated the ingredients checklist and inventory!");
+            //             window.location.reload();
+            //         }
+            //         else {
+            //             console.log("deduct ingredients aint working");
+            //         }
+            //     });
             }
             else {
                 console.log("save checked ingredients aint working");
