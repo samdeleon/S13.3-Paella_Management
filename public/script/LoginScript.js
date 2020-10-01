@@ -24,11 +24,11 @@ $(document).ready(function () {
                     alert("Registration Successful!")
                     curr_username = accntname;
                     $.post("/newUser", newuser,function (data, status) {
-
+                        window.location.href = "/";
                     });
                 } else {
-
                   alert("User already exists!");
+                  window.location.reload();
                 }
             });
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 alert("Invalid Login.");
               } else {
                 curr_username = accntname;
-                $(location).attr("href", "/home");
+                window.location.href = "/home";
                 alert("Welcome " + data.cont.username + "!");
               }
           });

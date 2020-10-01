@@ -83,19 +83,49 @@
           errorText.textContent = "Username Cannot Be Empty";
           return false;
 		}
-		if(pswrd_1.value != pswrd_2.value){
-          errorText.style.display = "block";
-          errorText.classList.remove("matched");
-          errorText.textContent = "Passwords Do Not Match";
-          return false;
-        }
-		if(pswrd_1.value == "" ||pswrd_2.value==""||pswrd_1.value == " " ||pswrd_2.value==" "){
+		else if(pswrd_1.value == "" ||pswrd_2.value==""||pswrd_1.value == " " ||pswrd_2.value==" "){
 		  errorText.style.display = "block";
           errorText.classList.remove("matched");
           errorText.textContent = "Passwords Cannot Be Empty";
           return false;
 		}
-		if(checkbox.checked!=true){
+
+		// checking the username length
+		else if(username2.value.length < 6) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username is too short";
+          return false;
+        }
+		else if(username2.value.length > 15) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username is too long";
+          return false;
+        }
+		
+		// checking the password length
+		else if(pswrd_1.value.length < 6) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Password is too short";
+          return false;
+        }
+		else if(pswrd_1.value.length > 15) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Password is too long";
+          return false;
+        }
+		
+		else if(pswrd_1.value != pswrd_2.value){
+          errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Passwords Do Not Match";
+          return false;
+        }
+
+		else if(checkbox.checked!=true){
 		  errorText.style.display = "block";
           errorText.classList.remove("matched");
           errorText.textContent = "Unread Terms and Conditions";

@@ -162,17 +162,11 @@ app.get('/order-information-:param', function(req, res){
               saveText = "Complete!";
             }
             
-            console.log("BEFORE INVENTORY");
-            
             ingredientsModel.find().lean().exec(function (err, thing){
               if(err) {
                 throw err;
               }
               else {
-
-                console.log(thing);
-                console.log(thing.length);
-                console.log("BEFORE FOREACH");
 
                 // checking if theres stock for the ingredients
                 var arrQuantity = [];
@@ -180,34 +174,56 @@ app.get('/order-information-:param', function(req, res){
                 var i=-1;
 
                 thing.forEach(function(doc) {
-                  console.log(doc);
-                  
                   i++;
-                  var inventory = doc.toObject();
+                  var inventory = doc;
                   var inventoryQty = inventory.quantity;
                   var orderQty = order.order_ingredients[i].quantity;
-                  
-                  console.log("< orderQty #"+i+" "+order.order_ingredients[i].quantity+">")
-                  console.log("< inventoryQty #"+i+" "+inventory.quantity+">")
 
-                  // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
-                  if (inventoryQty >= orderQty) {
-                    quantity = {
-                      stock: ""
+                    // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
+                    if (inventoryQty >= orderQty || order.order_ingredients[i].checked == true) {
+                      quantity = {
+                        stock: ""
+                      }
                     }
-                  }
-                  // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
-                  else {
-                    quantity = {
-                      stock: "(Out of Stock)"
+                    // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
+                    else {
+                      quantity = {
+                        stock: "(Out of Stock)"
+                      }
                     }
-                    console.log("<"+quantity[i].stock+">")
-                  }
 
                   arrQuantity.push(quantity);
                 });
-              
-                console.log("AFTER FOREACH");
+
+
+                // info for profit computation depending on price
+                var customerPrice;
+                var ingredientsPrice;
+                var computation;
+                var size = order.paellasize;
+
+                if(order.status == "Completed") {
+                  if(size == "14 inches") {
+                    customerPrice = "2,800.00";
+                    ingredientsPrice = "1,704.50";
+                    computation = "1095.5";
+                  }
+                  else if(size == "16 inches") {
+                    customerPrice = "3,200.00";
+                    ingredientsPrice = "2,321.30";
+                    computation = "878.50";
+                  }
+                  else if(size == "20 inches") {
+                    customerPrice = "4,000.00";
+                    ingredientsPrice = "2,642.64";
+                    computation = "1,357.36";
+                  }
+                }
+                else {
+                  customerPrice = "None";
+                  ingredientsPrice = "None";
+                  computation = "None";
+                }
                 
                 // LAST = rendering of stuff in order info page
                 res.render('OrderInformation', {
@@ -232,12 +248,14 @@ app.get('/order-information-:param', function(req, res){
                   saveText: saveText,
                   array: order.order_ingredients,
                   quantity: arrQuantity,
-                  checked: arrChecked
+                  checked: arrChecked,
+                  payment1: customerPrice,
+                  payment2: ingredientsPrice,
+                  profit: computation
                 });
               }
             });
             
-            console.log("AFTER INVENTORY");
           });
     });
 });
@@ -848,18 +866,24 @@ app.post('/deductCheckedIngredients', function (req, res){
   var update;
   var result;
   var i=-1;
+
+  console.log(order[0]);
   
-  ingredientsModel.find({}, function(err, result){
+  ingredientsModel.find().lean().exec(function(err, result){
     if(err) throw err;
+
+    var allUpdated = true;
 
     result.forEach(function(doc) {
       i++;
-      var inventory = doc.toObject();
+      var inventory = doc
       var inventoryQty = inventory.quantity;
       var orderQty = order[i];
       var deducted;
 
       var deducted = inventoryQty - orderQty;
+
+      console.log("<"+inventoryQty+" - "+orderQty+" = "+deducted+">")
 
       update = {
         name: inventory.name,
@@ -869,18 +893,28 @@ app.post('/deductCheckedIngredients', function (req, res){
       ingredientsModel.findOneAndUpdate({name: inventory.name}, update, { new: false }, function (err, order){
         if (err) {
           throw err;
-        }
-        else {
-          result = {
-            success: true
-          }
+          allUpdated = false;
 
+          var result = {
+            success: false
+          }
+          
+          console.log("Ingredients Inventory was not updated\n");
           res.send(result);
-          console.log("Successfully Updated the Ingredients Inventory!\n");
         }
       });
 
     });
+
+
+    if(allUpdated == true) {
+      result = {
+        success: true
+      }
+
+      console.log("Successfully Updated the Ingredients Inventory!\n");
+      res.send(result);
+    }
   
   });
 });

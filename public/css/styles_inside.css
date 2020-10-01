@@ -232,6 +232,14 @@
 #info-profit {
 }
 
+.priceLeft {
+    text-align: left;
+}
+
+.priceRight {
+    text-align: right;
+}
+
 .orderinfo-p_name {
     cursor: pointer;
 }

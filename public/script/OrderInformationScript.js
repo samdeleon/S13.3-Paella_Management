@@ -67,13 +67,29 @@ $(document).ready(function () {
 
             if(arrStock[i] == "(Out of Stock)") {
                 // indeterminate
-                $("#"+idCheckbox).prop('indeterminate', true)
+                $("#"+idCheckbox).prop('indeterminate', true);
+                $("#"+idCheckbox).prop('disabled', true);
             }
             else {
                 // back to normal
-                $("#"+idCheckbox).prop('indeterminate', false)
+                $("#"+idCheckbox).prop('indeterminate', false);
             }
         }
+
+    // setting the profit div
+        var customerPrice = $("#customerPrice").text();
+        var ingredientPrice = $("#ingredientPrice").text();
+        var totalProfit = $("#totalProfit").text();
+
+        if (customerPrice == "Php None" && customerPrice == "Php None" && customerPrice == "Php None"){
+            $(".yesCompleted").css("display", "none");
+            $(".notCompleted").css("display", "show");
+        }
+        else {
+            $(".yesCompleted").css("display", "show");
+            $(".notCompleted").css("display", "none");
+        }
+
 
     $(".orderinfo-p_name").click(function () {
 
@@ -516,33 +532,33 @@ $(document).ready(function () {
         // getting all the QUANTITY values of each ingredient:
             var arrQuantity = [];   // TODO: change the value into getting the span of it
 
-            var quantity1 = $("#quantity-soffrito_1").text();    arrChecks.push(quantity1);
-            var quantity2 = $("quantity-soffrito_2").text();     arrChecks.push(quantity2);
-            var quantity3 = $("quantity-soffrito_3").text();     arrChecks.push(quantity3);
-            var quantity4 = $("quantity-soffrito_4").text();     arrChecks.push(quantity4);
-            var quantity5 = $("quantity-soffrito_5").text();     arrChecks.push(quantity5);
+            var quantity1 = $("#quantity-soffrito_1").text();     arrQuantity.push(quantity1);
+            var quantity2 = $("#quantity-soffrito_2").text();     arrQuantity.push(quantity2);
+            var quantity3 = $("#quantity-soffrito_3").text();     arrQuantity.push(quantity3);
+            var quantity4 = $("#quantity-soffrito_4").text();     arrQuantity.push(quantity4);
+            var quantity5 = $("#quantity-soffrito_5").text();     arrQuantity.push(quantity5);
             
-            var quantity6 = $("quantity-meat_1").text();         arrChecks.push(quantity6);
-            var quantity7 = $("quantity-meat_2").text();         arrChecks.push(quantity7);
-            var quantity8 = $("quantity-meat_3").text();         arrChecks.push(quantity8);
-            var quantity9 = $("quantity-meat_4").text();         arrChecks.push(quantity9);
+            var quantity6 = $("#quantity-meat_1").text();         arrQuantity.push(quantity6);
+            var quantity7 = $("#quantity-meat_2").text();         arrQuantity.push(quantity7);
+            var quantity8 = $("#quantity-meat_3").text();         arrQuantity.push(quantity8);
+            var quantity9 = $("#quantity-meat_4").text();         arrQuantity.push(quantity9);
             
-            var quantity10 = $("quantity-seafood_1").text();     arrChecks.push(quantity10);
-            var quantity11 = $("quantity-seafood_2").text();     arrChecks.push(quantity11);
-            var quantity12 = $("quantity-seafood_3").text();     arrChecks.push(quantity12);
-            var quantity13 = $("quantity-seafood_4").text();     arrChecks.push(quantity13);
-            var quantity14 = $("quantity-seafood_5").text();     arrChecks.push(quantity14);
-            var quantity15 = $("quantity-seafood_6").text();     arrChecks.push(quantity15);
+            var quantity10 = $("#quantity-seafood_1").text();     arrQuantity.push(quantity10);
+            var quantity11 = $("#quantity-seafood_2").text();     arrQuantity.push(quantity11);
+            var quantity12 = $("#quantity-seafood_3").text();     arrQuantity.push(quantity12);
+            var quantity13 = $("#quantity-seafood_4").text();     arrQuantity.push(quantity13);
+            var quantity14 = $("#quantity-seafood_5").text();     arrQuantity.push(quantity14);
+            var quantity15 = $("#quantity-seafood_6").text();     arrQuantity.push(quantity15);
             
-            var quantity16 = $("quantity-stock_1").text();       arrChecks.push(quantity16);
+            var quantity16 = $("#quantity-stock_1").text();       arrQuantity.push(quantity16);
             
-            var quantity17 = $("quantity-etc_1").text();         arrChecks.push(quantity17);
-            var quantity18 = $("quantity-etc_2").text();         arrChecks.push(quantity18);
-            var quantity19 = $("quantity-etc_3").text();         arrChecks.push(quantity19);
-            var quantity20 = $("quantity-etc_4").text();         arrChecks.push(quantity20);
-            var quantity21 = $("quantity-etc_5").text();         arrChecks.push(quantity21);
-            var quantity22 = $("quantity-etc_6").text();         arrChecks.push(quantity22);
-            var quantity23 = $("quantity-etc_7").text();         arrChecks.push(quantity23);
+            var quantity17 = $("#quantity-etc_1").text();         arrQuantity.push(quantity17);
+            var quantity18 = $("#quantity-etc_2").text();         arrQuantity.push(quantity18);
+            var quantity19 = $("#quantity-etc_3").text();         arrQuantity.push(quantity19);
+            var quantity20 = $("#quantity-etc_4").text();         arrQuantity.push(quantity20);
+            var quantity21 = $("#quantity-etc_5").text();         arrQuantity.push(quantity21);
+            var quantity22 = $("#quantity-etc_6").text();         arrQuantity.push(quantity22);
+            var quantity23 = $("#quantity-etc_7").text();         arrQuantity.push(quantity23);
 
         // now we check each ingredient is checked
             var arrDeduct = [];
@@ -565,7 +581,7 @@ $(document).ready(function () {
         var information = {
             ordernum: ordernum,
             checked: arrChecks,
-            quantity: arrQuantity
+            quantity: arrDeduct
         }
 
         // step 1: save checked fields in the orders db
@@ -575,6 +591,9 @@ $(document).ready(function () {
 
                 // step 2: deduct the ingredients quantities from ingredients db
                 $.post("deductCheckedIngredients", information, function(data, status) {
+
+                    console.log("finished the deduct in index.js");
+
                     if (data.success){
                         console.log("deduct ingredients working");
                         alert("Successfully updated the ingredients checklist and inventory!");
