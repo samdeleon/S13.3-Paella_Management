@@ -264,6 +264,61 @@ $(document).ready(function(){
                                     $('#count23').val(1);
                                 }
                             }); 
+
+
+                            $("#inventory-save").click(function() {
+                                // getting all the CHECKED values of each ingredient:
+                                    
+                                // getting all the QUANTITY values of each ingredient:
+                                    var arrQuantity = [];   // TODO: change the value into getting the span of it
+                        
+
+                                    var quantity1 = $("#count1").val();     arrQuantity.push(quantity1);
+                                    var quantity2 = $("#count2").val();     arrQuantity.push(quantity2);
+                                    var quantity3 = $("#count3").val();     arrQuantity.push(quantity3);
+                                    var quantity4 = $("#count4").val();     arrQuantity.push(quantity4);
+                                    var quantity5 = $("#count5").val();     arrQuantity.push(quantity5);
+                                    
+                                    var quantity6 = $("#count6").val();         arrQuantity.push(quantity6);
+                                    var quantity7 = $("#count7").val();         arrQuantity.push(quantity7);
+                                    var quantity8 = $("#count8").val();         arrQuantity.push(quantity8);
+                                    var quantity9 = $("#count9").val();         arrQuantity.push(quantity9);
+                                    
+                                    var quantity10 = $("#count10").val();     arrQuantity.push(quantity10);
+                                    var quantity11 = $("#count11").val();     arrQuantity.push(quantity11);
+                                    var quantity12 = $("#count12").val();     arrQuantity.push(quantity12);
+                                    var quantity13 = $("#count13").val();     arrQuantity.push(quantity13);
+                                    var quantity14 = $("#count14").val();     arrQuantity.push(quantity14);
+                                    var quantity15 = $("#count15").val();     arrQuantity.push(quantity15);
+                                    
+                                    var quantity16 = $("#count16").val();       arrQuantity.push(quantity16);
+                                    
+                                    var quantity17 = $("#count17").val();         arrQuantity.push(quantity17);
+                                    var quantity18 = $("#count18").val();         arrQuantity.push(quantity18);
+                                    var quantity19 = $("#count19").val();         arrQuantity.push(quantity19);
+                                    var quantity20 = $("#count20").val();         arrQuantity.push(quantity20);
+                                    var quantity21 = $("#count21").val();         arrQuantity.push(quantity21);
+                                    var quantity22 = $("#count22").val();         arrQuantity.push(quantity22);
+                                    var quantity23 = $("#count23").val();         arrQuantity.push(quantity23);
+                        
+                            
+                                var information = {
+                                    quantity: arrQuantity
+                                }
+                        
+                                // step 1: save checked fields in the orders db
+                                $.post("updateInventory", information, function(data, status) {
+                                    if (data.success){
+            
+                                        alert("Successfully updated the inventory!");
+                                        $("#ingredients-editbtn").modal("toggle")
+                                        window.location.reload();
+                                    }
+                                        
+                                    
+                                });
+                        
+                            });                         
                     
                    
  });
