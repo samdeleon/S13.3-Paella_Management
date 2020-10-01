@@ -74,7 +74,8 @@ app.get('/home', function(req, res){
               styles: "css/styles_inside.css",
               scripts: "script/HomepageScript.js",
               body_class: "inside",
-              records: content
+              records: content,
+              username: curr_username
             });
           }
 
@@ -452,8 +453,11 @@ app.post('/login',function (req,res){
     console.log("User: " + user);
     if (user == null)
         result.ok = false;
-    else
-        result.ok = true;
+    else{
+      result.ok = true;
+      curr_username = user.username;
+    }
+        
     console.log("Result: " + result.ok);
     res.send(result);
   });
