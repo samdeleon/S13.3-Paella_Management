@@ -21,8 +21,8 @@
             </script>
             -->
             <div class="modal fade" id="ingredients-editbtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content container">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Update Ingredients</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -31,156 +31,288 @@
                         </div>
                         <div class="modal-body">
                            <table class="table">
-                             <thead class="thead-dark">
+                             <thead class="thead-dark ingredient-row">
                                 <tr>
                                 <th scope="col">Type</th>
                                 <th scope="col">Ingredient Name</th>
                                 <th scope="col">Quantity</th>
                                 </tr>
                                 </thead>
-                            <tbody>
+                            <tbody class="ingredient-row">
                                 <tr>
                                 <th scope="row" class="table-danger">1</th>
-                                <td></td>
+                                <td>Saffron</td>
                                 <td>
-                                    <div class="qty mt-5">
+                                    <div class="qty">
                                         <span class="minus bg-dark">-</span>
-                                        <input type="number" class="count" name="qty" value="1">
+                                        <input type="number" class="count" name="qty1" value={{this.records.0.quantity}}>
                                         <span class="plus bg-dark">+</span>
                                      </div>
-                                 </td>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-danger">2</th>
-                                <td></td>
-                                <td></td>
+                                <td>Olive Oil</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty2" value={{this.records.1.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-danger">3</th>
-                                <td></td>
-                                <td></td>
+                                <td>White Onions</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty3" value={{this.records.2.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-danger">4</th>
-                                <td></td>
-                                <td></td>
+                                <td>Tomatoes</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty4" value={{this.records.3.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-danger">5</th>
-                                <td></td>
-                                <td></td>
+                                <td>Garlic</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty5" value={{this.records.4.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-warning">6</th>
-                                <td></td>
-                                <td></td>
+                                <td>Chicken Breast Part</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty6" value={{this.records.5.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-warning">7</th>
-                                <td></td>
-                                <td></td>
+                                <td>Chorizo</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty7" value={{this.records.6.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-warning">8</th>
-                                <td></td>
-                                <td></td>
+                                <td>Bilbao</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty8" value={{this.records.7.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-warning">9</th>
-                                <td></td>
-                                <td></td>
+                                <td>Lomo (Pork Tenderlion)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty9" value={{this.records.8.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">10</th>
-                                <td></td>
-                                <td></td>
+                                <td>Crabs</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty10" value={{this.records.9.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">11</th>
-                                <td></td>
-                                <td></td>
+                                <td>Sugpo (Tiger Prawns)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty11" value={{this.records.10.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">12</th>
-                                <td></td>
-                                <td></td>
+                                <td>Suahe (Shrimps)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty12" value={{this.records.11.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">13</th>
-                                <td></td>
-                                <td></td>
+                                <td>Tahong (Mussles)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty13" value={{this.records.12.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">14</th>
-                                <td></td>
-                                <td></td>
+                                <td>Halaan (Clams)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty14" value={{this.records.13.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">15</th>
-                                <td></td>
-                                <td></td>
+                                <td>Lumot (Big Squid)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty15" value={{this.records.14.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row" class="table-success">16</th>
-                                <td></td>
-                                <td></td>
+                                <td>Chicken Stock</td>
+                               <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty16" value={{this.records.15.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">17</th>
-                                <td></td>
-                                <td></td>
+                                <td>White Japanese Rice</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty17" value={{this.records.16.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">18</th>
-                                <td></td>
-                                <td></td>
+                                <td>Eggs</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty18" value={{this.records.17.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">19</th>
-                                <td></td>
-                                <td></td>
+                                <td>Mayo</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty"19 value={{this.records.18.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">20</th>
-                                <td></td>
-                                <td></td>
+                                <td>Garlic</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty20" value={{this.records.19.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">21</th>
-                                <td></td>
-                                <td></td>
+                                <td>Lemon</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty21" value={{this.records.20.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">22</th>
-                                <td></td>
-                                <td></td>
+                                <td>Red Bell Pepper</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty22" value={{this.records.21.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                 <tr>
                                 <th scope="row">23</th>
-                                <td></td>
-                                <td></td>
+                                <td>Rosemary (for garnish)</td>
+                                <td>
+                                    <div class="qty">
+                                        <span class="minus bg-dark">-</span>
+                                        <input type="number" class="count" name="qty23" value={{this.records.22.quantity}}>
+                                        <span class="plus bg-dark">+</span>
+                                     </div>
+                                </td>
                                 
                                 </tr>
                                        
@@ -218,34 +350,34 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Saffron</td>
+                            <td id="inventory-soffrito_1">{{this.records.0.quantity}}</td>
+                            <td>Pinch</td>
+                            <td>27.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Olive Oil</td>
+                            <td id="inventory-soffrito_2">{{this.records.1.quantity}}</td>
+                            <td>mL</td>
+                            <td>146.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>White Onions</td>
+                            <td id="inventory-soffrito_3">{{this.records.2.quantity}}</td>
+                            <td>Big Onion</td>
+                            <td>18.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Tomatoes</td>
+                            <td id="inventory-soffrito_4">{{this.records.3.quantity}}</td>
+                            <td>400g Can</td>
+                            <td>44.50</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Garlic</td>
+                            <td id="inventory-soffrito_5">{{this.records.4.quantity}}</td>
+                            <td>Clove</td>
+                            <td>8.75</td>
                         </tr>
                     </tbody>
                 </table>
@@ -270,34 +402,28 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Chicken Breast Part</td>
+                            <td id="inventory-meat_1">{{this.records.5.quantity}}</td>
+                            <td>pieces</td>
+                            <td>85.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Chorizo</td>
+                            <td id="inventory-meat_2">{{this.records.6.quantity}}</td>
+                            <td>pieces</td>
+                            <td>92.50</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Bilbao</td>
+                            <td id="inventory-meat_3"/>{{this.records.7.quantity}}</td>
+                            <td>pieces</td>
+                            <td>19.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Lomo (Pork Tenderlion)</td>
+                            <td id="inventory-meat_4">{{this.records.8.quantity}}</td>
+                            <td>grams</td>
+                            <td>126.50</td>
                         </tr>
                     </tbody>
                 </table>
@@ -323,40 +449,40 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Crabs</td>
+                            <td id="inventory-seafood_1">{{this.records.9.quantity}}</td>
+                            <td>pieces</td>
+                            <td>250.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Sugpo (Tiger Prawns)</td>
+                            <td id="inventory-seafood_2">{{this.records.10.quantity}}</td>
+                            <td>pieces</td>
+                            <td>25.83</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Suahe (Shrimps)</td>
+                            <td id="inventory-seafood_3">{{this.records.11.quantity}}</td>
+                            <td>pieces</td>
+                            <td>5.06</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Tahong (Mussles)</td>
+                            <td id="inventory-seafood_4">{{this.records.12.quantity}}</td>
+                            <td>pieces</td>
+                            <td>4.91</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Halaan (Clams)</td>
+                            <td id="inventory-seafood_5">{{this.records.13.quantity}}</td>
+                            <td>pieces</td>
+                            <td>1.87</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Lumot (Big Squid)</td>
+                            <td id="inventory-seafood_6">{{this.records.14.quantity}}</td>
+                            <td>medium pc</td>
+                            <td>96.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -381,43 +507,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Chicken Stock</td>
+                            <td id="inventory-stock_1">{{this.records.15.quantity}}</td>
+                            <td>Cups</td>
+                            <td>0.00</td>
                         </tr>
                     </tbody>
                 </table>
             </div>  
         </div>
-        <div class="row">
-            <div class ="col">
-                <p class = "h3">Rice<p>
-            </div>
-            
-        </div>
-        <div class="row">
-            <div class="col">
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Unit</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        
         <div class="row">
             <div class ="col">
                 <p class = "h3">Extras<p>
@@ -437,28 +536,46 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>White Japanese Rice</td>
+                            <td id="inventory-etc_1">{{this.records.16.quantity}}</td>
+                            <td>Cups</td>
+                            <td>23.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Egg</td>
+                            <td id="inventory-etc_2">{{this.records.17.quantity}}</td>
+                            <td>pieces</td>
+                            <td>7.05</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Mayo</td>
+                            <td id="inventory-etc_3">{{this.records.18.quantity}}</td>
+                            <td>mL</td>
+                            <td>87.00</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Garlic</td>
+                            <td id="inventory-etc_4">{{this.records.19.quantity}}</td>
+                            <td>Clove</td>
+                            <td>8.75</td>
+                        </tr>
+                        <tr>
+                            <td>Lemon</td>
+                            <td id="inventory-etc_5">{{this.records.20.quantity}}</td>
+                            <td>pieces</td>
+                            <td>22.05</td>
+                        </tr>
+                        <tr>
+                            <td>Red Bell Pepper</td>
+                            <td id="inventory-etc_6">{{this.records.21.quantity}}</td>
+                            <td>pieces</td>
+                            <td>9.90</td>
+                        </tr>
+                        <tr>
+                            <td>Rosemary (for garnish)</td>
+                            <td id="inventory-etc_7">{{this.records.22.quantity}}</td>
+                            <td>sprig</td>
+                            <td>21.10</td>
                         </tr>
                     </tbody>
                 </table>
