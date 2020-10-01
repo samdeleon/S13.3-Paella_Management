@@ -179,21 +179,44 @@ app.get('/order-information-:param', function(req, res){
                   var inventoryQty = inventory.quantity;
                   var orderQty = order.order_ingredients[i].quantity;
 
-                  // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
-                  if (inventoryQty >= orderQty) {
-                    quantity = {
-                      stock: ""
+                    // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
+                    if (inventoryQty >= orderQty || order.order_ingredients[i].checked == true) {
+                      quantity = {
+                        stock: ""
+                      }
                     }
-                  }
-                  // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
-                  else {
-                    quantity = {
-                      stock: "(Out of Stock)"
+                    // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
+                    else {
+                      quantity = {
+                        stock: "(Out of Stock)"
+                      }
                     }
-                  }
 
                   arrQuantity.push(quantity);
                 });
+
+
+                // info for profit computation depending on price
+                var customerPrice;
+                var ingredientsPrice;
+                var computation;
+                var size = order.paellasize;
+
+                if(size == "14 inches") {
+                  customerPrice = "2,800.00";
+                  ingredientsPrice = "1,704.50";
+                  computation = "1095.5";
+                }
+                else if(size == "16 inches") {
+                  customerPrice = "3,200.00";
+                  ingredientsPrice = "2,321.30";
+                  computation = "878.50";
+                }
+                else if(size == "20 inches") {
+                  customerPrice = "4,000.00";
+                  ingredientsPrice = "2,642.64";
+                  computation = "1,357.36";
+                }
                 
                 // LAST = rendering of stuff in order info page
                 res.render('OrderInformation', {
@@ -218,7 +241,10 @@ app.get('/order-information-:param', function(req, res){
                   saveText: saveText,
                   array: order.order_ingredients,
                   quantity: arrQuantity,
-                  checked: arrChecked
+                  checked: arrChecked,
+                  payment1: customerPrice,
+                  payment2: ingredientsPrice,
+                  profit: computation
                 });
               }
             });

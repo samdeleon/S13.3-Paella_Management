@@ -367,8 +367,12 @@
                 <h4 class="card-header">Profit Computation</h4>
 
                 <div class="card-body">
-                    <!-- the format should look like this more or less, but the code will follow-->
-                    <p><b>Total ???:</b> Php XXXX.XX</p>
+                    <p class="priceLeft"><b>Total Payment of Customer:</b></p>   <p class="priceRight">Php {{this.payment1}}</p>
+                    <p class="priceLeft"><b>Total Price of Ingredients:</b></p>   <p class="priceRight">Php {{this.payment2}}</p>
+                    <hr id="profitLine">
+                    <p class="priceLeft"><b>Total Profit:</b></p>   <p class="priceRight"><b>Php {{this.profit}}</b></p>
+                </div>
+                    
                 </div>
             </div>
         </div>
