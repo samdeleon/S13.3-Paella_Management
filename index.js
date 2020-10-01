@@ -11,7 +11,7 @@ const userModel = require('./models/user');
 const orderModel = require('./models/order');
 const customerModel = require('./models/customer');
 const pansModel = require('./models/pans');
-const inventoryIngredientsModal = require('./models/inventoryIngredients');
+const inventoryIngredientsModel = require('./models/inventoryIngredients');
 const orderIngredientsModel = require('./models/orderIngredients');
 
 app.engine('hbs', exphandle({
@@ -140,12 +140,69 @@ app.get('/order-information-:param', function(req, res){
 
 // [PAGE-05] INGREDIENTS INVENTORY
 app.get('/ingredients-inventory', function(req, res){
+
+    var content = [];
+    /*
     res.render('IngredientsInventory', {
         title: "Ingredients Inventory",
         styles: "css/styles_inside.css",
         scripts: "script/IngredientsInventoryScript.js",
-        body_class: "inside"
+        body_class: "inside",
+        records: content
     });
+    */
+   
+    
+    inventoryIngredientsModel.find().sort({name: 1}).exec(function(err, result){
+      
+      if(err) throw err;
+      /*
+      if (result.length == 0) {
+        res.render('IngredientsInventory', {
+          title: "Ingredients Inventory",
+          styles: "css/styles_inside.css",
+          scripts: "script/IngredientsInventoryScript.js",
+          body_class: "inside",
+          records: content
+        });
+      }
+      */
+      result.forEach(function(doc) {
+        content.push(doc.toObject());
+      });
+        res.render('IngredientsInventory', {
+          title: "Ingredients Inventory",
+          styles: "css/styles_inside.css",
+          scripts: "script/IngredientsInventoryScript.js",
+          body_class: "inside",
+          records: content
+      });
+    });
+    
+    /*
+    customerModel.find().sort({name: 1}).exec(function(err, result){
+      if(err) throw err;
+      if (result.length == 0) {
+        res.render('AllCustomers', {
+          title: "All Customers",
+          styles: "css/styles_inside.css",
+          scripts: "script/AllCustomersScript.js",
+          body_class: "inside",
+          records: content
+        });
+      }
+      result.forEach(function(doc) {
+        content.push(doc.toObject());
+      });
+        res.render('AllCustomers', {
+          title: "All Customers",
+          styles: "css/styles_inside.css",
+          scripts: "script/AllCustomersScript.js",
+          body_class: "inside",
+          records: content
+        });
+    });
+    */
 });
 
 // [PAGE-06] UPDATE INGREDIENTS
