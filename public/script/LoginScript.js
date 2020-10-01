@@ -13,8 +13,11 @@ $(document).ready(function () {
 
         if (accntname == "" || accntpass == ""||accntpass!=accntpass2
         ||accntname==" "||accntpass==" "||accntpass2==""||accntpass2==" "
-        ||checkbox.checked!=true)
+        ||checkbox.checked!=true
+        ||accntname.length>15||accntpass.length>15||accntname.length<6||accntpass.length<6)
         {
+            
+            alert("Registration Unsuccessful!")
             return false;
         }
         else
