@@ -1,9 +1,4 @@
 .inside {
-    /*
-    background-color: ;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    */
 }
 
 .content {
@@ -290,34 +285,13 @@
     border-radius: 50%;
     background-clip: padding-box;
 }
-div {
-    text-align: center;
-}
+
 .minus:hover{
     background-color: #717fe0 !important;
 }
 .plus:hover{
     background-color: #717fe0 !important;
 }
-/*Prevent text selection*/
-span{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-input{  
-    border: 0;
-    width: 2%;
-}
-nput::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input:disabled{
-    background-color:white;
-}
-    
 
 /* ------------------------------- [PAGE-06] UPDATE INGREDIENTS --------------------------------- */
 

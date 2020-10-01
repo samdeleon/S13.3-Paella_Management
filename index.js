@@ -1037,13 +1037,12 @@ app.post('/retrievePan', function (req, res) {
 app.post('/updateInventory', function (req, res){
   
   var update;
-  
+  var response;
   
   ingredientsModel.find().lean().exec(function(err, result){
     if(err) throw err;
 
     var i = -1
-
     result.forEach(function(doc) {
       i++;
       var inventory = doc
@@ -1054,27 +1053,17 @@ app.post('/updateInventory', function (req, res){
         name: inventory.name,
         quantity: newQuantity
       }
-      var response
+
       ingredientsModel.findOneAndUpdate({name: inventory.name}, update, { new: false }, function (err, order){
-        if (err) {
-          throw err;
-          response = {success: false}
-        } else {
-          response = {success: true}
-          
-        }
-         
+        if (err) throw err;
         
-        
+        response = {success: true}
       });
-      res.send(response);
     });
-
-
-    
   
   });
   
+  res.send(response);
 });
 
 /* --------------------------------------- END OF FEATURES -------------------------------------- */

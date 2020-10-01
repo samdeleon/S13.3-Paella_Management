@@ -308,17 +308,17 @@ $(document).ready(function(){
                         
                                 // step 1: save checked fields in the orders db
                                 $.post("updateInventory", information, function(data, status) {
-                                    if (data.success){
             
-                                        alert("Successfully updated the inventory!");
-                                        $("#ingredients-editbtn").modal("toggle")
-                                        window.location.reload();
-                                    }
-                                        
-                                    
+                                    alert("Successfully updated the inventory!");
+                                    $("#ingredients-editbtn").modal("toggle");
+                                    window.location.reload();
+                    
                                 });
                         
                             });                         
                     
-                   
+    $(".inventory-cancelBtn").click(function() {
+        window.location.reload();
+    });
+                            
  });
