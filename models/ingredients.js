@@ -9,13 +9,13 @@ const options = { useNewUrlParser: true,
 
 mongoose.connect(databaseURL, options);
 
-const inventoryIngredientsSchema = new mongoose.Schema(
+const ingredientsSchema = new mongoose.Schema(
     {
 
-        name:             {type: String, required: true},
+        name:           {type: String, required: true},
         quantity:       {type: Number, required: true}
 
     }
 );
 
-module.exports = mongoose.model('inventoryIngredients', inventoryIngredientsSchema);
+module.exports = mongoose.model('ingredients', ingredientsSchema);

@@ -11,7 +11,7 @@ const userModel = require('./models/user');
 const orderModel = require('./models/order');
 const customerModel = require('./models/customer');
 const pansModel = require('./models/pans');
-const inventoryIngredientsModel = require('./models/inventoryIngredients');
+const ingredientsModel = require('./models/ingredients');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
@@ -161,31 +161,84 @@ app.get('/order-information-:param', function(req, res){
               saveBtnClass = "btn completed-ingredients btn-lg btn-block"
               saveText = "Complete!";
             }
+            
+            console.log("BEFORE INVENTORY");
+            
+            ingredientsModel.find().lean().exec(function (err, thing){
+              if(err) {
+                throw err;
+              }
+              else {
 
-            res.render('OrderInformation', {
-                title: "Order " + order_id,
-                styles: "css/styles_inside.css",
-                scripts: "script/OrderInformationScript.js",
-                body_class: "inside",
-                ordernum: order.ordernum,
-                name: client.name,
-                contact: client.contact_info,
-                message: client.message_info,
-                mode: order.mode_of_delivery,
-                address: client.address,
-                date: order.date,
-                time: order.time,
-                size: order.paellasize,
-                status: order.status,
-                remarks: order.extraremarks,
-                pan: order.pan_used,
-                statusClass: statusBtnClass,
-                saveClass: saveBtnClass,
-                saveText: saveText,
-                array: order.order_ingredients,
-                checked: arrChecked
+                console.log(thing);
+                console.log(thing.length);
+                console.log("BEFORE FOREACH");
+
+                // checking if theres stock for the ingredients
+                var arrQuantity = [];
+                var quantity;
+                var i=-1;
+
+                thing.forEach(function(doc) {
+                  console.log(doc);
+                  
+                  i++;
+                  var inventory = doc.toObject();
+                  var inventoryQty = inventory.quantity;
+                  var orderQty = order.order_ingredients[i].quantity;
+                  
+                  console.log("< orderQty #"+i+" "+order.order_ingredients[i].quantity+">")
+                  console.log("< inventoryQty #"+i+" "+inventory.quantity+">")
+
+                  // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
+                  if (inventoryQty >= orderQty) {
+                    quantity = {
+                      stock: ""
+                    }
+                  }
+                  // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
+                  else {
+                    quantity = {
+                      stock: "(Out of Stock)"
+                    }
+                    console.log("<"+quantity[i].stock+">")
+                  }
+
+                  arrQuantity.push(quantity);
+                });
+              
+                console.log("AFTER FOREACH");
+                
+                // LAST = rendering of stuff in order info page
+                res.render('OrderInformation', {
+                  title: "Order " + order_id,
+                  styles: "css/styles_inside.css",
+                  scripts: "script/OrderInformationScript.js",
+                  body_class: "inside",
+                  ordernum: order.ordernum,
+                  name: client.name,
+                  contact: client.contact_info,
+                  message: client.message_info,
+                  mode: order.mode_of_delivery,
+                  address: client.address,
+                  date: order.date,
+                  time: order.time,
+                  size: order.paellasize,
+                  status: order.status,
+                  remarks: order.extraremarks,
+                  pan: order.pan_used,
+                  statusClass: statusBtnClass,
+                  saveClass: saveBtnClass,
+                  saveText: saveText,
+                  array: order.order_ingredients,
+                  quantity: arrQuantity,
+                  checked: arrChecked
+                });
+              }
             });
-        });
+            
+            console.log("AFTER INVENTORY");
+          });
     });
 });
 
@@ -734,26 +787,29 @@ app.post('/saveCheckedIngredients', function (req, res){
 });
 
 app.post('/deductCheckedIngredients', function (req, res){
-  var quantity = req.body.quantity;
-  var newChecked = req.body.checked;
+  var order = req.body.quantity;
   var update;
   var result;
   var i=-1;
-
-  inventoryIngredientsModel.find().exec(function(err, result){
+  
+  ingredientsModel.find({}, function(err, result){
     if(err) throw err;
 
     result.forEach(function(doc) {
       i++;
-      var ingredient = doc.toObject();
-      var deducted = ingredient.quantity - quantity[i];
+      var inventory = doc.toObject();
+      var inventoryQty = inventory.quantity;
+      var orderQty = order[i];
+      var deducted;
+
+      var deducted = inventoryQty - orderQty;
 
       update = {
-        name: ingredient.name,
+        name: inventory.name,
         quantity: deducted
       }
 
-      inventoryIngredientsModel.findOneAndUpdate({name: ingredient.name}, update, { new: false }, function (err, order){
+      ingredientsModel.findOneAndUpdate({name: inventory.name}, update, { new: false }, function (err, order){
         if (err) {
           throw err;
         }
@@ -768,6 +824,7 @@ app.post('/deductCheckedIngredients', function (req, res){
       });
 
     });
+  
   });
 });
 

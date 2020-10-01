@@ -1,0 +1,162 @@
+[{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aadf"
+  },
+  "name": "soffrito_1",
+  "quantity": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae0"
+  },
+  "name": "soffrito_2",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae1"
+  },
+  "name": "soffrito_3",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae2"
+  },
+  "name": "soffrito_4",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae3"
+  },
+  "name": "soffrito_5",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae4"
+  },
+  "name": "meat_1",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae5"
+  },
+  "name": "meat_2",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae6"
+  },
+  "name": "meat_3",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae7"
+  },
+  "name": "meat_4",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae8"
+  },
+  "name": "seafood_1",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aae9"
+  },
+  "name": "seafood_2",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaea"
+  },
+  "name": "seafood_3",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaeb"
+  },
+  "name": "seafood_4",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaec"
+  },
+  "name": "seafood_5",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaed"
+  },
+  "name": "seafood_6",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaee"
+  },
+  "name": "stock_1",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaef"
+  },
+  "name": "etc_1",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf0"
+  },
+  "name": "etc_2",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf1"
+  },
+  "name": "etc_3",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf2"
+  },
+  "name": "etc_4",
+  "quantity": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf3"
+  },
+  "name": "etc_5",
+  "quantity": 20,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf4"
+  },
+  "name": "etc_6",
+  "quantity": 20,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f734c8c4bf77606ff63aaf5"
+  },
+  "name": "etc_7",
+  "quantity": 20,
+  "__v": 0
+}]
