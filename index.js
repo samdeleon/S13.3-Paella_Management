@@ -11,8 +11,7 @@ const userModel = require('./models/user');
 const orderModel = require('./models/order');
 const customerModel = require('./models/customer');
 const pansModel = require('./models/pans');
-const inventoryIngredientsModel = require('./models/inventoryIngredients');
-const orderIngredientsModel = require('./models/orderIngredients');
+const ingredientsModel = require('./models/ingredients');
 
 app.engine('hbs', exphandle({
     extname: 'hbs',
@@ -28,9 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'));
 
-var pan14info;
-var pan16info;
-var pan20info;
+var curr_username = "";
 
 /* ---------------------------------------- ALL 11 ROUTES ---------------------------------------- */
 
@@ -55,6 +52,7 @@ app.get('/home', function(req, res){
     if(err) throw err;
     if (result.length == 0) {
       res.render('Homepage', {
+        curruser: curr_username,
         title: "Home",
         styles: "css/styles_inside.css",
         scripts: "script/HomepageScript.js",
@@ -76,7 +74,8 @@ app.get('/home', function(req, res){
               styles: "css/styles_inside.css",
               scripts: "script/HomepageScript.js",
               body_class: "inside",
-              records: content
+              records: content,
+              username: curr_username
             });
           }
 
@@ -115,26 +114,131 @@ app.get('/order-information-:param', function(req, res){
               statusBtnClass = "btn btn-success btn-lg btn-block";
             }
 
-            res.render('OrderInformation', {
-                title: "Order " + order_id,
-                styles: "css/styles_inside.css",
-                scripts: "script/OrderInformationScript.js",
-                body_class: "inside",
-                ordernum: order.ordernum,
-                name: client.name,
-                contact: client.contact_info,
-                message: client.message_info,
-                mode: order.mode_of_delivery,
-                address: client.address,
-                date: order.date,
-                time: order.time,
-                size: order.paellasize,
-                status: order.status,
-                remarks: order.extraremarks,
-                pan: order.pan_used,
-                statusClass: statusBtnClass
+            var arrChecked = [];
+            var checkedValues;
+            var isComplete = true;
+            var isChecked = false;
+            var i = 0;
+            var saveText = "";
+
+            for (i = 0 ; i < 23; i++){
+              isChecked = order.order_ingredients[i].checked;
+
+              if(isChecked == true) {  // if checked then its disabled
+                checkedValues = {
+                  value: "checked disabled"
+                }
+              }
+              else {  // else its not disabled
+                checkedValues = {
+                  value: ""
+                }
+                isComplete = false;
+              }
+
+              arrChecked.push(checkedValues);
+
+              console.log("Loop " + i + "= <"+order.order_ingredients[i].checked+", "+arrChecked[i].value+">");
+            }
+
+            // if its not complete, it wont be disabled
+            if(isComplete == false) {
+              saveBtnClass = "btn btn-warning btn-lg btn-block";
+              saveText = "Save";
+            }
+            // if everythings checked & status is buying ingredients, then the save button will be disabled
+            else if(isComplete == true && order.status == "Buying Ingredients") {
+              saveBtnClass = "btn completed-status btn-lg btn-block"
+              saveText = "Complete!";
+            }
+            // if everythings checked & status is complete ingredients, then the save button will be hidden and disabled
+            else if(isComplete == true && order.status == "Complete Ingredients") {
+              saveBtnClass = "btn completed-ingredients btn-lg btn-block"
+              saveText = "Complete!";
+            }
+            // if status is anything after complete ingredients, then its both hidden and disabled
+            else {
+              saveBtnClass = "btn completed-ingredients btn-lg btn-block"
+              saveText = "Complete!";
+            }
+            
+            console.log("BEFORE INVENTORY");
+            
+            ingredientsModel.find().lean().exec(function (err, thing){
+              if(err) {
+                throw err;
+              }
+              else {
+
+                console.log(thing);
+                console.log(thing.length);
+                console.log("BEFORE FOREACH");
+
+                // checking if theres stock for the ingredients
+                var arrQuantity = [];
+                var quantity;
+                var i=-1;
+
+                thing.forEach(function(doc) {
+                  console.log(doc);
+                  
+                  i++;
+                  var inventory = doc.toObject();
+                  var inventoryQty = inventory.quantity;
+                  var orderQty = order.order_ingredients[i].quantity;
+                  
+                  console.log("< orderQty #"+i+" "+order.order_ingredients[i].quantity+">")
+                  console.log("< inventoryQty #"+i+" "+inventory.quantity+">")
+
+                  // if the quantity in inventory is >= to the quantity in order, then that means there IS stock (checkbox is not disabled)
+                  if (inventoryQty >= orderQty) {
+                    quantity = {
+                      stock: ""
+                    }
+                  }
+                  // kulang yung nasa inventory (checkbox will be = indeterminate, no pointer events, and show that its out of stock)
+                  else {
+                    quantity = {
+                      stock: "(Out of Stock)"
+                    }
+                    console.log("<"+quantity[i].stock+">")
+                  }
+
+                  arrQuantity.push(quantity);
+                });
+              
+                console.log("AFTER FOREACH");
+                
+                // LAST = rendering of stuff in order info page
+                res.render('OrderInformation', {
+                  title: "Order " + order_id,
+                  styles: "css/styles_inside.css",
+                  scripts: "script/OrderInformationScript.js",
+                  body_class: "inside",
+                  ordernum: order.ordernum,
+                  name: client.name,
+                  contact: client.contact_info,
+                  message: client.message_info,
+                  mode: order.mode_of_delivery,
+                  address: client.address,
+                  date: order.date,
+                  time: order.time,
+                  size: order.paellasize,
+                  status: order.status,
+                  remarks: order.extraremarks,
+                  pan: order.pan_used,
+                  statusClass: statusBtnClass,
+                  saveClass: saveBtnClass,
+                  saveText: saveText,
+                  array: order.order_ingredients,
+                  quantity: arrQuantity,
+                  checked: arrChecked
+                });
+              }
             });
-        });
+            
+            console.log("AFTER INVENTORY");
+          });
     });
 });
 
@@ -153,7 +257,7 @@ app.get('/ingredients-inventory', function(req, res){
     */
    
     
-    inventoryIngredientsModel.find().sort({name: 1}).exec(function(err, result){
+   ingredientsModel.find().sort({name: 1}).exec(function(err, result){
       
       if(err) throw err;
       /*
@@ -221,7 +325,7 @@ app.get('/pans-inventory', function(req, res){
 
     var content16 = [];
     var img16;
-    
+
     var content20 = [];
     var img20;
 
@@ -251,7 +355,7 @@ app.get('/pans-inventory', function(req, res){
       // For the row of 16 inch pans
       pansModel.find({name: {$exists: true, $regex: /16/}}).exec(function(err, result){
         if(err) throw err;
-        
+
         result.forEach(function(doc) {
           if(doc.toObject().name == "16A") {
             img16 = "/images/16A.jpg";
@@ -275,7 +379,7 @@ app.get('/pans-inventory', function(req, res){
         // For the row of 20 inch pans
         pansModel.find({name: {$exists: true, $regex: /20/}}).exec(function(err, result){
           if(err) throw err;
-          
+
           result.forEach(function(doc) {
             if(doc.toObject().ame == "20A") {
               img20 = "/images/20A.jpg";
@@ -291,11 +395,11 @@ app.get('/pans-inventory', function(req, res){
             else {
               classinfo = "btn btn-warning btn-block pan-status";
             }
-  
+
             entry = {main: doc.toObject(), image: img20, btnClass: classinfo};
             content20.push(entry);
           });
-        
+
           res.render('PansInventory', {
             title: "Pans Inventory",
             styles: "css/styles_inside.css",
@@ -449,8 +553,6 @@ app.listen(port, function() {
   });
 
 /* ---------------------------------- FEATURES & POST REQUESTS ---------------------------------- */
-// we'll add things here after sprint 1
-/*test stuff for Login*/
 
 app.post('/newUser', function (req, res) {
       var user = new userModel({
@@ -460,7 +562,7 @@ app.post('/newUser', function (req, res) {
       });
       var result;
       //you can re register the same person with the same details over and over
-      
+
       user.save(function(err, user) {
           if (err){
               console.log(err.errors);
@@ -491,8 +593,11 @@ app.post('/login',function (req,res){
     console.log("User: " + user);
     if (user == null)
         result.ok = false;
-    else
-        result.ok = true;
+    else{
+      result.ok = true;
+      curr_username = user.username;
+    }
+        
     console.log("Result: " + result.ok);
     res.send(result);
   });
@@ -500,7 +605,6 @@ app.post('/login',function (req,res){
 
 /*test stuff for log in end*/
 app.post('/newOrder', function (req, res) {
-
     var d = new Date();
     var year = d.getFullYear();
 
@@ -511,50 +615,114 @@ app.post('/newOrder', function (req, res) {
     }
     var bool = true
     customerModel.findOneAndUpdate({name : req.body.name}, {$set:query}, {new : true}, function (err, cus){
-      var newCustomer
-      if (cus == null){
-          newCustomer = new customerModel({
-          name:             req.body.name,
-          contact_info:     req.body.info,
-          message_info:     req.body.msg_info,
-          address:          req.body.address,
+      var newCustomer;
+      if (cus){
+        newCustomer = cus
+      }else{
+        newCustomer = new customerModel({
+        name:             req.body.name,
+        contact_info:     req.body.info,
+        message_info:     req.body.msg_info,
+        address:          req.body.address,
         });
         bool = false
-      }else{
-        newCustomer = cus
       }
 
-
       orderModel.countDocuments().exec(function (err, count){
-
 
         count = count + 1;
         count = count.toString().padStart(3, '0');
 
+        // generating orderIngredients quantities depending on the paella size
+          var arrObjects = [];
+          var arrQuantity = [];
+
+        // quantities for 14 inch paellasize
+          if(req.body.paellasize == "14 inches") {
+            arrQuantity = [1, 50, 1, 1.5, 4,1, 1, 2, 200, 1.5, 6, 8, 14, 20, 1, 6, 3, 3, 220, 4, 2, 2, 1]
+          }
+
+        // quantities for 16 inch paellasize
+          if(req.body.paellasize == "16 inches") {
+            arrQuantity = [1.5, 75, 1.5, 2, 6, 2, 2, 3, 250, 2, 8,10, 18, 25, 1.5, 9, 4.5, 4, 220, 4, 2, 2, 2]
+          }
+
+        // quantities for 20 inch paellasize
+          if(req.body.paellasize == "20 inches") {
+            arrQuantity = [2, 100, 2, 3, 10, 2, 2, 4, 350, 2, 8, 10, 22, 30, 2, 13, 6.5, 6, 220, 4, 2, 2, 2]
+          }
+
+        // loop for making the array of ingredients objects
+          var i=0;
+          var ingredientName = "";
+          var tempNum = 0;
+
+          for (i = 0 ; i < 23; i++){
+            // index 0 to 4 = soffrito 1 to 5
+              if (i>=0 && i<=4) {
+                tempNum = i+1;
+                ingredientName = "soffrito_" + tempNum;
+              }
+
+            // index 5 to 8 = meat 1 to 4
+              if (i>=5 && i<=8) {
+                tempNum = i-4;
+                ingredientName = "meat_" + tempNum;
+              }
+
+            // index 9 to 14 = seafood 1 to 6
+              if (i>=9 && i<=14) {
+                tempNum = i-8;
+                ingredientName = "seafood_" + tempNum;
+              }
+
+            // index 15 = stock 1
+              if (i==15) {
+                ingredientName = "stock_1";
+              }
+
+            // index 16 to 22 = etc 1 to 7
+              if (i>=16 && i<=22) {
+                tempNum = i-15
+                ingredientName = "etc_" + tempNum;
+              }
+            
+            var checkedValue = false;
+
+            var ingredientObject = {
+              name: ingredientName,
+              quantity: arrQuantity[i],
+              checked: checkedValue
+            };
+
+            arrObjects.push(ingredientObject);
+          }
+
         var order = new orderModel({
-          ordernum:         year + "-" + count,
-          customer_id:      newCustomer._id,
-          mode_of_delivery: req.body.mode,
-          date:             req.body.date,
-          time:             req.body.time,
-          paellasize:       req.body.paellasize,
-          status:           req.body.status,
-          extraremarks:     req.body.extraremarks,
-          pan_used:         req.body.pan_used
+          ordernum:           year + "-" + count,
+          customer_id:        newCustomer._id,
+          mode_of_delivery:   req.body.mode,
+          date:               req.body.date,
+          time:               req.body.time,
+          paellasize:         req.body.paellasize,
+          status:             req.body.status,
+          extraremarks:       req.body.extraremarks,
+          pan_used:           req.body.pan_used,
+          order_ingredients:  arrObjects
         });
         var result;
 
         order.save(function(err, new_order) {
-           if (err){
+          if (err){
              console.log(err.errors);
 
             result = {success: false, message: "new order was not created"};
             res.send(result);
           }
-          else{
+          else {
             console.log("New order added");
             console.log(new_order);
-            if (bool == true){
+            if (bool == false){
               newCustomer.save(function (err, new_customer) {
                 console.log("New customer added");
                 console.log(new_customer);
@@ -562,14 +730,18 @@ app.post('/newOrder', function (req, res) {
                 result = {
                   success: true,
                   message: "new order was created"
-
                 };
-              })
+                
+              });
+              
             }
           }
         });
+
     });
   })
+
+
 });
 
 app.post('/newCustomer', function (req, res) {
@@ -618,6 +790,98 @@ app.post('/searchOrderNum', function(req, res) {
         result.ok = true;
     console.log("Result: " + result.ok);
     res.send(result);
+  });
+});
+
+app.post('/saveCheckedIngredients', function (req, res){
+  var newChecked = req.body.checked;
+  var update;
+  var result;
+
+  orderModel.findOne({ordernum: req.body.ordernum}, function(err, data){
+      // loop to update the checked value
+      var newIngredients = data.order_ingredients;
+
+      for (i=0; i<23; i++) {
+        if(newChecked[i] == "true") {
+          newIngredients[i].checked = true;
+        }
+        else {
+          newIngredients[i].checked = false;
+        }
+          ;
+      }
+
+      update = {
+          ordernum:           data.ordernum,
+          name:               data.name,
+          contact_info:       data.contact_info,
+          mode_of_delivery:   data.mode_of_delivery,
+          address:            data.address,
+          date:               data.date,
+          time:               data.time,
+          paellasize:         data.paellasize,
+          status:             data.status,
+          extraremarks:       data.extraremarks,
+          pan_used:           data.pan_used,
+          order_ingredients:  newIngredients
+      }
+
+      orderModel.findOneAndUpdate({ordernum: req.body.ordernum}, update, { new: false }, function (err, order){
+        if (err) {
+          throw err;
+        }
+        else {
+          result = {
+            success: true
+          }
+
+          res.send(result);
+          console.log("Successfully Updated the Ingredients!\n");
+        }
+      });
+  });
+});
+
+app.post('/deductCheckedIngredients', function (req, res){
+  var order = req.body.quantity;
+  var update;
+  var result;
+  var i=-1;
+  
+  ingredientsModel.find({}, function(err, result){
+    if(err) throw err;
+
+    result.forEach(function(doc) {
+      i++;
+      var inventory = doc.toObject();
+      var inventoryQty = inventory.quantity;
+      var orderQty = order[i];
+      var deducted;
+
+      var deducted = inventoryQty - orderQty;
+
+      update = {
+        name: inventory.name,
+        quantity: deducted
+      }
+
+      ingredientsModel.findOneAndUpdate({name: inventory.name}, update, { new: false }, function (err, order){
+        if (err) {
+          throw err;
+        }
+        else {
+          result = {
+            success: true
+          }
+
+          res.send(result);
+          console.log("Successfully Updated the Ingredients Inventory!\n");
+        }
+      });
+
+    });
+  
   });
 });
 

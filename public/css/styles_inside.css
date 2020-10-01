@@ -33,7 +33,7 @@
 .home-col1 {
     padding-left: 10px;
     padding-right: 10px;
-    width: 150px;
+    width: 160px;
 }
 
 .home-col2 {
@@ -42,7 +42,27 @@
     width: 200px;
 }
 
+.home-col3 {
+    padding-left: 10px;
+    width: 200px;
+}
+
 .home-status {
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:hover {
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:active{
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:focus{
     cursor: default;
     pointer-events: none;
 }
@@ -166,6 +186,10 @@
     color: red;
 }
 
+#nextstatusError {
+    color: red;
+}
+
 .info-row2 {
     margin: auto;
 }
@@ -182,6 +206,27 @@
 }
 
 #info-checklist {
+}
+
+.stockError {
+    color: red;
+}
+
+.completed-checklist {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+}
+
+.completed-ingredients {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+    display: none;
 }
 
 #info-profit {

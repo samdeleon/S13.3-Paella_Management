@@ -22,15 +22,16 @@ $(document).ready(function () {
             $.post('login', {user: newuser}, function(data, status){
                 if(!data.ok) {
                     alert("Registration Successful!")
+                    curr_username = accntname;
                     $.post("/newUser", newuser,function (data, status) {
-        
+
                     });
                 } else {
-                  
+
                   alert("User already exists!");
                 }
             });
-            
+
 
         }
     });
@@ -52,6 +53,7 @@ $(document).ready(function () {
               if(!data.ok) {
                 alert("Invalid Login.");
               } else {
+                curr_username = accntname;
                 $(location).attr("href", "/home");
                 alert("Welcome " + data.cont.username + "!");
               }

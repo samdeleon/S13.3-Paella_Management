@@ -14,8 +14,6 @@ $(document).ready(function () {
             remarks = "None";
         }
 
-
-
         var details = {
             name:           customerName,
             info:           contact_info,
@@ -41,7 +39,7 @@ $(document).ready(function () {
         {
 
             $.post("/newOrder", details ,function (data, status) {
-                
+            
             });
             
         }

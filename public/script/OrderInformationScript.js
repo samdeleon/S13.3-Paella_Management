@@ -1,5 +1,80 @@
 $(document).ready(function () {
 
+    // setting all out of stock ingredients to INDETERMINATE;
+        var arrStock = []
+
+        var stock1 = $("#stock-soffrito_1").text();    arrStock.push(stock1);
+        var stock2 = $("#stock-soffrito_2").text();    arrStock.push(stock2);
+        var stock3 = $("#stock-soffrito_3").text();    arrStock.push(stock3);
+        var stock4 = $("#stock-soffrito_4").text();    arrStock.push(stock4);
+        var stock5 = $("#stock-soffrito_5").text();    arrStock.push(stock5);
+        
+        var stock6 = $("#stock-meat_1").text();        arrStock.push(stock6);
+        var stock7 = $("#stock-meat_2").text();        arrStock.push(stock7);
+        var stock8 = $("#stock-meat_3").text();        arrStock.push(stock8);
+        var stock9 = $("#stock-meat_4").text();        arrStock.push(stock9);
+        
+        var stock10 = $("#stock-seafood_1").text();    arrStock.push(stock10);
+        var stock11 = $("#stock-seafood_2").text();    arrStock.push(stock11);
+        var stock12 = $("#stock-seafood_3").text();    arrStock.push(stock12);
+        var stock13 = $("#stock-seafood_4").text();    arrStock.push(stock13);
+        var stock14 = $("#stock-seafood_5").text();    arrStock.push(stock14);
+        var stock15 = $("#stock-seafood_6").text();    arrStock.push(stock15);
+        
+        var stock16 = $("#stock-stock_1").text();      arrStock.push(stock16);
+        
+        var stock17 = $("#stock-etc_1").text();        arrStock.push(stock17);
+        var stock18 = $("#stock-etc_2").text();        arrStock.push(stock18);
+        var stock19 = $("#stock-etc_3").text();        arrStock.push(stock19);
+        var stock20 = $("#stock-etc_4").text();        arrStock.push(stock20);
+        var stock21 = $("#stock-etc_5").text();        arrStock.push(stock21);
+        var stock22 = $("#stock-etc_6").text();        arrStock.push(stock22);
+        var stock23 = $("#stock-etc_7").text();        arrStock.push(stock23);
+
+        var i=0;
+        for (i=0; i<23; i++) {
+            // making ingredient name
+                // index 0 to 4 = soffrito 1 to 5
+                if (i>=0 && i<=4) {
+                    tempNum = i+1;
+                    ingredientName = "soffrito_" + tempNum;
+                }
+
+                // index 5 to 8 = meat 1 to 4
+                if (i>=5 && i<=8) {
+                    tempNum = i-4;
+                    ingredientName = "meat_" + tempNum;
+                }
+
+                // index 9 to 14 = seafood 1 to 6
+                if (i>=9 && i<=14) {
+                    tempNum = i-8;
+                    ingredientName = "seafood_" + tempNum;
+                }
+
+                // index 15 = stock 1
+                if (i==15) {
+                    ingredientName = "stock_1";
+                }
+
+                // index 16 to 22 = etc 1 to 7
+                if (i>=16 && i<=22) {
+                    tempNum = i-15
+                    ingredientName = "etc_" + tempNum;
+                }
+
+                var idCheckbox = "check-" + ingredientName;
+
+            if(arrStock[i] == "(Out of Stock)") {
+                // indeterminate
+                $("#"+idCheckbox).prop('indeterminate', true)
+            }
+            else {
+                // back to normal
+                $("#"+idCheckbox).prop('indeterminate', false)
+            }
+        }
+
     $(".orderinfo-p_name").click(function () {
 
         var name = document.getElementById("orderinfo-span_name").innerHTML
@@ -17,7 +92,57 @@ $(document).ready(function () {
 
         if(currstatus == "Buying Ingredients") {
             nextstatus = "Complete Ingredients";
-            next = true;
+            var arrChecks = [];
+
+            var check1 = $("#check-soffrito_1").is(":checked");    arrChecks.push(check1);
+            var check2 = $("#check-soffrito_2").is(":checked");    arrChecks.push(check2);
+            var check3 = $("#check-soffrito_3").is(":checked");    arrChecks.push(check3);
+            var check4 = $("#check-soffrito_4").is(":checked");    arrChecks.push(check4);
+            var check5 = $("#check-soffrito_5").is(":checked");    arrChecks.push(check5);
+            
+            var check6 = $("#check-meat_1").is(":checked");        arrChecks.push(check6);
+            var check7 = $("#check-meat_2").is(":checked");        arrChecks.push(check7);
+            var check8 = $("#check-meat_3").is(":checked");        arrChecks.push(check8);
+            var check9 = $("#check-meat_4").is(":checked");        arrChecks.push(check9);
+            
+            var check10 = $("#check-seafood_1").is(":checked");    arrChecks.push(check10);
+            var check11 = $("#check-seafood_2").is(":checked");    arrChecks.push(check11);
+            var check12 = $("#check-seafood_3").is(":checked");    arrChecks.push(check12);
+            var check13 = $("#check-seafood_4").is(":checked");    arrChecks.push(check13);
+            var check14 = $("#check-seafood_5").is(":checked");    arrChecks.push(check14);
+            var check15 = $("#check-seafood_6").is(":checked");    arrChecks.push(check15);
+            
+            var check16 = $("#check-stock_1").is(":checked");      arrChecks.push(check16);
+            
+            var check17 = $("#check-etc_1").is(":checked");        arrChecks.push(check17);
+            var check18 = $("#check-etc_2").is(":checked");        arrChecks.push(check18);
+            var check19 = $("#check-etc_3").is(":checked");        arrChecks.push(check19);
+            var check20 = $("#check-etc_4").is(":checked");        arrChecks.push(check20);
+            var check21 = $("#check-etc_5").is(":checked");        arrChecks.push(check21);
+            var check22 = $("#check-etc_6").is(":checked");        arrChecks.push(check22);
+            var check23 = $("#check-etc_7").is(":checked");        arrChecks.push(check23);
+
+            var isAllChecked = true;
+            var i=0;
+            for (i=0; i<23; i++) {
+                if(arrChecks[i]) {
+
+                }
+                else {
+                    isAllChecked = false;
+                }
+            }
+
+            // if all checked = can go to next status, else it cant
+            if (isAllChecked) {
+                $( "#nextstatusError" ).text("");
+                next = true;
+            }
+            else {
+                $( "#nextstatusError" ).text("Ingredients are still incomplete.");
+                next = false;
+            }
+
         }
 
         else if(currstatus == "Complete Ingredients") {
@@ -259,6 +384,10 @@ $(document).ready(function () {
         return false;
     });
 
+    $(".info-nextstatusCancel").click(function() {
+        $( "#nextstatusError" ).text("");
+    });
+
     $("#info-assignpanbtn").click(function (e) {
         var ordernum    =   $( "#span_ordernum" ).text();
         var paellasize  =   $( "#info-paellasize" ).text();
@@ -352,4 +481,115 @@ $(document).ready(function () {
             });
     });
 
+    $("#ingredientsSaveBtn").click(function() {
+        // getting all the CHECKED values of each ingredient:
+            var arrChecks = [];
+
+            var check1 = $("#check-soffrito_1").is(":checked");    arrChecks.push(check1);
+            var check2 = $("#check-soffrito_2").is(":checked");    arrChecks.push(check2);
+            var check3 = $("#check-soffrito_3").is(":checked");    arrChecks.push(check3);
+            var check4 = $("#check-soffrito_4").is(":checked");    arrChecks.push(check4);
+            var check5 = $("#check-soffrito_5").is(":checked");    arrChecks.push(check5);
+            
+            var check6 = $("#check-meat_1").is(":checked");        arrChecks.push(check6);
+            var check7 = $("#check-meat_2").is(":checked");        arrChecks.push(check7);
+            var check8 = $("#check-meat_3").is(":checked");        arrChecks.push(check8);
+            var check9 = $("#check-meat_4").is(":checked");        arrChecks.push(check9);
+            
+            var check10 = $("#check-seafood_1").is(":checked");    arrChecks.push(check10);
+            var check11 = $("#check-seafood_2").is(":checked");    arrChecks.push(check11);
+            var check12 = $("#check-seafood_3").is(":checked");    arrChecks.push(check12);
+            var check13 = $("#check-seafood_4").is(":checked");    arrChecks.push(check13);
+            var check14 = $("#check-seafood_5").is(":checked");    arrChecks.push(check14);
+            var check15 = $("#check-seafood_6").is(":checked");    arrChecks.push(check15);
+            
+            var check16 = $("#check-stock_1").is(":checked");      arrChecks.push(check16);
+            
+            var check17 = $("#check-etc_1").is(":checked");        arrChecks.push(check17);
+            var check18 = $("#check-etc_2").is(":checked");        arrChecks.push(check18);
+            var check19 = $("#check-etc_3").is(":checked");        arrChecks.push(check19);
+            var check20 = $("#check-etc_4").is(":checked");        arrChecks.push(check20);
+            var check21 = $("#check-etc_5").is(":checked");        arrChecks.push(check21);
+            var check22 = $("#check-etc_6").is(":checked");        arrChecks.push(check22);
+            var check23 = $("#check-etc_7").is(":checked");        arrChecks.push(check23);
+
+        // getting all the QUANTITY values of each ingredient:
+            var arrQuantity = [];   // TODO: change the value into getting the span of it
+
+            var quantity1 = $("#quantity-soffrito_1").text();    arrChecks.push(quantity1);
+            var quantity2 = $("quantity-soffrito_2").text();     arrChecks.push(quantity2);
+            var quantity3 = $("quantity-soffrito_3").text();     arrChecks.push(quantity3);
+            var quantity4 = $("quantity-soffrito_4").text();     arrChecks.push(quantity4);
+            var quantity5 = $("quantity-soffrito_5").text();     arrChecks.push(quantity5);
+            
+            var quantity6 = $("quantity-meat_1").text();         arrChecks.push(quantity6);
+            var quantity7 = $("quantity-meat_2").text();         arrChecks.push(quantity7);
+            var quantity8 = $("quantity-meat_3").text();         arrChecks.push(quantity8);
+            var quantity9 = $("quantity-meat_4").text();         arrChecks.push(quantity9);
+            
+            var quantity10 = $("quantity-seafood_1").text();     arrChecks.push(quantity10);
+            var quantity11 = $("quantity-seafood_2").text();     arrChecks.push(quantity11);
+            var quantity12 = $("quantity-seafood_3").text();     arrChecks.push(quantity12);
+            var quantity13 = $("quantity-seafood_4").text();     arrChecks.push(quantity13);
+            var quantity14 = $("quantity-seafood_5").text();     arrChecks.push(quantity14);
+            var quantity15 = $("quantity-seafood_6").text();     arrChecks.push(quantity15);
+            
+            var quantity16 = $("quantity-stock_1").text();       arrChecks.push(quantity16);
+            
+            var quantity17 = $("quantity-etc_1").text();         arrChecks.push(quantity17);
+            var quantity18 = $("quantity-etc_2").text();         arrChecks.push(quantity18);
+            var quantity19 = $("quantity-etc_3").text();         arrChecks.push(quantity19);
+            var quantity20 = $("quantity-etc_4").text();         arrChecks.push(quantity20);
+            var quantity21 = $("quantity-etc_5").text();         arrChecks.push(quantity21);
+            var quantity22 = $("quantity-etc_6").text();         arrChecks.push(quantity22);
+            var quantity23 = $("quantity-etc_7").text();         arrChecks.push(quantity23);
+
+        // now we check each ingredient is checked
+            var arrDeduct = [];
+            var i=0;
+
+            for (i=0; i<23; i++) {
+                if(arrChecks[i]) {
+                    var temp = parseInt(arrQuantity[i]);
+                    arrDeduct.push(temp);
+                }
+                else {
+                    var temp = 0;
+                    arrDeduct.push(temp);
+                }
+            }
+
+        // this is the post requests part
+        var ordernum = $("#span_ordernum").text();
+        
+        var information = {
+            ordernum: ordernum,
+            checked: arrChecks,
+            quantity: arrQuantity
+        }
+
+        // step 1: save checked fields in the orders db
+        $.post("saveCheckedIngredients", information, function(data, status) {
+            if (data.success){
+                console.log("save checked ingredients working");
+
+                // step 2: deduct the ingredients quantities from ingredients db
+                $.post("deductCheckedIngredients", information, function(data, status) {
+                    if (data.success){
+                        console.log("deduct ingredients working");
+                        alert("Successfully updated the ingredients checklist and inventory!");
+                        window.location.reload();
+                    }
+                    else {
+                        console.log("deduct ingredients aint working");
+                    }
+                });
+            }
+            else {
+                console.log("save checked ingredients aint working");
+            }
+        });
+
+    });
+    
 });
