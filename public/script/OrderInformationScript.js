@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // setting all out of stock ingredients to INDETERMINATE;
         var arrStock = []
 
