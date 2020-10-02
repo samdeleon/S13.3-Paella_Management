@@ -281,9 +281,6 @@ app.get('/ingredients-inventory', function(req, res){
 
 });
    
- 
-
-
 // [PAGE-06] UPDATE INGREDIENTS
 app.get('/update-ingredients', function(req, res){
     res.render('UpdateIngredients', {

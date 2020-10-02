@@ -138,10 +138,41 @@ $(document).ready(function () {
             var check22 = $("#check-etc_6").is(":checked");        arrChecks.push(check22);
             var check23 = $("#check-etc_7").is(":checked");        arrChecks.push(check23);
 
+            // checking if its disabled
+            var arrDisabled = [];
+
+            var disabled1 = $("#check-soffrito_1").is(":disabled");    arrDisabled.push(disabled1);
+            var disabled2 = $("#check-soffrito_2").is(":disabled");    arrDisabled.push(disabled2);
+            var disabled3 = $("#check-soffrito_3").is(":disabled");    arrDisabled.push(disabled3);
+            var disabled4 = $("#check-soffrito_4").is(":disabled");    arrDisabled.push(disabled4);
+            var disabled5 = $("#check-soffrito_5").is(":disabled");    arrDisabled.push(disabled5);
+            
+            var disabled6 = $("#check-meat_1").is(":disabled");        arrDisabled.push(disabled6);
+            var disabled7 = $("#check-meat_2").is(":disabled");        arrDisabled.push(disabled7);
+            var disabled8 = $("#check-meat_3").is(":disabled");        arrDisabled.push(disabled8);
+            var disabled9 = $("#check-meat_4").is(":disabled");        arrDisabled.push(disabled9);
+            
+            var disabled10 = $("#check-seafood_1").is(":disabled");    arrDisabled.push(disabled10);
+            var disabled11 = $("#check-seafood_2").is(":disabled");    arrDisabled.push(disabled11);
+            var disabled12 = $("#check-seafood_3").is(":disabled");    arrDisabled.push(disabled12);
+            var disabled13 = $("#check-seafood_4").is(":disabled");    arrDisabled.push(disabled13);
+            var disabled14 = $("#check-seafood_5").is(":disabled");    arrDisabled.push(disabled14);
+            var disabled15 = $("#check-seafood_6").is(":disabled");    arrDisabled.push(disabled15);
+            
+            var disabled16 = $("#check-stock_1").is(":disabled");      arrDisabled.push(disabled16);
+            
+            var disabled17 = $("#check-etc_1").is(":disabled");        arrDisabled.push(disabled17);
+            var disabled18 = $("#check-etc_2").is(":disabled");        arrDisabled.push(disabled18);
+            var disabled19 = $("#check-etc_3").is(":disabled");        arrDisabled.push(disabled19);
+            var disabled20 = $("#check-etc_4").is(":disabled");        arrDisabled.push(disabled20);
+            var disabled21 = $("#check-etc_5").is(":disabled");        arrDisabled.push(disabled21);
+            var disabled22 = $("#check-etc_6").is(":disabled");        arrDisabled.push(disabled22);
+            var disabled23 = $("#check-etc_7").is(":disabled");        arrDisabled.push(disabled23);
+
             var isAllChecked = true;
             var i=0;
             for (i=0; i<23; i++) {
-                if(arrChecks[i]) {
+                if(arrChecks[i] && arrDisabled[i]) {
 
                 }
                 else {
