@@ -5,33 +5,37 @@
 			<button type="button" class="toggle-btn" onclick="register()">Register</button>
 		</div>
 		<form id="login" class="input-group">
-			<input type="text" class="input-field"placeholder="Username" required>
-			<input type="password" class="input-field"placeholder="Password" id="myInput" required>
-			
+			<input id="username1"type="text" class="input-field"placeholder="Username" required>
+			<input id="password"type="password" class="input-field"placeholder="Password"  required>
+
 			<span class="eye" onclick="myFunction()">
 				<i id="hide1" class="fa fa-eye" ></i>
 				<i id="hide2" class="fa fa-eye-slash"></i>
 			</span>
-			
-			<button id="login" type="submit" class="submit-btn">Log in</button>
+
+			<button id="log" type="button" class="submit-btn">Log in</button>
 		</form>
 		<form id="register"class="input-group">
-			
+
 			<div class="error-text">Passwords do not match</div>
 
-			<input type="text" class="input-field"placeholder="Username" required>
-			<input id="pswrd_1"type="text" class="input-field"placeholder="Password" required>
-			
-			<input id="pswrd_2"type="text" class="input-field"placeholder="Confirm Password" required>
+			<input id="username2"type="text" class="input-field"placeholder="Username" name="username" required>
+			<input id="pswrd_1"type="text" class="input-field"placeholder="Password" name="password"required>
 
-			<input type="checkbox" class="check-box" required><span>I agree to the terms and conditions</span>
+			<input id="pswrd_2"type="password" class="input-field"placeholder="Confirm Password" name="password2" required>
+			<span class="eyes" onclick="myFunctions()">
+				<i id="hide3" class="fa fa-eye" ></i>
+				<i id="hide4" class="fa fa-eye-slash"></i>
+			</span>
+
+			<input id="checkbox" type="checkbox" class="check-box" required><span>I agree to the terms and conditions</span>
 			<button id="reg" type="submit" class="submit-btn">Register</button>
 		</form>
 	</div>
-		
+
 	<script>
 		function myFunction(){
-			var x = document.getElementById("myInput");
+			var x = document.getElementById("password");
 			var y = document.getElementById("hide1");
 			var z = document.getElementById("hide2");
 			if(x.type === 'password'){
@@ -45,34 +49,100 @@
 				z.style.display = "block";
 			}
 		}
+		function myFunctions(){
+			var m = document.getElementById("pswrd_2");
+			var n = document.getElementById("hide3");
+			var o = document.getElementById("hide4");
+			if(m.type === 'password'){
+				m.type = "text";
+				n.style.display = "block";
+				o.style.display = "none";
+			}
+			else{
+				m.type = "password";
+				n.style.display = "none";
+				o.style.display = "block";
+			}
+		}
 	</script>
-	
-	
+
 <script>
+	  const checkbox = document.querySelector("#checkbox");
+	  const username2 = document.querySelector("#username2");
       const pswrd_1 = document.querySelector("#pswrd_1");
       const pswrd_2 = document.querySelector("#pswrd_2");
       const errorText = document.querySelector(".error-text");
       const btn = document.querySelector("#reg");
-      
-      
+
+
       btn.onclick = function(){
-        if(pswrd_1.value != pswrd_2.value){
+		
+        if(username2.value==""||username2.value==" "){
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username Cannot Be Empty";
+          return false;
+		}
+		else if(pswrd_1.value == "" ||pswrd_2.value==""||pswrd_1.value == " " ||pswrd_2.value==" "){
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Passwords Cannot Be Empty";
+          return false;
+		}
+
+		// checking the username length
+		else if(username2.value.length < 6) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username is too short";
+          return false;
+        }
+		else if(username2.value.length > 15) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Username is too long";
+          return false;
+        }
+		
+		// checking the password length
+		else if(pswrd_1.value.length < 6) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Password is too short";
+          return false;
+        }
+		else if(pswrd_1.value.length > 15) {
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Password is too long";
+          return false;
+        }
+		
+		else if(pswrd_1.value != pswrd_2.value){
           errorText.style.display = "block";
           errorText.classList.remove("matched");
           errorText.textContent = "Passwords Do Not Match";
           return false;
-        }else{
+        }
+
+		else if(checkbox.checked!=true){
+		  errorText.style.display = "block";
+          errorText.classList.remove("matched");
+          errorText.textContent = "Unread Terms and Conditions";
+          return false;
+		}
+		else{
           errorText.style.display = "block";
           errorText.classList.add("matched");
           errorText.textContent = "Passwords Match";
           return false;
         }
       }
-      
+
     </script>
-	
+
 	<script>
-		
+
 			var x = document.getElementById("login");
 			var y = document.getElementById("register");
 			var z = document.getElementById("btn");
@@ -87,49 +157,3 @@
 				z.style.left = "0px";
 			}
 	</script>
-	{{!--
-	<div class="content-login">
-	<h2 id="log-in-header">Log In</h2>
-	<div class="input-box">
-		<i class="fa fa-user" aria-hidden="true"></i>
-		<input type="input" placeholder="Username">
-	</div>
-	<div class="input-box">
-		<i class="fa fa-key" aria-hidden="true"></i>
-		<input type="password" placeholder="Password" id="myInput">
-		<span class="eye" onclick="myFunction()">
-			<i id="hide1" class="fa fa-eye" aria-hidden="true"></i>
-			<i id="hide2" class="fa fa-eye-slash" aria-hidden="true"></i>
-		</span>
-							
-	</div>
-		<button type="button" class="login-btn">SUBMIT</button>
-	<script>
-		function myFunction(){
-			var x = document.getElementById("myInput");
-			var y = document.getElementById("hide1");
-			var z = document.getElementById("hide2");
-			if(x.type === 'password'){
-				x.type = "text";
-				y.style.display = "block";
-				z.style.display = "none";
-			}
-			else{
-				x.type = "password";
-				y.style.display = "none";
-				z.style.display = "block";
-			}
-		}
-	</script>
-						
-	<div class="register">
-		<p>DON'T HAVE AN ACCOUNT YET?</p>
-	</div>
-	<a href="/register">
-		<button type="button" class="login-btn">Register</button>
-	</a>
-					
-					
-	
-</div>
-	--}}

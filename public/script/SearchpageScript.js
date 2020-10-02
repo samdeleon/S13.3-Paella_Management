@@ -1,10 +1,17 @@
 $(document).ready(function () {
     $("#clientsearch").click(function () {
         var name = $('#clientbox').val();
-        var link = "/search-client-";
+        var link = "/client-information-";
         link = link.concat(name);
 
-        $(location).attr("href", link);
+        $.post('searchName', {name: name}, function(data, status){
+          if(!data.ok) {
+            alert("Customer Not Found");
+          } else  {
+            $(location).attr("href", link);
+            alert("Customer Found");
+          }
+        });
     });
 
     $("#numsearch").click(function () {

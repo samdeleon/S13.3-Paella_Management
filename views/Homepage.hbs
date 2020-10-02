@@ -1,4 +1,4 @@
-{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+{{> navbar name=username}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
 
 <div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
   <div class="container">
@@ -6,34 +6,30 @@
     <br>
     {{#if records}}
       {{#each records}}
-          <a href="order-information-{{this.ordernum}}" style="text-decoration: none; color: rgb(33, 37, 41);">
+          <a href="order-information-{{this.main.ordernum}}" style="text-decoration: none; color: rgb(33, 37, 41);">
             <div class="card d-flex flex-row justify-content-between home-box">
                 <div class="d-flex">
-                  <h4 id="home-customer">{{this.name}}</h4>
+                  <h4 id="home-customer">{{this.clientinfo.name}}</h4>
                 </div>
 
                 <div class="d-flex">
-                  <div class="home-col2">
-                    <button type="button" class="btn btn-outline-dark btn-block home-date">
-                      {{this.date}}
-                    </button>
+                  <div class="home-col1">
+                    <button type="button" class="btn btn-outline-dark btn-block home-date">{{this.main.date}}</button>
                   </div>
 
                   <div class="home-col2">
-                    <button id="info-pbutton" type="button" class="btn btn-warning btn-block home-status">{{this.pan_used}}</button>
+                    <button id="info-pbutton" type="button" class="btn btn-warning btn-block home-status">{{this.main.pan_used}}</button>
                   </div>
 
-                  <div class="home-col2">
-                    <buttontype="button" class="btn btn-success btn-block home-status">
-                      {{this.status}}
-                    </button>
+                  <div class="home-col3">
+                    <buttontype="button" class="btn btn-success btn-block home-status">{{this.main.status}}</button>
                   </div>
                 </div>
             </div>
           </a>
         {{/each}}
     {{else}}
-        <p>No orders available</p>
+        <p>No upcoming orders available.</p>
     {{/if}}
 
   </div>

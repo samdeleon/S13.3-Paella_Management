@@ -1,12 +1,12 @@
-{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+{{> navbar name=username}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
 
 <div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
     <div class="container order-container">
         <div class="card d-flex flex-row justify-content-between info-row0">
             <div class="info-ordernum">
-                <h2 id="ordernumber">Order #{{ordernum}}</h2>
+                <h2 id="ordernumber">Order #<span id="span_ordernum">{{ordernum}}</span></h2>
             </div>
-            
+
             <div class="d-flex info-status_grp">
                 <div class="info-p_status">
                     <button id="info-pbutton" type="button" class="btn btn-warning btn-lg btn-block">{{pan}}</button>
@@ -14,19 +14,18 @@
                 </div>
 
                 <div class="info-o_status">
-                    <button id="info-obutton" type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#orderstatusModal">
-                        {{status}}
+                    <button id="info-obutton" type="button" class="{{statusClass}}" data-toggle="modal" data-target="#orderstatusModal">
+                        <span id="span_orderstatus">{{status}}</span>
                     </button>
                 </div>
 
                 <!--[MODAL] After clicking on Order Status button, a modal will pop up to go to the next status-->
-              
                 <div class="modal fade" id="orderstatusModal" tabindex="-1" role="dialog" aria-labelledby="orderstatusModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Order Status</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="info-nextstatusCancel close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -34,32 +33,142 @@
                         Click "Next Status" to update the order's status.<br>
                         Click "Cancel" to go back to the page.
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button id="info-nextstatusbtn" type="button" class="btn btn-primary">Next Status</button>
-                        <!-- after clicking it should update the value in the db & update in the page as well-->
+                    <div class="modal-footer justify-content-between">
+                        <p id="nextstatusError"></p>
+
+                        <div>
+                            <button type="button" class="info-nextstatusCancel btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="info-nextstatusbtn" type="button" class="btn btn-primary">Next Status</button>
+                            <!-- after clicking it should update the value in the db & update in the page as well-->
+                        </div>
                     </div>
                     </div>
                 </div>
                 </div>
 
-            </div>    
+                <!--[MODAL] CONDITION #2 - From "Complete Ingredients" to "Cooking" (Assigning the Paella Pan)-->
+                <div class="modal fade" id="assignpanModal" tabindex="-1" role="dialog" aria-labelledby="assignpanModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Assign Paella Pan</h5>
+                        <button type="button" class="info-assignpanCancel close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Please assign a paella pan for your order and click "Save".
+                        
+                        <!-- CHOICES FOR 14 INCH PAELLA SIZE -->
+                        <div class="choices-14in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14A" value="14A">
+                                <label class="form-check-label" for="radio-14A">
+                                    Pan 14A <span id="used-14A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14B" value="14B">
+                                <label class="form-check-label" for="radio-14B">
+                                    Pan 14B <span id="used-14B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14C" value="14C">
+                                <label class="form-check-label" for="radio-14C">
+                                    Pan 14C <span id="used-14C"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-14choices" id="radio-14D" value="14D">
+                                <label class="form-check-label" for="radio-14D">
+                                    Pan 14D <span id="used-14D"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- CHOICES FOR 16 INCH PAELLA SIZE -->
+                        <div class="choices-16in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16A" value="16A">
+                                <label class="form-check-label" for="radio-16A">
+                                    Pan 16A <span id="used-16A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16B" value="16B">
+                                <label class="form-check-label" for="radio-16B">
+                                    Pan 16B <span id="used-16B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-16choices" id="radio-16C" value="16C">
+                                <label class="form-check-label" for="radio-16C">
+                                    Pan 16C <span id="used-16C"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- CHOICES FOR 20 INCH PAELLA SIZE -->
+                        <div class="choices-20in">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20A" value="20A">
+                                <label class="form-check-label" for="radio-20A">
+                                    Pan 20A <span id="used-20A"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20B" value="20B">
+                                <label class="form-check-label" for="radio-20B">
+                                    Pan 20B <span id="used-20B"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20C" value="20C">
+                                <label class="form-check-label" for="radio-20C">
+                                    Pan 20C <span id="used-20C"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radio-20choices" id="radio-20D" value="20D">
+                                <label class="form-check-label" for="radio-20D">
+                                    Pan 20D <span id="used-20D"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        <p id="assignpanError"></p>
+                        <div>
+                            <button type="button" class="info-assignpanCancel btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="info-assignpanbtn" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
         </div>
-        
+
         <div class="card-deck">
             <div id="info-form" class="card info-cols">
                     <h4 class="card-header">Order Information</h4>
-                    
+
                     <div class="card-body"> <!-- TODO: Replace my dummy info with the {{things}}-->
-                        <p><b>Customer Name:</b> {{name}}</p>
-                        <p><b>Contact Information:</b> {{contact}}</p>   
-                        <p><b>Mode of Delivery:</b> {{mode}}</p>  
-                        <p><b>Delivery Address:</b> {{address}}</p>    
+                        <p class="orderinfo-p_name"><b>Customer Name: </b><u><span id="orderinfo-span_name">{{name}}</span></u></p>
+                        <p><b>Contact Information:</b> {{contact}}</p>
+                        <p><b>Message Information:</b> {{message}}</p>   
+                        <p><b>Mode of Delivery:</b> {{mode}}</p>
+                        <p><b>Delivery Address:</b> {{address}}</p>
                         <p><b>Date Needed:</b> {{date}}</p>
                         <p><b>Time Needed:</b> {{time}}</p>
-                        <p><b>Paella Size:</b> {{size}}</p>
+                        <p><b>Paella Size:</b> <span id="info-paellasize">{{size}}</span></p>
                         <p>
-                            <b>Extra Remarks:</b> <br>
+                            <b>Remarks:</b> <br>
                             <span id="info-remarks">
                                 {{remarks}}
                             </span>
@@ -69,196 +178,208 @@
 
             <div id="info-checklist" class="card info-cols">
                     <h4 class="card-header">Ingredients Checklist</h4>
-                    
+
                     <div class="card-body"> <!-- TODO: linking this to the db (if checked or not) -->
-    
+
                         <!-- SOFFRITO --------------------------------------------------------------------- -->
                         <p class="info-p_text"><b>Soffrito:</b></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_1">
+                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_1" {{this.checked.0.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_1">
-                                <!--{{this.quantity}}--> pinches of Saffron
+                                <span id="quantity-soffrito_1">{{this.array.0.quantity}}</span> pinches of Saffron <span id="stock-soffrito_1" class="stockError">{{this.quantity.0.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_2">
+                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_2" {{this.checked.1.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_2">
-                                <!--{{this.quantity}}--> mL of Olive Oil
+                                 <span id="quantity-soffrito_2">{{this.array.1.quantity}}</span> mL of Olive Oil <span id="stock-soffrito_2" class="stockError">{{this.quantity.1.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_3">
+                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_3" {{this.checked.2.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_3">
-                                <!--{{this.quantity}}--> big pieces of White Onion
+                                 <span id="quantity-soffrito_3">{{this.array.2.quantity}}</span> big pieces of White Onion <span id="stock-soffrito_3" class="stockError">{{this.quantity.2.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_4">
+                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_4" {{this.checked.3.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_4">
-                                <!--{{this.quantity}}--> grams can of Tomatoes
+                                 <span id="quantity-soffrito_4">{{this.array.3.quantity}}</span> grams can of Tomatoes <span id="stock-soffrito_4" class="stockError">{{this.quantity.3.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_5">
+                            <input class="form-check-input" type="checkbox" value="" id="check-soffrito_5" {{this.checked.4.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-soffrito_5">
-                                <!--{{this.quantity}}--> cloves of Garlic
+                                 <span id="quantity-soffrito_5">{{this.array.4.quantity}}</span> cloves of Garlic <span id="stock-soffrito_5" class="stockError">{{this.quantity.4.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <!-- MEAT --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Meat:</b></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-meat_1">
+                            <input class="form-check-input" type="checkbox" value="" id="check-meat_1" {{this.checked.5.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_1">
-                                <!--{{this.quantity}}--> pieces of Chicken Breast Part
+                                 <span id="quantity-meat_1">{{this.array.5.quantity}}</span> pieces of Chicken Breast Part <span id="stock-meat_1" class="stockError">{{this.quantity.5.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-meat_2">
+                            <input class="form-check-input" type="checkbox" value="" id="check-meat_2" {{this.checked.6.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_2">
-                                <!--{{this.quantity}}--> pieces of Chorizo
+                                 <span id="quantity-meat_2">{{this.array.6.quantity}}</span> pieces of Chorizo <span id="stock-meat_2" class="stockError">{{this.quantity.6.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-meat_3">
+                            <input class="form-check-input" type="checkbox" value="" id="check-meat_3" {{this.checked.7.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_3">
-                                <!--{{this.quantity}}--> pieces of Bilbao
+                                 <span id="quantity-meat_3">{{this.array.7.quantity}}</span> pieces of Bilbao <span id="stock-meat_3" class="stockError">{{this.quantity.7.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-meat_4">
+                            <input class="form-check-input" type="checkbox" value="" id="check-meat_4" {{this.checked.8.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-meat_4">
-                                <!--{{this.quantity}}--> grams of Lomo (Pork Tenderloin)
+                                 <span id="quantity-meat_4">{{this.array.8.quantity}}</span> grams of Lomo (Pork Tenderloin) <span id="stock-meat_4" class="stockError">{{this.quantity.8.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <!-- SEAFOOD --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Seafood:</b></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_1">
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_1" {{this.checked.9.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-seafood_1">
-                                <!--{{this.quantity}}--> pieces of Crab
-                            </label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_2">
-                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_2">
-                                <!--{{this.quantity}}--> pieces of Sugpo (Tiger Prawns)
-                            </label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_3">
-                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_3">
-                                <!--{{this.quantity}}--> pieces of Suahe (Shrimps)
-                            </label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_4">
-                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_4">
-                                <!--{{this.quantity}}--> pieces of Tahong (Mussels)
-                            </label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_5">
-                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_5">
-                                <!--{{this.quantity}}--> pieces of Halaan (Clams)
+                                 <span id="quantity-seafood_1">{{this.array.9.quantity}}</span> pieces of Crab <span id="stock-seafood_1" class="stockError">{{this.quantity.9.stock}}</span>
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_6">
-                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_6">
-                                <!--{{this.quantity}}--> medium pieces of Lumot (Big Squid)
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_2" {{this.checked.10.value}}>
+                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_2">
+                                 <span id="quantity-seafood_2">{{this.array.10.quantity}}</span> pieces of Sugpo (Tiger Prawns) <span id="stock-seafood_2" class="stockError">{{this.quantity.10.stock}}</span>
                             </label>
                         </div>
-                        
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_3" {{this.checked.11.value}}>
+                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_3">
+                                 <span id="quantity-seafood_3">{{this.array.11.quantity}}</span> pieces of Suahe (Shrimps) <span id="stock-seafood_3" class="stockError">{{this.quantity.11.stock}}</span>
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_4" {{this.checked.12.value}}>
+                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_4">
+                                 <span id="quantity-seafood_4">{{this.array.12.quantity}}</span> pieces of Tahong (Mussels) <span id="stock-seafood_4" class="stockError">{{this.quantity.12.stock}}</span>
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_5" {{this.checked.13.value}}>
+                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_5">
+                                 <span id="quantity-seafood_5">{{this.array.13.quantity}}</span> pieces of Halaan (Clams) <span id="stock-seafood_5" class="stockError">{{this.quantity.13.stock}}</span>
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check-seafood_6" {{this.checked.14.value}}>
+                            <label class="form-check-label" for="defaultCheck1" id="name-seafood_6">
+                                 <span id="quantity-seafood_6">{{this.array.14.quantity}}</span> medium pieces of Lumot (Big Squid) <span id="stock-seafood_6" class="stockError">{{this.quantity.14.stock}}</span>
+                            </label>
+                        </div>
+
                         <!-- STOCK --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>Stock:</b></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-stock_1">
+                            <input class="form-check-input" type="checkbox" value="" id="check-stock_1" {{this.checked.15.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-stock_1">
-                                <!--{{this.quantity}}--> cups of Chicken Stock
+                                 <span id="quantity-stock_1">{{this.array.15.quantity}}</span> cups of Chicken Stock <span id="stock-stock_1" class="stockError">{{this.quantity.15.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <!-- ETC --------------------------------------------------------------------- -->
                         <br>
                         <p class="info-p_text"><b>ETC:</b></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_1">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_1" {{this.checked.16.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_1">
-                                <!--{{this.quantity}}--> cups of White Japanese Rice
+                                 <span id="quantity-etc_1">{{this.array.16.quantity}}</span> cups of White Japanese Rice <span id="stock-etc_1" class="stockError">{{this.quantity.16.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_2">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_2" {{this.checked.17.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_2">
-                                <!--{{this.quantity}}--> pieces of Eggs
+                                 <span id="quantity-etc_2">{{this.array.17.quantity}}</span> pieces of Eggs <span id="stock-etc_2" class="stockError">{{this.quantity.17.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_3">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_3" {{this.checked.18.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_3">
-                                <!--{{this.quantity}}--> mL of Mayo
+                                 <span id="quantity-etc_3">{{this.array.18.quantity}}</span> mL of Mayo <span id="stock-etc_3" class="stockError">{{this.quantity.18.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_4">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_4" {{this.checked.19.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_4">
-                                <!--{{this.quantity}}--> cloves of Garlic
+                                 <span id="quantity-etc_4">{{this.array.19.quantity}}</span> cloves of Garlic <span id="stock-etc_4" class="stockError">{{this.quantity.19.stock}}</span>
                             </label>
                         </div>
-                        
+
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_5">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_5" {{this.checked.20.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_5">
-                                <!--{{this.quantity}}--> pieces of Lemons
+                                 <span id="quantity-etc_5">{{this.array.20.quantity}}</span> pieces of Lemons <span id="stock-etc_5" class="stockError">{{this.quantity.20.stock}}</span>
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_6">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_6" {{this.checked.21.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_6">
-                                <!--{{this.quantity}}--> pieces of Red Bell Pepper
+                                 <span id="quantity-etc_6">{{this.array.21.quantity}}</span> pieces of Red Bell Pepper <span id="stock-etc_6" class="stockError" class="stockError">{{this.quantity.21.stock}}</span>
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="check-etc_7">
+                            <input class="form-check-input" type="checkbox" value="" id="check-etc_7" {{this.checked.22.value}}>
                             <label class="form-check-label" for="defaultCheck1" id="name-etc_7">
-                                <!--{{this.quantity}}--> sprigs of Rosemary
+                                 <span id="quantity-etc_7">{{this.array.22.quantity}}</span> sprigs of Rosemary <span id="stock-etc_7" class="stockError">{{this.quantity.22.stock}}</span>
                             </label>
                         </div>
+
+                        <!-- END --------------------------------------------------------------------- -->
+                        <br>
+                        <button id="ingredientsSaveBtn" type="button" class="{{saveClass}}">{{saveText}}</button>
                 </div>
 
             </div>
 
             <div id="info-profit" class="card info-cols">
                 <h4 class="card-header">Profit Computation</h4>
+
+                <div class="card-body yesCompleted">
+                    <p class="priceLeft"><b>Total Payment of Customer:</b></p>   <p id="customerPrice" class="priceRight">Php {{this.payment1}}</p>
+                    <p class="priceLeft"><b>Total Price of Ingredients:</b></p>   <p id="ingredientPrice" class="priceRight">Php {{this.payment2}}</p>
+                    <hr id="profitLine">
+                    <p class="priceLeft"><b>Total Profit:</b></p>   <p id="totalProfit"class="priceRight"><b>Php {{this.profit}}</b></p>
+                </div>
+                
+                <div class="card-body notCompleted">
+                    <p>Profit will only be generated if order is <b>completed</b></p>
+                </div>
                     
-                <div class="card-body">
-                    <!-- the format should look like this more or less, but the code will follow-->
-                    <p><b>Total ???:</b> Php XXXX.XX</p>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

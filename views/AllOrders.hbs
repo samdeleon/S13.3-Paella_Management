@@ -1,4 +1,4 @@
-{{> navbar}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
+{{> navbar name=username}} <!-- This is the partial for the navigation bar, we use > right after the opening mustache to denote it's a partial -->
 
 <div class="d-flex flex-column content"> <!-- ".content" will be the biggest div for all pages after login (for general margin and padding) -->
 
@@ -14,13 +14,14 @@
         <th scope="col">Order Number</th>
         <th scope="col">Customer Name</th>
         <th scope="col">Contact Information</th>
+        <th scope="col">Message Information</th>
         <th scope="col">Mode of Delivery</th>
         <th scope="col">Address</th>
         <th scope="col">Date Needed</th>
         <th scope="col">Time Needed</th>
         <th scope="col">Paella Size</th>
         <th scope="col">Order status</th>
-        <th scope="col">Extra Remarks</th>
+        <th scope="col">Remarks</th>
         <th scope="col">Pan Assigned</th>
       </tr>
     </thead>
@@ -28,17 +29,18 @@
       {{#if records}}
         {{#each records}}
           <tr>
-            <td class="allorders-ordernum"><u>{{this.ordernum}}</u></td>
-            <td class="allorders-customer">{{this.name}}</td>
-            <td>{{this.contact_info}}</td>
-            <td>{{this.mode_of_delivery}}</td>
-            <td>{{this.address}}</td>
-            <td>{{this.date}}</td>
-            <td>{{this.time}}</td>
-            <td>{{this.paellasize}}</td>
-            <td>{{this.status}}</td>
-            <td>{{this.extraremarks}}</td>
-            <td>{{this.pan_used}}</td>
+            <td class="allorders-ordernum"><u>{{this.main.ordernum}}</u></td>
+            <td class="allorders-customer"><u>{{this.clientinfo.name}}</u></td>
+            <td>{{this.clientinfo.contact_info}}</td>
+            <td>{{this.clientinfo.message_info}}</td>
+            <td>{{this.main.mode_of_delivery}}</td>
+            <td>{{this.clientinfo.address}}</td>
+            <td>{{this.main.date}}</td>
+            <td>{{this.main.time}}</td>
+            <td>{{this.main.paellasize}}</td>
+            <td>{{this.main.status}}</td>
+            <td>{{this.main.extraremarks}}</td>
+            <td>{{this.main.pan_used}}</td>
           </tr>
           {{/each}}
       {{else}}
@@ -50,4 +52,3 @@
     </table>
   </div>
 </div>
-

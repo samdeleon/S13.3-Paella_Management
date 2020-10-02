@@ -1,9 +1,4 @@
 .inside {
-    /*
-    background-color: ;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    */
 }
 
 .content {
@@ -33,7 +28,7 @@
 .home-col1 {
     padding-left: 10px;
     padding-right: 10px;
-    width: 150px;
+    width: 160px;
 }
 
 .home-col2 {
@@ -42,7 +37,27 @@
     width: 200px;
 }
 
+.home-col3 {
+    padding-left: 10px;
+    width: 200px;
+}
+
 .home-status {
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:hover {
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:active{
+    cursor: default;
+    pointer-events: none;
+}
+
+.home-status:focus{
     cursor: default;
     pointer-events: none;
 }
@@ -105,6 +120,8 @@
     color: #212529;
     background-color: #90BE6D;
     border-color: #90BE6D;
+    cursor: pointer;
+    pointer-events: all;
 }
 
 .btn-success:hover {
@@ -136,8 +153,36 @@
     width: 250px;
 }
 
+.completed-status {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+}
+
 .modal-body {
     text-align: justify;
+}
+
+.choices-14in {
+    display: none;
+}
+
+.choices-16in {
+    display: none;
+}
+
+.choices-20in {
+    display: none;
+}
+
+#assignpanError {
+    color: red;
+}
+
+#nextstatusError {
+    color: red;
 }
 
 .info-row2 {
@@ -158,9 +203,41 @@
 #info-checklist {
 }
 
+.stockError {
+    color: red;
+}
+
+.completed-checklist {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+}
+
+.completed-ingredients {
+    color: #212529;
+    background-color: #90BE6D;
+    border-color: #90BE6D;
+    pointer-events: none;
+    cursor: default;
+    display: none;
+}
+
 #info-profit {
 }
 
+.priceLeft {
+    text-align: left;
+}
+
+.priceRight {
+    text-align: right;
+}
+
+.orderinfo-p_name {
+    cursor: pointer;
+}
 
 
 /* ------------------------------ [PAGE-05] INGREDIENTS INVENTORY ------------------------------- */
@@ -168,6 +245,53 @@
     margin-bottom: 30px;
 }
 
+.ingredient-row {
+    align-items: center;
+    text-align: center;
+}
+.qty .count {
+    
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px;
+    width: 100px;
+    text-align: center;
+    
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
 
 /* ------------------------------- [PAGE-06] UPDATE INGREDIENTS --------------------------------- */
 
@@ -187,8 +311,9 @@
     margin-bottom: 30px;
 }
 
-.pan-col1 {
-
+.pan-img {
+    max-height: 300;
+    overflow: hidden;
 }
 
 .pan-col2 {
@@ -220,10 +345,7 @@
 }
 
 .allorders-customer {
-    /*
-    SPRINT 3 TODO
     cursor: pointer;
-    */
 }
 
 
@@ -232,6 +354,14 @@
 .sbtns {
   background-color: #F8961E;
   color: #FFFFFF;
+}
+
+/* ----------------------------------- [PAGE-10] CUSTOMER INFORMATION PAGE ------------------------------------ */
+
+
+/* ----------------------------------- ALL CUSTOMERS PAGE ------------------------------------ */
+.allcust-customer {
+    cursor: pointer;
 }
 
 /* ------------------------------------------ NAVBAR -------------------------------------------- */

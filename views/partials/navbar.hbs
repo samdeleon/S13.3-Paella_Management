@@ -19,14 +19,13 @@
                 <li class="nav-item">
                   <a class="nav-link navtext" href="/orders">All Orders</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle navtext" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item">
+                  <a class="nav-link  navtext" href="/order-form">
                     New Order
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/order-form">New Customer</a>
-                    <a class="dropdown-item" href="">Old Customer</a>
-                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link navtext" href="/customers">All Customers</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle navtext" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +41,7 @@
               <!--Log Out-->
               <ul class="navbar-nav my-2 my-lg-0">
                 <li class="nav-item">
-                  <span class="nav-link vl ownertext">Logged in as Owner</span>
+                  <span class="nav-link vl ownertext">Logged in as {{name}}</span>
                   <!-- TODO: replace owner with user name -->
                 </li>
                 <li class="nav-item active">

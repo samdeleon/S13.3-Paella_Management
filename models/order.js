@@ -12,22 +12,15 @@ mongoose.connect(databaseURL, options);
 const orderSchema = new mongoose.Schema(
     {
         ordernum:           {type: String, required: true},
-        name:               {type: String, required: true},
-        contact_info:       {type: String, required: true},
+        customer_id:        {type: mongoose.ObjectId, required: true},
         mode_of_delivery:   {type: String, required: true},
-        address:            {type: String, required: true},
         date:               {type: String, required: true},
         time:               {type: String, required: true},
         paellasize:         {type: String, required: true},
         status:             {type: String, required: true},
         extraremarks:       {type: String, required: false},
-        pan_used:           {type: String, required: true},
-        /*
-        to add:
-
-        ingredients         {type: Object, required: true}  --> for this one the values inside are: id (string), quantity (int), checked (int)
-        message_info:       {type: String, required: true} 
-        */
+        pan_used:           {type: mongoose.Schema.Types.Mixed, required: true},
+        order_ingredients:  {type: mongoose.Schema.Types.Mixed, required: true}
     }
 );
 

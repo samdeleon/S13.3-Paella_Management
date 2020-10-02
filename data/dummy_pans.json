@@ -1,0 +1,68 @@
+[
+{
+    "name": "14A",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "14B",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "14C",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "14D",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "16A",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "16B",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "16C",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "20A",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "20B",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "20C",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+},
+{
+    "name": "20D",
+    "availability": true,
+    "order_id": "Available",
+    "__v": 0
+}
+]
